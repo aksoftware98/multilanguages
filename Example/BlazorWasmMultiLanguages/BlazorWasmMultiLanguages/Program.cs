@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Blazor.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using AKSoftware.Localization.MultiLanguages;
 using System.Reflection;
+using System.Globalization;
 
 namespace BlazorWasmMultiLanguages
 {
@@ -16,6 +17,9 @@ namespace BlazorWasmMultiLanguages
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
             builder.Services.AddLangaugeContainer(Assembly.GetExecutingAssembly());
+
+            // Launch the app with a default culture 
+            //builder.Services.AddLangaugeContainer(Assembly.GetExecutingAssembly(), CultureInfo.GetCultureInfo("fr-Fr"));
             
             await builder.Build().RunAsync();
         }
