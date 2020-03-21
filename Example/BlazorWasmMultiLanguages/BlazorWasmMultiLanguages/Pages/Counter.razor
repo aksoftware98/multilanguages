@@ -1,0 +1,18 @@
+﻿@page "/counter"
+
+@inject ILanguageContainerService languageContainer
+
+<h1>@languageContainer.Keys["Counter"]</h1>
+
+<p>@languageContainer.Keys["CurrentCount"]: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">@languageContainer.Keys["ClickMe"]</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

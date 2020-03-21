@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\ca-ES.yml" />
+    <None Remove="Resources\de-DE.yml" />
+    <None Remove="Resources\en-US.yml" />
+    <None Remove="Resources\fr-FR.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ca-ES.yml" />
+    <EmbeddedResource Include="Resources\de-DE.yml" />
+    <EmbeddedResource Include="Resources\en-US.yml" />
+    <EmbeddedResource Include="Resources\fr-FR.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.2.0-preview1.20073.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.2.0-preview1.20073.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.2.0-preview1.20073.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview1.20073.1" />
+    <PackageReference Include="YamlDotNet" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AKSoftware.Localization.MultiLanguages">
+      <HintPath>..\..\..\src\AKSoftware.Localization.MultiLanguages\bin\Release\netstandard2.0\AKSoftware.Localization.MultiLanguages.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
