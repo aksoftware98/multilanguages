@@ -1,0 +1,41 @@
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  solution: '**/AKSoftware.Localization.MultiLanguages.csproj'
+  BuildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Restore packages'
+  inputs:
+    command: 'restore'
+    projects: $(solution)
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build the project'
+  inputs:
+      command: 'build'
+      projects: '$(solution)'
+      arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Packing the library'
+  inputs:
+    command: 'pack'
+    packagesToPack: '$(solution)'
+    nobuild: true
+    versioningScheme: 'byBuildNumber'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publishing the package'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'fb16979d-fd6d-4091-a296-0d77cf0becb2/8cf90372-127e-40e7-90a5-1c38afb4e05c'
