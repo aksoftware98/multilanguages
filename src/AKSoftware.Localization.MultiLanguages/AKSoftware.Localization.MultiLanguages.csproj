@@ -2,11 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>AK Software</Company>
+    <Authors>Ahamd Mozaffar</Authors>
+    <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
+    <Copyright>AK Software 2020</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
+    <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
+    <PackageReleaseNotes>Supports read resources files from embeded resources within a specific assembly</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
     <PackageReference Include="YamlDotnet" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
