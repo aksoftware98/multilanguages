@@ -6,34 +6,26 @@
 @languageContainer.Keys["Welcome"]
 
 <div class="row">
-    <img src="us.png" @onclick="SetEnglish" style="height:50px;cursor:pointer;margin:10px"/>
-    <img src="de.png" @onclick="SetDeutsch" style="height:50px;cursor:pointer;margin:10px"/>
-    <img src="es.png" @onclick="SetSpanish" style="height:50px;cursor:pointer;margin:10px"/>
-    <img src="fr.png" @onclick="SetFrench" style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/us/shiny/64.png" @onclick='() => SetLanguage("en-US")' style="height:50px;cursor:pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/de/shiny/64.png" @onclick='() => SetLanguage("de-De")' style="height:50px;cursor:pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/es/shiny/64.png" @onclick='() => SetLanguage("ca-ES")' style="height:50px;cursor:pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/fr/shiny/64.png" @onclick='() => SetLanguage("fr-FR")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/it/shiny/64.png" @onclick='() => SetLanguage("it-IT")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/jp/shiny/64.png" @onclick='() => SetLanguage("ja-JP")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/in/shiny/64.png" @onclick='() => SetLanguage("ml-IN")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/sa/shiny/64.png" @onclick='() => SetLanguage("ar-SA")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/fi/shiny/64.png" @onclick='() => SetLanguage("fi-FI")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/bg/shiny/64.png" @onclick='() => SetLanguage("bg-BG")' style="height: 50px;cursor: pointer;margin:10px"/>
 </div>
 
 <SurveyPrompt Title="@languageContainer.Keys["Question"]" />
 
 @code 
 {
-    void SetEnglish()
+    void SetLanguage(string language)
     {
-        languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo("en-US"));
+        languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo(language));
     }
 
-    void SetDeutsch()
-    {
-        languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo("de-DE"));
-    }
-
-    void SetSpanish()
-    {
-        languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo("ca-ES"));
-    }
-
-    void SetFrench()
-    {
-        languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo("fr-FR"));
-    }
 
 }

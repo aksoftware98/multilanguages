@@ -6,17 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\ar-SA.yml" />
+    <None Remove="Resources\bg-BG.yml" />
     <None Remove="Resources\ca-ES.yml" />
     <None Remove="Resources\de-DE.yml" />
     <None Remove="Resources\en-US.yml" />
+    <None Remove="Resources\fi-FI.yml" />
     <None Remove="Resources\fr-FR.yml" />
+    <None Remove="Resources\it-IT.yml" />
+    <None Remove="Resources\ja-JP.yml" />
+    <None Remove="Resources\ml-IN.yml" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\ar-SA.yml" />
+    <EmbeddedResource Include="Resources\bg-BG.yml" />
     <EmbeddedResource Include="Resources\ca-ES.yml" />
     <EmbeddedResource Include="Resources\de-DE.yml" />
     <EmbeddedResource Include="Resources\en-US.yml" />
+    <EmbeddedResource Include="Resources\fi-FI.yml" />
     <EmbeddedResource Include="Resources\fr-FR.yml" />
+    <EmbeddedResource Include="Resources\it-IT.yml" />
+    <EmbeddedResource Include="Resources\ja-JP.yml" />
+    <EmbeddedResource Include="Resources\ml-IN.yml" />
   </ItemGroup>
 
   <ItemGroup>
