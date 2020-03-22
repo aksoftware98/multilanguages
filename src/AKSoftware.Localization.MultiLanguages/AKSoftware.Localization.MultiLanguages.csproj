@@ -13,6 +13,8 @@
     <PackageReleaseNotes>Supports read resources files from embeded resources within a specific assembly</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIcon />
+    <PackageIconUrl>https://akmultilanguages.azurewebsites.net/logo.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +24,10 @@
 
   <ItemGroup>
     <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="AkMultiLanguages.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
