@@ -50,8 +50,17 @@ namespace AKSoftware.Localization.MultiLanguages
             CurrentCulture = culture;
             string[] languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains("Resources") && s.Contains(".yml") && s.Contains("-")).ToArray();
 
+            // Get the keys from the file that has the current culture 
             Keys = GetKeysFromCulture(culture.Name, languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml")));
 
+            // Get the keys from a file that has the same language 
+            if(Keys == null)
+            {
+                string language = culture.Name.Split('-')[0];
+                Keys = GetKeysFromCulture(culture.Name, languageFileNames.FirstOrDefault(n => n.Contains(language)));
+            }
+            
+            // Get the keys from the english resource 
             if (Keys == null && culture.Name != "en-US")
                 Keys = GetKeysFromCulture("en-US", languageFileNames.SingleOrDefault(n => n.Contains($"en-US.yml")));
 
@@ -59,7 +68,7 @@ namespace AKSoftware.Localization.MultiLanguages
                 Keys = GetKeysFromCulture("en-US", languageFileNames.FirstOrDefault());
 
             if (Keys == null)
-                throw new FileNotFoundException($"There is no language files existing the Resource folder within '{_resourcesAssembly.GetName().Name}' assembly");
+                throw new FileNotFoundException($"There is no language files existing in the Resource folder within '{_resourcesAssembly.GetName().Name}' assembly");
         }
 
         /// <summary>
