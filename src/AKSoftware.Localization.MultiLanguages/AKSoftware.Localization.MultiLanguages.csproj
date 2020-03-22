@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -13,8 +13,7 @@
     <PackageReleaseNotes>Supports read resources files from embeded resources within a specific assembly</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageIcon />
-    <PackageIconUrl>https://akmultilanguages.azurewebsites.net/logo.png</PackageIconUrl>
+    <PackageIcon>https://akmultilanguages.azurewebsites.net/logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
