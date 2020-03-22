@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>AK Software</Company>
-    <Authors>Ahamd Mozaffar</Authors>
+    <Authors>Ahmad Mozaffar</Authors>
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
     <Copyright>AK Software 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
