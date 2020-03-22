@@ -30,6 +30,10 @@ steps:
     command: 'pack'
     packagesToPack: '$(solution)'
     nobuild: true
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '0'
 
 - task: DotNetCoreCLI@2
   displayName: 'Publishing the package'
