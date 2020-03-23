@@ -9,5 +9,10 @@ AKSoftware.Localization.MultiLanguages is a package for .NET developers allows t
 ![Nuget](https://img.shields.io/nuget/dt/AKSoftware.Localization.MultiLanguages?color=nuget&label=Nuget&style=plastic)
 
 # Learn how to develop multi languages Blazor WebAssembly projects
+https://youtu.be/Xz68c8GBYz4
+
+# Screenshots
+![GitHub Logo](Example/wwwroot/german.png)
+Format: ![German UI](url)
 
 
