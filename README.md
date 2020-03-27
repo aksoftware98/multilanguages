@@ -2,6 +2,7 @@
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
 ![Nuget](https://img.shields.io/nuget/dt/AKSoftware.Localization.MultiLanguages?color=nuget&label=Nuget&style=plastic)
+
 Build awesome Blazor WebAssembly web applications that supports more than 69+ languages with just a few lines of code, in addition to an easy translation tool that helps you translate all your content to any language you want with just one click
 
 https://akmultilanguages.azurewebsites.net
