@@ -16,7 +16,7 @@ namespace BlazorWasmMultiLanguages
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-            builder.Services.AddLangaugeContainer(Assembly.GetExecutingAssembly());
+            builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly());
 
             // Launch the app with a default culture 
             //builder.Services.AddLangaugeContainer(Assembly.GetExecutingAssembly(), CultureInfo.GetCultureInfo("fr-Fr"));

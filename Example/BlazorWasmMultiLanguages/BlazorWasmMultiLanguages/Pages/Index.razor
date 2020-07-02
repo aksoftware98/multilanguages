@@ -1,9 +1,9 @@
 ﻿@page "/"
 @inject ILanguageContainerService languageContainer
 
-<h1>@languageContainer.Keys["HelloWorld"]</h1>
+<h1>@languageContainer.Keys["HomePage:HelloWorld"]</h1>
 
-@languageContainer.Keys["Welcome"]
+@languageContainer.Keys["HomePage:Welcome"]
 
 <div class="row">
     <img src="https://www.countryflags.io/us/shiny/64.png" @onclick='() => SetLanguage("en-US")' style="height:50px;cursor:pointer;margin:10px"/>
@@ -18,7 +18,7 @@
     <img src="https://www.countryflags.io/bg/shiny/64.png" @onclick='() => SetLanguage("bg-BG")' style="height: 50px;cursor: pointer;margin:10px"/>
 </div>
 
-<SurveyPrompt Title="@languageContainer.Keys["Question"]" />
+<SurveyPrompt Title="@languageContainer.Keys["HomePage:Question"]" />
 
 @code 
 {
