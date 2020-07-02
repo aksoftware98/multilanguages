@@ -1,6 +1,19 @@
-﻿firstname: First Name
-lastname: Last Name
-login: Login
-register: Register
-foregetpassword: Forget Password
-passport: Password
+HomePage:
+ Title: Home
+ HelloWorld: Hello World
+ Welcome: Welcome
+ Question: How is Blazor working for you?
+ BriefSuvery: Brief Survey
+ Think: Tell us what do you think
+Counter:
+ Title: Counter
+ ClickMe: Click Me
+FetchData:
+ Title: Fetch Data
+ WeatherForcast: Weather forecast
+ WeatherTitle: This component demonstrates fetching data from the server
+ Loading: Loading
+ Date: Date
+ Temp: Temp
+ Summary: Summary
+

@@ -8,13 +8,14 @@ namespace AKSoftware.Localization.MultiLanguages
     public class LanguageContainerInAssembly : ILanguageContainerService
     {
         private Assembly _resourcesAssembly;
-
+        private string _folderName; 
         /// <summary>
         /// Create instance of the container that languages exists in a specific folder, initialized with the sepecific culture
         /// </summary>
         /// <param name="folderName">Folder that contains the language files</param>
-        public LanguageContainerInAssembly(Assembly assembly, CultureInfo culture)
+        public LanguageContainerInAssembly(Assembly assembly, CultureInfo culture, string folderName)
         {
+            _folderName = folderName; 
             _resourcesAssembly = assembly;
             SetLanguage(culture, true);
         }
@@ -23,8 +24,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// Create instance of the container that languages exists in a specific folder, initialized with the default culture
         /// </summary>
         /// <param name="folderName">Folder that contains the language files</param>
-        public LanguageContainerInAssembly(Assembly assembly)
+        public LanguageContainerInAssembly(Assembly assembly, string folderName)
         {
+            _folderName = folderName; 
             _resourcesAssembly = assembly;
             SetLanguage(CultureInfo.CurrentCulture, true);
         }
@@ -48,7 +50,7 @@ namespace AKSoftware.Localization.MultiLanguages
         private void SetLanguage(CultureInfo culture, bool isDefault)
         {
             CurrentCulture = culture;
-            string[] languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains("Resources") && s.Contains(".yml") && s.Contains("-")).ToArray();
+            string[] languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains(_folderName) && s.Contains(".yml") && s.Contains("-")).ToArray();
 
             // Get the keys from the file that has the current culture 
             Keys = GetKeysFromCulture(culture.Name, languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml")));

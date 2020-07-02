@@ -1,18 +1,18 @@
-Home: المنزل
-Counter: مكافحه
-FetchData: جلب البيانات
-WeatherForcast: توقعات الطقس
-WeatherTitle: يوضح هذا المكون جلب البيانات من الملقم.
-Loading: تحميل
-Date: تاريخ
-Temp: Temp
-Summury: سومموري
-HelloWorld: مرحبا بالعالم!
-Welcome: مرحبا بكم في التطبيق الجديد
-Question: كيف يعمل (بلازور) لديك؟
-CurrentCount: العدد الحالي
-ClickMe: انقر فوق لي
-About: عن
-Please: يرجى اتخاذ لدينا
-BriefSurvey: مسح موجز
-Think: أخبرنا برأيك
+HomePage:
+  Title: المنزل
+  HelloWorld: مرحبا بالعالم
+  Welcome: اهلا وسهلا
+  Question: كيف يعمل بلازور لديك؟
+  BriefSuvery: مسح موجز
+  Think: أخبرنا ما رأيك
+Counter:
+  Title: مكافحه
+  ClickMe: انقر فوق Me
+FetchData:
+  Title: جلب البيانات
+  WeatherForcast: توقعات الطقس
+  WeatherTitle: يوضح هذا المكون جلب البيانات من الملقم
+  Loading: تحميل
+  Date: تاريخ
+  Temp: Temp
+  Summary: موجز

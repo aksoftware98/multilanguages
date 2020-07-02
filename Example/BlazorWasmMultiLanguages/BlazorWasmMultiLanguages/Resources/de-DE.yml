@@ -1,18 +1,18 @@
-﻿Home: Zuhause
-Counter: Zähler
-FetchData: Daten abrufen
-WeatherForcast: Wettervorhersage
-WeatherTitle: Diese Komponente demonstriert das Abrufen von Daten vom Server.
-Loading: Wird bearbeitet
-Date: Datum
-Temp: Temperatur
-Summury: Zusammenfassung
-HelloWorld: Hallo Welt!
-Welcome: Willkommen in Ihrer neuen App
-Question: Wie arbeitet Blazor für Sie?
-CurrentCount: Aktuelle Anzahl
-ClickMe: Klick mich
-About: Über
-Please: Bitte nehmen Sie unsere
-BriefSurvey: Kurze Umfrage
-Think: 'Sagen Sie uns, was Sie denken'
+HomePage:
+  Title: Startseite
+  HelloWorld: Hallo Welt
+  Welcome: Willkommen
+  Question: Wie arbeitet Blazor für Sie?
+  BriefSuvery: Kurze Übersicht
+  Think: Sagen Sie uns, was Sie denken
+Counter:
+  Title: Zähler
+  ClickMe: Click Me
+FetchData:
+  Title: Abrufen von Daten
+  WeatherForcast: Wettervorhersage
+  WeatherTitle: Diese Komponente veranschaulicht das Abrufen von Daten vom Server
+  Loading: Laden
+  Date: Datum
+  Temp: Temp
+  Summary: Zusammenfassung

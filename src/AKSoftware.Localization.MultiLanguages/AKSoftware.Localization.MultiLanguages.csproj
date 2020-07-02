@@ -10,14 +10,21 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Supports read resources files from embeded resources within a specific assembly</PackageReleaseNotes>
+    <PackageReleaseNotes>Enables the developer the configure the folder of the resources instead of the fixed "Resource Folder"</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.2.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>3.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.csharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="YamlDotnet" Version="8.1.0" />
   </ItemGroup>
 

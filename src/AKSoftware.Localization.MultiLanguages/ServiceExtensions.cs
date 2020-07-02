@@ -16,9 +16,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="services">Dependency Services provider</param>
         /// <param name="culture">Initial culture</param>
         /// <returns></returns>
-        public static IServiceCollection AddLangaugeContainer(this IServiceCollection services, Assembly assembly, CultureInfo culture)
+        public static IServiceCollection AddLangaugeContainer(this IServiceCollection services, Assembly assembly, CultureInfo culture, string folderName = "Resources")
         {
-            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s => new LanguageContainerInAssembly(assembly, culture));
+            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s => new LanguageContainerInAssembly(assembly, culture, folderName));
         }
 
         /// <summary>
@@ -27,9 +27,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="services">Dependency Services provider</param>
         /// <param name="assembly">Assembly that contains the Resource folder which has the language files</param>
         /// <returns></returns>
-        public static IServiceCollection AddLangaugeContainer(this IServiceCollection services, Assembly assembly)
+        public static IServiceCollection AddLangaugeContainer(this IServiceCollection services, Assembly assembly, string folderName = "Resources")
         {
-            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s => new LanguageContainerInAssembly(assembly));
+            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s => new LanguageContainerInAssembly(assembly, folderName));
         }
 
 
