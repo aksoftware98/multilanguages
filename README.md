@@ -51,6 +51,12 @@ All the languages will be available with just one click - install all the langua
 
 Import the files to the resources folder you have just created and set the build action property for them as Embedded Resources also 
 
+## What's new in V:3.0.1 
+ Supporting the nested items within the YAML and the ability to read them as following 
+ 	
+	// Set the key for the nested object 
+	languagesServices["HomePage:HelloWorld"]
+
 ## Coding time
 
 Go to program.cs and register the Language Container Service in the Dependency Injection container
