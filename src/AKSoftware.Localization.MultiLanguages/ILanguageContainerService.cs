@@ -16,6 +16,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// Dictionary of the language keywords
         /// </summary>
         Keys Keys { get; }
+        string this[string key] { get; }
 
         /// <summary>
         /// Set a new language explicitly
