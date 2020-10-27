@@ -15,7 +15,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="folderName">Folder that contains the language files</param>
         public LanguageContainerInAssembly(Assembly assembly, CultureInfo culture, string folderName)
         {
-            _folderName = folderName;
+             _folderName = folderName.Replace("/", ".").Replace("\\", ".");
             _resourcesAssembly = assembly;
             SetLanguage(culture, true);
         }
@@ -26,7 +26,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="folderName">Folder that contains the language files</param>
         public LanguageContainerInAssembly(Assembly assembly, string folderName)
         {
-            _folderName = folderName;
+            _folderName = folderName.Replace("/", ".").Replace("\\", ".");
             _resourcesAssembly = assembly;
             SetLanguage(CultureInfo.CurrentCulture, true);
         }
@@ -54,10 +54,10 @@ namespace AKSoftware.Localization.MultiLanguages
         private void SetLanguage(CultureInfo culture, bool isDefault)
     {
         CurrentCulture = culture;
-        string[] languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains(_folderName) && s.Contains(".yml") && s.Contains("-")).ToArray();
+        string[] languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains(_folderName) && (s.Contains(".yml") || s.Contains(".yaml")) && s.Contains("-")).ToArray();
 
         // Get the keys from the file that has the current culture 
-        Keys = GetKeysFromCulture(culture.Name, languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml")));
+        Keys = GetKeysFromCulture(culture.Name, languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml") || n.Contains($"{culture.Name}.yaml")));
 
         // Get the keys from a file that has the same language 
         if (Keys == null)
@@ -85,7 +85,7 @@ namespace AKSoftware.Localization.MultiLanguages
     public void SetLanguage(CultureInfo culture)
     {
         CurrentCulture = culture;
-        string fileName = $"{_resourcesAssembly.GetName().Name}.Resources.{culture.Name}.yml";
+        string fileName =  _resourcesAssembly.GetManifestResourceNames().SingleOrDefault(s => s.Contains(_folderName) && (s.Contains($"{culture.Name}.yml") || s.Contains($"{culture.Name}.yaml")));
 
         Keys = GetKeysFromCulture(culture.Name, fileName);
 

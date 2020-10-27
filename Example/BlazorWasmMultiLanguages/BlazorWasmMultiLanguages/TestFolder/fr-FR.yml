@@ -1,0 +1,18 @@
+HomePage:
+  Title: Accueil
+  HelloWorld: Salut tout le monde
+  Welcome: Bienvenue
+  Question: Comment Blazor travaille-t-il pour vous ?
+  BriefSuvery: Brève enquête
+  Think: Dites-nous ce que vous pensez
+Counter:
+  Title: Counter
+  ClickMe: Cliquez sur moi
+FetchData:
+  Title: Rechercher des données
+  WeatherForcast: Prévisions météo
+  WeatherTitle: Ce composant illustre l’extraction des données à partir du serveur
+  Loading: Chargement
+  Date: Date
+  Temp: Temp
+  Summary: Résumé
