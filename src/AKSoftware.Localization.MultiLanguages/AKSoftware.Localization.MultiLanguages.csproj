@@ -10,14 +10,14 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Enables the developer the configure the folder of the resources instead of the fixed "Resource Folder"</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix the bug of change the language when the language files are in the default Resources folder</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>3.0.1.1</AssemblyVersion>
-    <FileVersion>3.2.1.1</FileVersion>
+    <AssemblyVersion>3.4.1.5</AssemblyVersion>
+    <FileVersion>3.4.1.5</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.1</Version>
+    <Version>3.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
