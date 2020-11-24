@@ -1,3 +1,4 @@
+
 # AKSoftware.Localization.MultiLanguages
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
@@ -96,6 +97,25 @@ Add a button and set the @onclick method
 		    languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo("fr-FR"));
 	    }
     }
+
+## Interpolation Feature 
+Starting from version 4.0 now there is the ability to create dynamic values to replace their values at runtime using Interpolation feature:
+Following you can see how to use this feature
+
+Language File en-US:
+```YAML
+Welcome: Welcome {username} to our system {version}
+```
+
+In C# to replace the value of username and version parameters at runtime you can use the new indexer that allows to pass an object for with these values as following: 
+
+```C#
+_language["Welcome", new 
+{
+	Username = "aksoftware98",
+	Version = "v4.0"
+}]
+```
 
 ## Check the Examples Folder
 Check the examples folder which has a full example of how to build Blazor apps that supports about +7 languages
