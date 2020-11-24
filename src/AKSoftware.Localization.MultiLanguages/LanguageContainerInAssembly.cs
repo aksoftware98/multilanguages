@@ -43,6 +43,7 @@ namespace AKSoftware.Localization.MultiLanguages
 
         public string this[string key] { get { return Keys[key]; } } 
 
+        public string this[string key, object keyValues, bool setEmptyIfNull = false] { get => Keys[key, keyValues, setEmptyIfNull]; }
 
 
         /// <summary>

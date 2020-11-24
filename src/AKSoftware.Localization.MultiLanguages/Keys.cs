@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using YamlDotNet.Serialization;
 
 namespace AKSoftware.Localization.MultiLanguages
@@ -12,7 +14,7 @@ namespace AKSoftware.Localization.MultiLanguages
     public class Keys
     {
         JObject keyValues = null;
-
+        private const string PLACEHOLDER_PATTERN = @"{([^}]*)}";
         /// <summary>
         /// Initliaze the language object for a specific calture
         /// </summary>
@@ -42,43 +44,91 @@ namespace AKSoftware.Localization.MultiLanguages
         {
             get
             {
-                try
+                var value = GetValue(key);
+                var placeholders = Regex.Matches(value, PLACEHOLDER_PATTERN);
+
+                if (placeholders.Count > 0)
+                    throw new ArgumentException("Value contains placeholders, use the overload Keys indexer to pass values, to learn more check the Interpolation documentation: https://github.com/aksoftware98/multilanguages");
+
+                return value; 
+            }
+        }
+
+
+        public string this[string key, object keyValues, bool setEmptyForNull = false]
+        {
+            get
+            {
+                if (keyValues == null)
+                    throw new ArgumentNullException(nameof(keyValues));
+
+                var properties = keyValues.GetType().GetProperties();
+
+                var keyValue = GetValue(key);
+                string processedValue = keyValue;
+
+                var matches = Regex.Matches(keyValue, PLACEHOLDER_PATTERN);
+                foreach (Match item in matches)
                 {
-                    if (key.Contains(":"))
+                    string internalValue = item.Value.Replace("{", "").Replace("}", "");
+                    // Get the corresponding proeprty 
+                    var matchedProperties = properties.Where(p => p.Name.Equals(internalValue, StringComparison.InvariantCultureIgnoreCase)).ToArray();
+                    if (matchedProperties.Length > 1)
+                        throw new AmbiguousMatchException($"Multiple properties have the same name to be replaced '{item.Value}'");
+
+                    var propertyValue = matchedProperties.First().GetValue(keyValues);
+                    string propertyValueAsString = string.Empty;
+                    if (propertyValue == null && !setEmptyForNull)
+                            throw new ArgumentNullException(nameof(item.Value));
+                    else
+                        propertyValueAsString = propertyValue.ToString(); 
+
+                    processedValue = processedValue.Replace($"{item.Value}", propertyValueAsString);
+                }
+
+                return processedValue;
+            }
+        }
+
+
+        private string GetValue(string key)
+        {
+            try
+            {
+                if (key.Contains(":"))
+                {
+                    string[] nestedKey = key.Split(':');
+                    JObject nestedValue = (JObject)keyValues[nestedKey[0]];
+                    string value = string.Empty;
+                    for (int i = 1; i < nestedKey.Length; i++)
                     {
-                        string[] nestedKey = key.Split(':');
-                        JObject nestedValue = (JObject)keyValues[nestedKey[0]];
-                        string value = string.Empty; 
-                        for (int i = 1; i < nestedKey.Length; i++)
+                        if (i == nestedKey.Length - 1)
                         {
-                            if(i == nestedKey.Length - 1)
-                            {
-                                var result = nestedValue[nestedKey[i]];
-                                if (result == null)
-                                    return nestedKey[nestedKey.Length - 1];
+                            var result = nestedValue[nestedKey[i]];
+                            if (result == null)
+                                return nestedKey[nestedKey.Length - 1];
 
-                                return (string)result; 
-                            }
-
-                            nestedValue = (JObject)nestedValue[nestedKey[i]];
+                            return (string)result;
                         }
 
-                        return value;
+                        nestedValue = (JObject)nestedValue[nestedKey[i]];
                     }
-                    else
-                    {
-                         var result = keyValues[key];
-                        if (result == null)
-                            return key;
 
-                        return (string)result; 
-
-                    }
+                    return value;
                 }
-                catch
+                else
                 {
-                    return key;
+                    var result = keyValues[key];
+                    if (result == null)
+                        return key;
+
+                    return (string)result;
+
                 }
+            }
+            catch
+            {
+                return key;
             }
         }
     }

@@ -1,7 +1,7 @@
 HomePage:
   Title: ホーム
   HelloWorld: ハローワールド
-  Welcome: ようこそ
+  Welcome: テストする{username}へようこそ
   Question: ブレイザはどのようにあなたのために働いていますか?
   BriefSuvery: 簡単な調査
   Think: どう思うか教えてください
