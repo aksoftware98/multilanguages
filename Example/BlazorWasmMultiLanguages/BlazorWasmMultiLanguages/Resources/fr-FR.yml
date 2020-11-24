@@ -1,7 +1,7 @@
 HomePage:
   Title: Accueil
   HelloWorld: Salut tout le monde
-  Welcome: Bienvenue
+  Welcome: Bienvenue {username} au test
   Question: Comment Blazor travaille-t-il pour vous ?
   BriefSuvery: Brève enquête
   Think: Dites-nous ce que vous pensez

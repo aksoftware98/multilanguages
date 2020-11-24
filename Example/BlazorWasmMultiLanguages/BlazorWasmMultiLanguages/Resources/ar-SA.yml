@@ -1,7 +1,7 @@
 HomePage:
   Title: المنزل
   HelloWorld: مرحبا بالعالم
-  Welcome: اهلا وسهلا
+  Welcome: اهلا وسهلا {username} في التجربة
   Question: كيف يعمل بلازور لديك؟
   BriefSuvery: مسح موجز
   Think: أخبرنا ما رأيك

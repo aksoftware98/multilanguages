@@ -1,7 +1,7 @@
 HomePage:
   Title: Kotisivu
   HelloWorld: Moi maailma
-  Welcome: Tervetuloa
+  Welcome: Tervetuloa {username} testiin
   Question: Miten Blazor voi työskennellä sinulle?
   BriefSuvery: Lyhyt tutkimus
   Think: Kerro meille, mitä mieltä olet

@@ -1,7 +1,7 @@
 HomePage:
   Title: Startseite
   HelloWorld: Hallo Welt
-  Welcome: Willkommen
+  Welcome: Willkommen {username} zum Test
   Question: Wie arbeitet Blazor für Sie?
   BriefSuvery: Kurze Übersicht
   Think: Sagen Sie uns, was Sie denken
