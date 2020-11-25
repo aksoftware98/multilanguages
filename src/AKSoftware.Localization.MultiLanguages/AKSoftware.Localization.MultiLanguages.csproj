@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Company>AK Software</Company>
     <Authors>Ahmad Mozaffar</Authors>
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
@@ -22,10 +22,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.csharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
-    <PackageReference Include="YamlDotnet" Version="8.1.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +36,12 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\..\..\..\..\Desktop\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
