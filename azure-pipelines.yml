@@ -11,7 +11,6 @@ variables:
 
 steps:
 
--
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
