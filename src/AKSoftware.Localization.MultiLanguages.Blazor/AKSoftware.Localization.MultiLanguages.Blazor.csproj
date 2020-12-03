@@ -10,7 +10,7 @@
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
     <PackageReleaseNotes>Adding the ability to track the component status for language change, for more details check the documentation here https://github.com/aksoftware98/multilanguages</PackageReleaseNotes>
     <Copyright>AK Software 2020</Copyright>
-    <PackageLicenseExpression>LICENSE</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
