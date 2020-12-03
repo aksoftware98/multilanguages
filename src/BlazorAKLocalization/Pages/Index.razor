@@ -1,5 +1,8 @@
 ﻿@page "/"
+@using Blazored.LocalStorage
+
 @inject ILanguageContainerService languageContainer
+@inject ILocalStorageService storage 
 
 <h1>@languageContainer.Keys["HomePage:HelloWorld"]</h1>
 
@@ -25,9 +28,11 @@
 
 @code 
 {
-    void SetLanguage(string language)
+    async void SetLanguage(string language)
     {
         languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo(language));
+        // Store the langauge 
+        await storage.SetItemAsync<string>("language-code", language);
     }
 
     protected override void OnInitialized()

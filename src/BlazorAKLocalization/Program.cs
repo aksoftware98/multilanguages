@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AKSoftware.Localization.MultiLanguages;
+using Blazored.LocalStorage; 
 
 namespace BlazorAKLocalization
 {
@@ -24,6 +25,7 @@ namespace BlazorAKLocalization
             // Load the language container with files from the Resources Folder
             builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly());
 
+            builder.Services.AddBlazoredLocalStorage();
             // Load the language Container with the files from a custom folder
             //builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly(), folderName: "TestFolder");
 

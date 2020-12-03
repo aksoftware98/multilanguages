@@ -1,4 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored.LocalStorage
+@inject ILocalStorageService storage
+@inject ILanguageContainerService language
 
 <div class="page">
     <div class="sidebar">
@@ -15,3 +18,20 @@
         </div>
     </div>
 </div>
+
+@code
+{ 
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        string languageCode = "en-US";
+        if (await storage.ContainKeyAsync("language-code"))
+            languageCode = await storage.GetItemAsStringAsync("language-code");
+
+        language.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo(languageCode)); 
+    }
+
+}
+
+
