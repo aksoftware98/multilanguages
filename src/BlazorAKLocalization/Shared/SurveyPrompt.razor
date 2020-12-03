@@ -1,0 +1,24 @@
+﻿@inject ILanguageContainerService languageContainer
+
+    <div class="alert alert-secondary mt-4" role="alert">
+        <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
+        <strong>@Title</strong>
+
+        <span class="text-nowrap">
+            @languageContainer.Keys["Please"]
+            <a target="_blank" class="font-weight-bold" href="https://go.microsoft.com/fwlink/?linkid=2116045">@languageContainer.Keys["BriefSurvey"]</a>
+        </span>
+        @languageContainer.Keys["Think"]
+    </div>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
+
+    protected override void OnInitialized()
+    {
+        languageContainer.InitLocalizedComponent(this);
+        base.OnInitialized();
+    }
+}

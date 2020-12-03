@@ -1,0 +1,39 @@
+﻿@page "/"
+@inject ILanguageContainerService languageContainer
+
+<h1>@languageContainer.Keys["HomePage:HelloWorld"]</h1>
+
+@languageContainer.Keys["HomePage:Welcome", new
+{
+    username = "aksoftware98"
+}]
+
+<div class="row">
+    <img src="https://www.countryflags.io/us/shiny/64.png" @onclick='() => SetLanguage("en-US")' style="height:50px;cursor:pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/de/shiny/64.png" @onclick='() => SetLanguage("de-De")' style="height:50px;cursor:pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/es/shiny/64.png" @onclick='() => SetLanguage("ca-ES")' style="height:50px;cursor:pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/fr/shiny/64.png" @onclick='() => SetLanguage("fr-FR")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/it/shiny/64.png" @onclick='() => SetLanguage("it-IT")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/jp/shiny/64.png" @onclick='() => SetLanguage("ja-JP")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/in/shiny/64.png" @onclick='() => SetLanguage("ml-IN")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/sa/shiny/64.png" @onclick='() => SetLanguage("ar-SA")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/fi/shiny/64.png" @onclick='() => SetLanguage("fi-FI")' style="height: 50px;cursor: pointer;margin:10px"/>
+    <img src="https://www.countryflags.io/bg/shiny/64.png" @onclick='() => SetLanguage("bg-BG")' style="height: 50px;cursor: pointer;margin:10px"/>
+</div>
+
+<SurveyPrompt Title="@languageContainer.Keys["HomePage:Question"]" />
+
+@code 
+{
+    void SetLanguage(string language)
+    {
+        languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo(language));
+    }
+
+    protected override void OnInitialized()
+    {
+        languageContainer.InitLocalizedComponent(this);
+        base.OnInitialized();
+    }
+
+}
