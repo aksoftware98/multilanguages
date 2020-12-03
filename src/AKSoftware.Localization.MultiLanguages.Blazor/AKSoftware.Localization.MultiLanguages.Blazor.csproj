@@ -13,7 +13,7 @@
     <PackageLicenseExpression>LICENSE</PackageLicenseExpression>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageIcon>AkMultiLanguages Logo.png</PackageIcon>
+    <PackageIcon>AkMultiLanguages.png</PackageIcon>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -25,13 +25,17 @@
       <PackagePath></PackagePath>
       <Pack>True</Pack>
     </None>
+    <None Include="AkMultiLanguages.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+
   </ItemGroup>
 
-  
+
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
   </ItemGroup>
