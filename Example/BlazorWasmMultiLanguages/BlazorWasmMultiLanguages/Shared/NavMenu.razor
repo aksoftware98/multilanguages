@@ -36,4 +36,10 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+    protected override void OnInitialized()
+    {
+        languageContainer.InitLocalizedComponent(this);
+        base.OnInitialized();
+    }
 }

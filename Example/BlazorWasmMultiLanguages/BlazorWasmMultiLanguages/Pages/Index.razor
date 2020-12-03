@@ -30,5 +30,10 @@
         languageContainer.SetLanguage(System.Globalization.CultureInfo.GetCultureInfo(language));
     }
 
+    protected override void OnInitialized()
+    {
+        languageContainer.InitLocalizedComponent(this);
+        base.OnInitialized();
+    }
 
 }

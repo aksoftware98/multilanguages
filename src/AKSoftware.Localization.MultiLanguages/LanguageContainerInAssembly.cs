@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,8 +17,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="folderName">Folder that contains the language files</param>
         public LanguageContainerInAssembly(Assembly assembly, CultureInfo culture, string folderName)
         {
-             _folderName = folderName.Replace("/", ".").Replace("\\", ".");
+            _folderName = folderName.Replace("/", ".").Replace("\\", ".");
             _resourcesAssembly = assembly;
+            _extensions = new List<WeakReference<IExtension>>();
             SetLanguage(culture, true);
         }
 
@@ -28,6 +31,7 @@ namespace AKSoftware.Localization.MultiLanguages
         {
             _folderName = folderName.Replace("/", ".").Replace("\\", ".");
             _resourcesAssembly = assembly;
+            _extensions = new List<WeakReference<IExtension>>();
             SetLanguage(CultureInfo.CurrentCulture, true);
         }
 
@@ -41,7 +45,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         public CultureInfo CurrentCulture { get; private set; }
 
-        public string this[string key] { get { return Keys[key]; } } 
+        public string this[string key] { get { return Keys[key]; } }
 
         public string this[string key, object keyValues, bool setEmptyIfNull = false] { get => Keys[key, keyValues, setEmptyIfNull]; }
 
@@ -53,65 +57,88 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="isDefault">To indicates if this is the initial function</param>
         /// <exception cref="FileNotFoundException">If there is no culture file exists in the resoruces folder</exception>
         private void SetLanguage(CultureInfo culture, bool isDefault)
-    {
-        CurrentCulture = culture;
-        string[] languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains(_folderName) && (s.Contains(".yml") || s.Contains(".yaml")) && s.Contains("-")).ToArray();
-
-        // Get the keys from the file that has the current culture 
-        Keys = GetKeysFromCulture(culture.Name, languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml") || n.Contains($"{culture.Name}.yaml")));
-
-        // Get the keys from a file that has the same language 
-        if (Keys == null)
         {
-            string language = culture.Name.Split('-')[0];
-            Keys = GetKeysFromCulture(culture.Name, languageFileNames.FirstOrDefault(n => n.Contains(language)));
+            CurrentCulture = culture;
+            string[] languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains(_folderName) && (s.Contains(".yml") || s.Contains(".yaml")) && s.Contains("-")).ToArray();
+
+            // Get the keys from the file that has the current culture 
+            Keys = GetKeysFromCulture(culture.Name, languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml") || n.Contains($"{culture.Name}.yaml")));
+
+            // Get the keys from a file that has the same language 
+            if (Keys == null)
+            {
+                string language = culture.Name.Split('-')[0];
+                Keys = GetKeysFromCulture(culture.Name, languageFileNames.FirstOrDefault(n => n.Contains(language)));
+            }
+
+            // Get the keys from the english resource 
+            if (Keys == null && culture.Name != "en-US")
+                Keys = GetKeysFromCulture("en-US", languageFileNames.SingleOrDefault(n => n.Contains($"en-US.yml")));
+
+            if (Keys == null)
+                Keys = GetKeysFromCulture("en-US", languageFileNames.FirstOrDefault());
+
+            if (Keys == null)
+                throw new FileNotFoundException($"There is no language files existing in the Resource folder within '{_resourcesAssembly.GetName().Name}' assembly");
         }
 
-        // Get the keys from the english resource 
-        if (Keys == null && culture.Name != "en-US")
-            Keys = GetKeysFromCulture("en-US", languageFileNames.SingleOrDefault(n => n.Contains($"en-US.yml")));
-
-        if (Keys == null)
-            Keys = GetKeysFromCulture("en-US", languageFileNames.FirstOrDefault());
-
-        if (Keys == null)
-            throw new FileNotFoundException($"There is no language files existing in the Resource folder within '{_resourcesAssembly.GetName().Name}' assembly");
-    }
-
-    /// <summary>
-    /// Set language manually based on a specific culture
-    /// </summary>
-    /// <param name="cultureName">The required culture</param>
-    /// <exception cref="FileNotFoundException">If the required culture langage file is not exist</exception>
-    public void SetLanguage(CultureInfo culture)
-    {
-        CurrentCulture = culture;
-        string fileName =  _resourcesAssembly.GetManifestResourceNames().SingleOrDefault(s => s.Contains(_folderName) && (s.Contains($"{culture.Name}.yml") || s.Contains($"{culture.Name}.yaml")));
-
-        Keys = GetKeysFromCulture(culture.Name, fileName);
-
-        if (Keys == null)
-            throw new FileNotFoundException($"There is no language files for '{culture.Name}' existing in the Resources folder within '{_resourcesAssembly.GetName().Name}' assembly");
-    }
-
-    private Keys GetKeysFromCulture(string culture, string fileName)
-    {
-        try
+        /// <summary>
+        /// Set language manually based on a specific culture
+        /// </summary>
+        /// <param name="cultureName">The required culture</param>
+        /// <exception cref="FileNotFoundException">If the required culture langage file is not exist</exception>
+        public void SetLanguage(CultureInfo culture)
         {
-            // Read the file 
-            using (var fileStream = _resourcesAssembly.GetManifestResourceStream(fileName))
+            CurrentCulture = culture;
+            string fileName = _resourcesAssembly.GetManifestResourceNames().SingleOrDefault(s => s.Contains(_folderName) && (s.Contains($"{culture.Name}.yml") || s.Contains($"{culture.Name}.yaml")));
+
+            Keys = GetKeysFromCulture(culture.Name, fileName);
+
+            if (Keys == null)
+                throw new FileNotFoundException($"There is no language files for '{culture.Name}' existing in the Resources folder within '{_resourcesAssembly.GetName().Name}' assembly");
+
+            // Call the extesions
+            if(_extensions.Any())
             {
-                using (var streamReader = new StreamReader(fileStream))
+                foreach (var item in _extensions)
                 {
-                    return new Keys(streamReader.ReadToEnd());
+                    var result = item.TryGetTarget(out var extension);
+                    if (result)
+                        extension.Action.Invoke(extension.Component);
                 }
             }
         }
-        catch (System.Exception)
+
+        private Keys GetKeysFromCulture(string culture, string fileName)
         {
-            return null;
+            try
+            {
+                // Read the file 
+                using (var fileStream = _resourcesAssembly.GetManifestResourceStream(fileName))
+                {
+                    using (var streamReader = new StreamReader(fileStream))
+                    {
+                        return new Keys(streamReader.ReadToEnd());
+                    }
+                }
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
         }
+
+        #region Extensions 
+        private List<WeakReference<IExtension>> _extensions = null; 
+
+        public void AddExtension(IExtension extension)
+        {
+            // Add the extesion if it is not exists 
+            var value = _extensions.SingleOrDefault(r => r.TryGetTarget(out var e) && e == extension);
+            if (value == null)
+                _extensions.Add(new WeakReference<IExtension>(extension));
+        }
+        #endregion 
     }
-}
 }
 

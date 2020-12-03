@@ -1,5 +1,4 @@
 ﻿@page "/counter"
-
 @inject ILanguageContainerService languageContainer
 
 <h1>@languageContainer.Keys["Counter:Title"]</h1>
@@ -14,5 +13,12 @@
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+
+    protected override void OnInitialized()
+    {
+        languageContainer.InitLocalizedComponent(this);
+        base.OnInitialized();
     }
 }
