@@ -33,5 +33,11 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         /// <param name="culture">Culture associated with the langauge to be set</param>
         void SetLanguage(CultureInfo culture);
+
+        /// <summary>
+        /// Add an extension to the extensions collection that will be called on chaning the language 
+        /// </summary>
+        /// <param name="extension">Extension object that implements the IExtension interface</param>
+        void AddExtension(IExtension extension);
     }
 }

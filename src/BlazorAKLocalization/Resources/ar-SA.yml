@@ -1,0 +1,18 @@
+HomePage:
+  Title: المنزل
+  HelloWorld: مرحبا بالعالم
+  Welcome: اهلا وسهلا {username} في التجربة
+  Question: كيف يعمل بلازور لديك؟
+  BriefSuvery: مسح موجز
+  Think: أخبرنا ما رأيك
+Counter:
+  Title: مكافحه
+  ClickMe: انقر فوق Me
+FetchData:
+  Title: جلب البيانات
+  WeatherForcast: توقعات الطقس
+  WeatherTitle: يوضح هذا المكون جلب البيانات من الملقم
+  Loading: تحميل
+  Date: تاريخ
+  Temp: Temp
+  Summary: موجز

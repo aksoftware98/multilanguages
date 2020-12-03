@@ -10,14 +10,14 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Adding support for .NET 5.0 and supporting interpolation and the ability to fetch dynamic values with parameters, for more details check the documentation here https://github.com/aksoftware98/multilanguages</PackageReleaseNotes>
+    <PackageReleaseNotes>Adding support for external extensions to suppor specific platforms like Blazor, Xamarin ...., for more details check the documentation here https://github.com/aksoftware98/multilanguages</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>4.1.0.0</AssemblyVersion>
-    <FileVersion>4.1.0.0</FileVersion>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <FileVersion>4.2.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>4.1</Version>
+    <Version>4.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
