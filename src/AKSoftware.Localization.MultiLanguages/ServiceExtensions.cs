@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using System.Text;
 
 namespace AKSoftware.Localization.MultiLanguages
 {
@@ -18,7 +15,13 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <returns></returns>
         public static IServiceCollection AddLanguageContainer(this IServiceCollection services, Assembly assembly, CultureInfo culture, string folderName = "Resources")
         {
-            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s => new LanguageContainerInAssembly(assembly, culture, folderName));
+            services.AddSingleton<IKeysProvider, EmbeddedResourceKeysProvider>(s =>
+                new EmbeddedResourceKeysProvider(assembly, folderName));
+            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s =>
+            {
+                var keysProvider = s.GetService<IKeysProvider>();
+                return new LanguageContainerInAssembly( culture, keysProvider);
+            });
         }
 
         /// <summary>
@@ -29,7 +32,12 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <returns></returns>
         public static IServiceCollection AddLanguageContainer(this IServiceCollection services, Assembly assembly, string folderName = "Resources")
         {
-            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s => new LanguageContainerInAssembly(assembly, folderName));
+            services.AddSingleton<IKeysProvider, EmbeddedResourceKeysProvider>(s => new EmbeddedResourceKeysProvider(assembly, folderName));
+            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s =>
+            {
+                var keysProvider = s.GetService<IKeysProvider>();
+                return new LanguageContainerInAssembly(keysProvider);
+            });
         }
 
 
