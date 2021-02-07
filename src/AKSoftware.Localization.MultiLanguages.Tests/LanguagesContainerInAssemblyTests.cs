@@ -12,7 +12,8 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
         [SetUp]
         public void Setup()
         {
-            _service = new LanguageContainerInAssembly(Assembly.GetExecutingAssembly(), CultureInfo.GetCultureInfo("ca-ES"), "Resources");
+            var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly(), "Resources");
+            _service = new LanguageContainerInAssembly(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
 
         }
 
