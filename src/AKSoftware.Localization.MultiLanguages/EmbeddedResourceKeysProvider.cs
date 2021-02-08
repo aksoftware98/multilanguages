@@ -37,7 +37,7 @@ namespace AKSoftware.Localization.MultiLanguages
             var languageFileNames = _resourcesAssembly.GetManifestResourceNames().Where(s => s.Contains(ResourceFolderName) && (s.Contains(".yml") || s.Contains(".yaml")) && s.Contains("-")).ToArray();
 
             // Get the keys from the file that has the current culture 
-            var keys = InternalGetKeys(/*culture.Name,*/ languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml") || n.Contains($"{culture.Name}.yaml")));
+            var keys = InternalGetKeys(languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml") || n.Contains($"{culture.Name}.yaml")));
 
             // Get the keys from a file that has the same language 
             if (keys == null)

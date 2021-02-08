@@ -5,6 +5,7 @@ HomePage:
  Question: How is Blazor working for you?
  BriefSuvery: Brief Survey
  Think: Tell us what do you think
+ Hello: Hello {firstname} {lastname}
 Counter:
  Title: Counter
  ClickMe: Click Me

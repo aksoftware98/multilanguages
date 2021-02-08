@@ -5,6 +5,7 @@ HomePage:
   Question: ബ്ലാസര് നിനക്ക് വേണ്ടി എങ്ങനെയാണ് ജോലി ചെയ്യുന്നത്?
   BriefSuvery: ചുരുക്കം സർവേ
   Think: നിങ്ങൾ എന്താണ് ചിന്തിക്കുന്നതെന്ന് ഞങ്ങളോട് പറയൂ
+  Hello: ഹലോ {firstname} {lastname}
 Counter:
   Title: à ́à μà
   ClickMe: എന്നെ ക്ലിക്ക് ചെയ്യുക

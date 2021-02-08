@@ -6,16 +6,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:AKSoftware.Localization.MultiLanguages.UWP.Converters"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:AKSoftware.Localization.MultiLanguages.UWP.Behaviors"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
 <Page.Resources>
     <converters:LocalizationConverter x:Key="LocalizationConverter"/>
-</Page.Resources>
-    <StackPanel Orientation="Vertical">
-        <!--<TextBlock Text="{x:Bind Path=local:LocalizationKeys.HomePage_HelloWorld, Converter={StaticResource LocalizationConverter}}"></TextBlock>-->
-        <TextBlock Text="{Binding Localization[HomePage:HelloWorld] }"></TextBlock>
-        <!--<TextBlock Text="{Binding Localization[HomePage:Welcome\, new \{username:Bob\}] }"></TextBlock>-->
-        <Button Click="ButtonBase_OnClick">French</Button>
+    <Style x:Key="LargeHeaderLabelStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="0,2,0,2"></Setter>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Foreground" Value="#A16146"/>
+    </Style>
+    <Style x:Key="LabelStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="0,8,0,8"></Setter>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+        <Style x:Key="OuterStackPanelStyle" TargetType="StackPanel">
+        <Setter Property="Margin" Value="25"></Setter>
+    </Style>
+    </Page.Resources>
+    <StackPanel Orientation="Vertical" Style="{StaticResource OuterStackPanelStyle}">
+       
+        <TextBlock Text="{Binding Localization[HomePage:HelloWorld] }" Style="{StaticResource LargeHeaderLabelStyle}"></TextBlock>
+        <TextBlock Style="{StaticResource LabelStyle}">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:MultiBindingBehavior PropertyName="Text" Converter="{StaticResource LocalizationConverter}" >
+                    <behaviors:MultiBindingItem Value="HomePage:Welcome"/>
+                    <behaviors:MultiBindingItem Value="username:aksoftware98"/>
+                </behaviors:MultiBindingBehavior>
+            </interactivity:Interaction.Behaviors>
+        </TextBlock>
+
+        <TextBlock Style="{StaticResource LabelStyle}">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:MultiBindingBehavior PropertyName="Text" Converter="{StaticResource LocalizationConverter}" >
+                    <behaviors:MultiBindingItem Value="HomePage:Hello"/>
+                    <behaviors:MultiBindingItem Value="firstname:AK"/>
+                    <behaviors:MultiBindingItem Value="lastname:Academy"/>
+                </behaviors:MultiBindingBehavior>
+            </interactivity:Interaction.Behaviors>
+        </TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <Button Click="SetLanguage" Tag="en-US">
+                <Image Source="Assets/en-US.png" Stretch="UniformToFill"/>
+            </Button>
+            <Button Click="SetLanguage" Tag="de-DE">
+                <Image Source="Assets/de-DE.png" Stretch="UniformToFill"/>
+            </Button>
+            <Button Click="SetLanguage" Tag="ca-ES">
+                <Image Source="Assets/ca-ES.png" Stretch="UniformToFill"/>
+            </Button>
+            <Button Click="SetLanguage" Tag="fr-FR">
+                <Image Source="Assets/fr-FR.png" Stretch="UniformToFill"/>
+            </Button>
+            <Button Click="SetLanguage" Tag="it-IT">
+                <Image Source="Assets/it-IT.png" Stretch="UniformToFill"/>
+            </Button>
+            <Button Click="SetLanguage" Tag="ja-Jp">
+                <Image Source="Assets/ja-JP.png" Stretch="UniformToFill"/>
+            </Button>
+            <Button Click="SetLanguage" Tag="fi-FI">
+                <Image Source="Assets/fi-FI.png" Stretch="UniformToFill"/>
+            </Button>
+            <Button Click="SetLanguage" Tag="bg-BG">
+                <Image Source="Assets/bg-BG.png" Stretch="UniformToFill"/>
+            </Button>
+        </StackPanel>
     </StackPanel>
 </Page>

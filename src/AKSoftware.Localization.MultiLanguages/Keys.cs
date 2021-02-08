@@ -2,9 +2,6 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -81,12 +78,8 @@ namespace AKSoftware.Localization.MultiLanguages
                 { 
                     throw new ArgumentNullException(nameof(values));
                 }
-
                 var caseInvariantValues = new Dictionary<string, object>(values, new StringComparerIgnoreCase());
-
                 var localizedString = GetValue(key);
-                //var processedValue = keyValue;
-
                 var matches = Regex.Matches(localizedString, PLACEHOLDER_PATTERN);
                 foreach (Match item in matches)
                 {

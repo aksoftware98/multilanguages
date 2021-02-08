@@ -120,7 +120,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ApplicationResourceLoader.cs" />
-    <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="LocalizationKeys.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -133,6 +132,15 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ar-SA.png" />
+    <Content Include="Assets\bg-BG.png" />
+    <Content Include="Assets\de-DE.png" />
+    <Content Include="Assets\en-US.png" />
+    <Content Include="Assets\ca-ES.png" />
+    <Content Include="Assets\fi-FI.png" />
+    <Content Include="Assets\fr-FR.png" />
+    <Content Include="Assets\it-IT.png" />
+    <Content Include="Assets\ja-JP.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

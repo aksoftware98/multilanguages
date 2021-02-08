@@ -5,6 +5,7 @@ HomePage:
   Question: كيف يعمل بلازور لديك؟
   BriefSuvery: مسح موجز
   Think: أخبرنا ما رأيك
+  Hello: بالعالم {firstname} {lastname}
 Counter:
   Title: مكافحه
   ClickMe: انقر فوق Me

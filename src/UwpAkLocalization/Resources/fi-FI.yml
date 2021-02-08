@@ -5,6 +5,7 @@ HomePage:
   Question: Miten Blazor voi työskennellä sinulle?
   BriefSuvery: Lyhyt tutkimus
   Think: Kerro meille, mitä mieltä olet
+  Hello: Moi {firstname} {lastname}
 Counter:
   Title: Laskuri
   ClickMe: Valitse Minä

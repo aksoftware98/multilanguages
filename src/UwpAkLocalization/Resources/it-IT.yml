@@ -5,6 +5,7 @@ HomePage:
   Question: Come sta Blazor a lavorare per te?
   BriefSuvery: Breve indagine
   Think: Dicci cosa ne pensi
+  Hello: Salve {firstname} {lastname}
 Counter:
   Title: Contatore
   ClickMe: Fare clic su Me
