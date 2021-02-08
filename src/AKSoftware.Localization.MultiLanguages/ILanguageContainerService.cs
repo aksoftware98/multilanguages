@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace AKSoftware.Localization.MultiLanguages
 {
@@ -24,6 +26,8 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="setEmptyIfNull">Set the behaviour of the null value either to replace it with empty or throw an exception</param>
         /// <returns>Localized value</returns>
         string this[string key, object keyValues, bool setEmptyIfNull = false] { get; }
+
+        string this[string key, IDictionary<string, object> keyValues, bool setEmptyIfNull = false] { get; }
 
         /// <summary>
         /// Set a new language explicitly

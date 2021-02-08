@@ -5,8 +5,7 @@
     xmlns:local="using:UwpAkLocalization"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:extensions="using:UwpAkLocalization.Extensions"
-    xmlns:converters="using:UwpAkLocalization.Converters"
+    xmlns:converters="using:AKSoftware.Localization.MultiLanguages.UWP.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">

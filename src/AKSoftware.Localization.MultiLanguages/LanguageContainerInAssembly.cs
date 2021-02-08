@@ -45,6 +45,8 @@ namespace AKSoftware.Localization.MultiLanguages
 
         public string this[string key, object keyValues, bool setEmptyIfNull = false] => Keys[(string)key, keyValues, (bool)setEmptyIfNull];
 
+        public string this[string key, IDictionary<string, object> keyValues, bool setEmptyIfNull] => Keys[(string)key, keyValues, (bool)setEmptyIfNull];
+
         public string this[object key, object keyValues] => Keys[(string)key, keyValues];
 
 

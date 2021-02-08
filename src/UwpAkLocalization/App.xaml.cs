@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Resources;
 using AKSoftware.Localization.MultiLanguages;
+using AKSoftware.Localization.MultiLanguages.UWP;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace UwpAkLocalization
@@ -24,7 +25,7 @@ namespace UwpAkLocalization
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : Application, IServiceProviderHost
     {
 
         public IServiceProvider ServiceProvider { get; private set; }

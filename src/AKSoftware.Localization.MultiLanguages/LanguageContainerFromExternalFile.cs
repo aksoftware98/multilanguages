@@ -16,6 +16,8 @@ namespace AKSoftware.Localization.MultiLanguages
 
         public string this[string key, object keyValues, bool setEmptyIfNull = false] => Keys[key, keyValues, setEmptyIfNull];
 
+        public string this[string key, IDictionary<string, object> keyValues, bool setEmptyIfNull] => Keys[key, keyValues, setEmptyIfNull];
+
         public LanguageContainerFromExternalFile(CultureInfo culture, string folderName)
         {
             _folderName = folderName.Replace("/", ".").Replace("\\", ".");

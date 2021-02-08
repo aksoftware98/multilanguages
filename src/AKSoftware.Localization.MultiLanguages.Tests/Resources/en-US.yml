@@ -6,6 +6,7 @@ HomePage:
  BriefSuvery: Brief Survey
  Think: Tell us what do you think
  Login: Welcome {username} to the system
+ Hello: Hello {firstname} {lastname}
 Counter:
  Title: Counter
  ClickMe: Click Me

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AKSoftware.Localization.MultiLanguages;
-
-namespace UwpAkLocalization.Extensions
+﻿namespace AKSoftware.Localization.MultiLanguages.UWP.Extensions
 {
     public static class LanguageServiceExtension
     {

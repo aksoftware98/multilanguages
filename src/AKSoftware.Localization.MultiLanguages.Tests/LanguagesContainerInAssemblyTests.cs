@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
+using System.Dynamic;
 using System.Globalization;
-using System.IO;
 using System.Reflection;
 
 namespace AKSoftware.Localization.MultiLanguages.Tests
@@ -26,6 +27,65 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
                 Username = "AK Academy"
             }];
             Assert.AreEqual(value, "Welcome AK Academy to the system"); 
+        }
+
+        [Test]
+        public void Interpolation_Multi_Replacement_Test()
+        {
+            _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
+            string value = _service.Keys["HomePage:Hello", new
+            {
+                FirstName = "AK",
+                LastName = "Academy"
+            }];
+            Assert.AreEqual(value, "Hello AK Academy");
+        }
+
+        [Test]
+        public void Interpolation_Multi_Replacement_With_Dictionary_Test()
+        {
+            _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
+            var replacements = new Dictionary<string, object> {["FirstName"] = "AK", ["LastName"] = "Academy"};
+            string value = _service.Keys["HomePage:Hello", replacements];
+            Assert.AreEqual(value, "Hello AK Academy");
+        }
+
+        [Test]
+        public void Interpolation_Multi_Replacement_With_Expando_Test()
+        {
+            _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
+
+            var expando = new ExpandoObject();
+            var replacements = (IDictionary<string, object>)expando;
+            replacements["FirstName"] = "AK";
+            replacements["LastName"] = "Academy";
+
+            string value = _service.Keys["HomePage:Hello", replacements];
+            Assert.AreEqual(value, "Hello AK Academy");
+        }
+
+        [Test]
+        public void Interpolation_With_ExpandoObject_Test()
+        {
+            _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
+
+            var expando = new ExpandoObject();
+            var dictionary = (IDictionary<string, object>) expando;
+            dictionary["Username"] = "AK Academy";
+
+            string value = _service.Keys["HomePage:Login", expando];
+            Assert.AreEqual(value, "Welcome AK Academy to the system");
+        }
+
+        [Test]
+        public void Interpolation_With_Dictionary_Test()
+        {
+            _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
+
+
+            var dictionary = new Dictionary<string, object> {["Username"] = "AK Academy"};
+            var value = _service.Keys["HomePage:Login", dictionary];
+            Assert.AreEqual(value, "Welcome AK Academy to the system");
         }
 
         [Test]
