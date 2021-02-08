@@ -54,7 +54,7 @@ namespace AKSoftware.Localization.MultiLanguages
                 keys = InternalGetKeys(languageFileNames.FirstOrDefault());
 
             if (keys == null)
-                throw new FileNotFoundException($"There is no language files existing in the Resource folder within '{_resourcesAssembly.GetName().Name}' assembly");
+                throw new FileNotFoundException($"There are no language files existing in the Resource folder within '{_resourcesAssembly.GetName().Name}' assembly");
 
             return keys;
         }
