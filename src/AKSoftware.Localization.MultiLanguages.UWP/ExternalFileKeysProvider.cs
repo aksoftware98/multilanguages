@@ -6,11 +6,17 @@ using Windows.Storage;
 
 namespace AKSoftware.Localization.MultiLanguages.UWP
 {
+
+   
     public class ExternalFileKeysProvider : KeysProvider
     {
-        public ExternalFileKeysProvider(Assembly resourcesAssembly, string resourceFolderName = "Localization") : base(resourcesAssembly, resourceFolderName)
+
+        public ExternalFileKeysProvider(Assembly resourcesAssembly, string resourceFolderName = "Localization", LocalizationFolderType localizationFolderType = LocalizationFolderType.LocalFolder) : base(resourcesAssembly, resourceFolderName)
         {
+            LocalizationFolderType = localizationFolderType;
         }
+
+        private LocalizationFolderType LocalizationFolderType { get;  }
 
         private StorageFolder _localizationFolder;
         private StorageFolder LocalizationFolder
@@ -19,17 +25,44 @@ namespace AKSoftware.Localization.MultiLanguages.UWP
             {
                 if (_localizationFolder == null)
                 {
-                    // TODO: better error handling
-                    var task = Task.Run(async () =>
-                        await ApplicationData.Current.LocalFolder.GetFolderAsync(ResourceFolderName));
-                    if (!task.IsFaulted)
+                  
+                    switch (LocalizationFolderType)
                     {
-                        _localizationFolder = task.Result;
+                        case LocalizationFolderType.LocalFolder:
+                        {
+                            // TODO: better error handling}
+                            var task = Task.Run(async () =>
+                                await ApplicationData.Current.LocalFolder.GetFolderAsync(ResourceFolderName));
+                            if (!task.IsFaulted)
+                            {
+                                _localizationFolder = task.Result;
+                            }
+                            else
+                            {
+                                throw task.Exception;
+                            }
+
+                            break;
+                        }
+                        case LocalizationFolderType.InstallationFolder:
+                        {
+                            var task = Task.Run(async () =>
+                                await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(
+                                    ResourceFolderName));
+                            if (!task.IsFaulted)
+                            {
+                                _localizationFolder = task.Result;
+                            }
+                            else
+                            {
+                                throw task.Exception;
+                            }
+
+                            break;
+                        }
                     }
-                    else 
-                    { 
-                        throw task.Exception;
-                    }
+                       
+                   
                 }
                 return _localizationFolder;
             }

@@ -58,8 +58,15 @@ namespace AKSoftware.Localization.MultiLanguages
             });
         }
 
-
-       
-
+        public static IServiceCollection AddLanguageContainer<TKeysProvider>(this IServiceCollection services, Assembly assembly, LocalizationFolderType localizationFolderType = LocalizationFolderType.InstallationFolder, string folderName = "Resources")
+            where TKeysProvider : KeysProvider
+        {
+            services.AddSingleton<IKeysProvider, TKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName, localizationFolderType));
+            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s =>
+            {
+                var keysProvider = s.GetService<IKeysProvider>();
+                return new LanguageContainerInAssembly(keysProvider);
+            });
+        }
     }
 }
