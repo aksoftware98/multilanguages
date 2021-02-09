@@ -24,7 +24,7 @@ namespace BlazorAKLocalization
 
             // Load the language container with files from the Resources Folder
             //builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly());
-            builder.Services.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly());
+            builder.Services.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(), "Resources");
 
             builder.Services.AddBlazoredLocalStorage();
             // Load the language Container with the files from a custom folder
