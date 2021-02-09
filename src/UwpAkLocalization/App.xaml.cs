@@ -112,8 +112,22 @@ namespace UwpAkLocalization
         {
             serviceCollection_ = new ServiceCollection();
             serviceCollection_.AddSingleton<CustomXamlResourceLoader, ApplicationResourceLoader>();
-            //serviceCollection_.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly());
-            serviceCollection_.AddLanguageContainer<ExternalFileKeysProvider>(Assembly.GetExecutingAssembly(), "Localization");
+
+
+            //*************************************************************************************************
+            // For UWP apps the resources can be Embedded or placed in externals files - either in the app's 
+            // installation directory or the in a subfolder of the app's LocalFolder.
+            //
+            // Unremark the code below to test the scenarios'.  Note that when you use the LocalFolder option
+            // you will need to manually create a folder under the app's LocalFolder location and copy all of 
+            // language resource files, prior to running the app.  In this case the app will be installed
+            // in this location:
+            //     C:\Users\<your user>\AppData\Local\Packages\e8428150-51ff-4bd2-8842-7dbd0047d3da_3xecenf62363c\LocalState.  
+            //  
+            //*************************************************************************************************
+            //serviceCollection_.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(),  "Resources");
+            //serviceCollection_.AddLanguageContainer<ExternalFileKeysProvider>(Assembly.GetExecutingAssembly(), LocalizationFolderType.InstallationFolder, "Resources");
+            serviceCollection_.AddLanguageContainer<ExternalFileKeysProvider>(Assembly.GetExecutingAssembly(), LocalizationFolderType.LocalFolder, "Localization");
             ServiceProvider = serviceCollection_.BuildServiceProvider();
         }
     }
