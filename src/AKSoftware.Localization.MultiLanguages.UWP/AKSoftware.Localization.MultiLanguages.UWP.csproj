@@ -124,11 +124,12 @@
     <Compile Include="Behaviors\MultiBindingBehavior.cs" />
     <Compile Include="Behaviors\MultiBindingItem.cs" />
     <Compile Include="Behaviors\MultiBindingItemCollection.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Converters\MultiValueConverterBase.cs" />
     <Compile Include="Extensions\LanguageServiceExtension.cs" />
+    <Compile Include="ExternalFileKeysProvider.cs" />
     <Compile Include="IServiceProviderHost.cs" />
+    <Compile Include="LocalizationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\AKSoftware.Localization.MultiLanguages.UWP.rd.xml" />
   </ItemGroup>
