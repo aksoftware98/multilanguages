@@ -112,8 +112,8 @@ namespace UwpAkLocalization
         {
             serviceCollection_ = new ServiceCollection();
             serviceCollection_.AddSingleton<CustomXamlResourceLoader, ApplicationResourceLoader>();
-            serviceCollection_.AddLanguageContainer(Assembly.GetExecutingAssembly());
-
+            //serviceCollection_.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly());
+            serviceCollection_.AddLanguageContainer<ExternalFileKeysProvider>(Assembly.GetExecutingAssembly(), "Localization");
             ServiceProvider = serviceCollection_.BuildServiceProvider();
         }
     }
