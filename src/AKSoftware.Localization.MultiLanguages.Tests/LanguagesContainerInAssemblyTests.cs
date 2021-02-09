@@ -13,8 +13,8 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
         [SetUp]
         public void Setup()
         {
-            var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly(), "Resources");
-            _service = new LanguageContainerInAssembly(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
+            var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
+            _service = new LanguageContainer(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
 
         }
 
