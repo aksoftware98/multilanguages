@@ -47,4 +47,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'fb16979d-fd6d-4091-a296-0d77cf0becb2/8cf90372-127e-40e7-90a5-1c38afb4e05c'
+    publishVstsFeed: 'aksoftware98/MultiLanguages'
