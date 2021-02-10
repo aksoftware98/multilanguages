@@ -41,10 +41,4 @@ steps:
     minorVersion: '0'
     patchVersion: '0'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Publishing the package'
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'aksoftware98/MultiLanguages'
+
