@@ -1,11 +1,10 @@
 HomePage:
  Title: Home
  HelloWorld: Hello World
- Welcome: Welcome
+ Welcome: Welcome {username} to the test
  Question: How is Blazor working for you?
  BriefSuvery: Brief Survey
  Think: Tell us what do you think
- Login: Welcome {username} to the system
  Hello: Hello {firstname} {lastname}
 Counter:
  Title: Counter

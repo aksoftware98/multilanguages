@@ -1,24 +1,19 @@
-﻿using NUnit.Framework;
+﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
-using System.Reflection;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AKSoftware.Localization.MultiLanguages.Tests
+namespace AKSoftware.Localization.MultiLanguages.UWP.Tests
 {
-    public class LanguagesContainerInAssemblyTests
+    public abstract class TestBase
     {
-        ILanguageContainerService _service;
+        protected ILanguageContainerService _service;
 
-        [SetUp]
-        public void Setup()
-        {
-            var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
-            _service = new LanguageContainer(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
-
-        }
-
-        [Test]
+        [TestMethod]
         public void Interpolation_Test()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
@@ -26,10 +21,10 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             {
                 Username = "AK Academy"
             }];
-            Assert.AreEqual(value, "Welcome AK Academy to the system"); 
+            Assert.AreEqual(value, "Welcome AK Academy to the system");
         }
 
-        [Test]
+        [TestMethod]
         public void Interpolation_Multi_Replacement_Test()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
@@ -41,16 +36,16 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             Assert.AreEqual(value, "Hello AK Academy");
         }
 
-        [Test]
+        [TestMethod]
         public void Interpolation_Multi_Replacement_With_Dictionary_Test()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
-            var replacements = new Dictionary<string, object> {["FirstName"] = "AK", ["LastName"] = "Academy"};
+            var replacements = new Dictionary<string, object> { ["FirstName"] = "AK", ["LastName"] = "Academy" };
             string value = _service.Keys["HomePage:Hello", replacements];
             Assert.AreEqual(value, "Hello AK Academy");
         }
 
-        [Test]
+        [TestMethod]
         public void Interpolation_Multi_Replacement_With_Expando_Test()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
@@ -64,31 +59,31 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             Assert.AreEqual(value, "Hello AK Academy");
         }
 
-        [Test]
+        [TestMethod]
         public void Interpolation_With_ExpandoObject_Test()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
 
             var expando = new ExpandoObject();
-            var dictionary = (IDictionary<string, object>) expando;
+            var dictionary = (IDictionary<string, object>)expando;
             dictionary["Username"] = "AK Academy";
 
             string value = _service.Keys["HomePage:Login", expando];
             Assert.AreEqual(value, "Welcome AK Academy to the system");
         }
 
-        [Test]
+        [TestMethod]
         public void Interpolation_With_Dictionary_Test()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
 
 
-            var dictionary = new Dictionary<string, object> {["Username"] = "AK Academy"};
+            var dictionary = new Dictionary<string, object> { ["Username"] = "AK Academy" };
             var value = _service.Keys["HomePage:Login", dictionary];
             Assert.AreEqual(value, "Welcome AK Academy to the system");
         }
 
-        [Test]
+        [TestMethod]
         public void Get_Value_By_Composite_Key()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("ca-ES"));
@@ -96,19 +91,22 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             Assert.AreEqual(value, "Hola món");
         }
 
-        [Test]
+        [TestMethod]
         public void Get_Value_By_Composite_Key_By_Index()
         {
             var value = _service["HomePage:HelloWorld"];
             Assert.AreEqual(value, "Hola món");
         }
 
-        [Test]
+        [TestMethod]
         public void Get_Value_By_Key_By_Index()
         {
+            _service.SetLanguage(CultureInfo.GetCultureInfo("ca-ES"));
             var value = _service["MerryChristmas"];
             Assert.AreEqual(value, "Feliz Navidad!");
         }
-
     }
+
+
+
 }
