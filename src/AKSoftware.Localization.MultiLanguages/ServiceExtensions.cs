@@ -7,11 +7,11 @@ namespace AKSoftware.Localization.MultiLanguages
 {
     public static class ServiceExtensions
     {
-
         /// <summary>
         /// Register a singleton instance of LanguageContainer class initialized with a specific culture
         /// </summary>
         /// <param name="services">Dependency Services provider</param>
+        /// <param name="assembly"></param>
         /// <param name="culture">Initial culture</param>
         /// <returns></returns>
         public static IServiceCollection AddLanguageContainer(this IServiceCollection services, Assembly assembly, CultureInfo culture, string folderName = "Resources")
@@ -46,6 +46,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         /// <param name="services">Dependency Services provider</param>
         /// <param name="assembly">Assembly that contains the Resource folder which has the language files</param>
+        /// <param name="folderName"></param>
         /// <returns></returns>
         public static IServiceCollection AddLanguageContainer<TKeysProvider>(this IServiceCollection services, Assembly assembly, string folderName = "Resources")
         where TKeysProvider : KeysProvider
