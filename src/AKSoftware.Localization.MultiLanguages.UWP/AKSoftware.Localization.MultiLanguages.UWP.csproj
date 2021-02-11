@@ -127,6 +127,7 @@
     <Compile Include="Converters\LocalizationConverter.cs" />
     <Compile Include="Converters\MultiValueConverterBase.cs" />
     <Compile Include="Extensions\LanguageServiceExtension.cs" />
+    <Compile Include="Extensions\LocalizeStringExtension.cs" />
     <Compile Include="ExternalFileKeysProvider.cs" />
     <Compile Include="IServiceProviderHost.cs" />
     <Compile Include="LocalizationService.cs" />
