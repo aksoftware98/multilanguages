@@ -8,6 +8,7 @@
     xmlns:converters="using:AKSoftware.Localization.MultiLanguages.UWP.Converters"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:AKSoftware.Localization.MultiLanguages.UWP.Behaviors"
+    xmlns:markup="using:AKSoftware.Localization.MultiLanguages.UWP.Extensions"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
@@ -27,8 +28,8 @@
     </Style>
     </Page.Resources>
     <StackPanel Orientation="Vertical" Style="{StaticResource OuterStackPanelStyle}">
-       
-        <TextBlock Text="{Binding Localization[HomePage:HelloWorld] }" Style="{StaticResource LargeHeaderLabelStyle}"></TextBlock>
+
+        <TextBlock Text="{markup:LocalizeString Key=HomePage:HelloWorld, Capitalize=True }" Style="{StaticResource LargeHeaderLabelStyle}"></TextBlock>
         <TextBlock Style="{StaticResource LabelStyle}">
             <interactivity:Interaction.Behaviors>
                 <behaviors:MultiBindingBehavior PropertyName="Text" Converter="{StaticResource LocalizationConverter}" >

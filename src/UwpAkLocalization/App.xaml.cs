@@ -125,9 +125,9 @@ namespace UwpAkLocalization
             //     C:\Users\<your user>\AppData\Local\Packages\e8428150-51ff-4bd2-8842-7dbd0047d3da_3xecenf62363c\LocalState.  
             //  
             //*************************************************************************************************
-            //serviceCollection_.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(),  "Resources");
+            serviceCollection_.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(),  "Resources");
             //serviceCollection_.AddLanguageContainer<ExternalFileKeysProvider>(Assembly.GetExecutingAssembly(), LocalizationFolderType.InstallationFolder, "Resources");
-            serviceCollection_.AddLanguageContainer<ExternalFileKeysProvider>(Assembly.GetExecutingAssembly(), LocalizationFolderType.LocalFolder, "Localization");
+            //serviceCollection_.AddLanguageContainer<ExternalFileKeysProvider>(Assembly.GetExecutingAssembly(), LocalizationFolderType.LocalFolder, "Localization");
             ServiceProvider = serviceCollection_.BuildServiceProvider();
         }
     }

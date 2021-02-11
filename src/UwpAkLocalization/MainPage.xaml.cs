@@ -18,7 +18,7 @@ namespace UwpAkLocalization
         {
             this.InitializeComponent();
             SuppressPageAnimation();
-            Localization = (Application.Current as IServiceProviderHost).ServiceProvider.GetService<ILanguageContainerService>();
+            Localization = ((IServiceProviderHost)Application.Current).ServiceProvider.GetService<ILanguageContainerService>();
         }
 
         private void SuppressPageAnimation()
