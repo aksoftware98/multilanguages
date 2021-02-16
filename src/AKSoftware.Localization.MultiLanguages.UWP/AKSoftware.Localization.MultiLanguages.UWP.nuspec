@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>AKSoftware.Localization.MultiLangauges.UWP</id>
+    <version>1.1.0</version>
+    <title>AKSoftware.Localization.MultiLangauges.UWP</title>
+    <authors>Michael Gerfen</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>images\AkMultiLanguages.png</icon>
+    <projectUrl>https://github.com/aksoftware98/multilanguages</projectUrl>
+    <description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</description>
+    <releaseNotes>Adding XAML extension to access the language keywords</releaseNotes>
+    <copyright>2021</copyright>
+    <tags>UWP Localization MultiLanguages dotnetcore dotnet Windows10 WinUI Globalization AKSoftware</tags>
+    <dependencies>
+      <dependency id="AKSoftware.Localization.MultiLanguages" version="5.0.0" />
+    </dependencies>
+  </metadata>
+
+  <files>
+        <file src="AkMultiLanguages.png" target="images\" />
+
+        <file src="bin\ARM\Release\AKSoftware.Localization.MultiLanguages.UWP.dll" target="runtimes\win10-arm\native"/>
+        <file src="bin\ARM\Release\AKSoftware.Localization.MultiLanguages.UWP.pri" target="runtimes\win10-arm\native"/>
+
+        <file src="bin\ARM64\Release\AKSoftware.Localization.MultiLanguages.UWP.dll" target="runtimes\win10-arm64\native"/>
+        <file src="bin\ARM64\Release\AKSoftware.Localization.MultiLanguages.UWP.pri" target="runtimes\win10-arm64\native"/>
+
+        <file src="bin\x64\Release\AKSoftware.Localization.MultiLanguages.UWP.dll" target="runtimes\win10-x64\native"/>
+        <file src="bin\x64\Release\AKSoftware.Localization.MultiLanguages.UWP.pri" target="runtimes\win10-x64\native"/>
+
+        <file src="bin\x86\Release\AKSoftware.Localization.MultiLanguages.UWP.dll" target="runtimes\win10-x86\native"/>
+        <file src="bin\x86\Release\AKSoftware.Localization.MultiLanguages.UWP.pri" target="runtimes\win10-x86\native"/>
+
+      
+  </files>
+</package>
