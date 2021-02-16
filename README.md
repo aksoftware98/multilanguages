@@ -1,4 +1,5 @@
 
+
 # AKSoftware.Localization.MultiLanguages
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
@@ -16,6 +17,20 @@ https://youtu.be/Xz68c8GBYz4
 ![Simple UI supports German](https://github.com/aksoftware98/multilanguages/blob/master/Example/BlazorWasmMultiLanguages/BlazorWasmMultiLanguages/wwwroot/German.png?raw=true)
 
 ![Blazor UI with Japanease](https://raw.githubusercontent.com/aksoftware98/multilanguages/master/Example/BlazorWasmMultiLanguages/BlazorWasmMultiLanguages/wwwroot/Japan.png)
+
+
+# UWP Support in Version 5.0.0
+Special thanks for the contributor [Michael Gerfen](https://github.com/gerfen) for updating the library to add support to the UWP.
+This version contains a major update that adds support for a new package under the name AKSoftware.Localization.MultiLangauges.UWP you can install it from Nuget with the following command 
+
+``` PS
+Install-Package AKSoftware.Localization.MultiLangauges.UWP
+``` 
+
+# What's new in Version 5.0.0
+In the latest version of the library because right it started to support UWP and not only Blazor a new interface and abstract type has been introduced that allows you to easily create a keys provider to fetch your keys not only from the embedded resources, also from any source you would like (External folder, FTP, Azure Blob Storage ...etc)
+By default there is the ***EmbeddedResourceKeysProvider*** to fetch the files from the resources and you can create your own by inhereting from the interface ***IKeysProvider***
+More about the implementation in the Wiki soon 
 
 # Getting Started
 
@@ -81,12 +96,14 @@ Import the library
 Register the service  
 ``` C#
     // Specify the assembly that has the langauges files, in this situation it's the current assembly 
-    builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly());
+    builder.Services.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly());
 	// You can specify the default culture of the project like this 
     // builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly(), CultureInfo.GetCultureInfo("fr-Fr"));
 ``` 
 **Note:**
 If you don't specify a default culture the library will try to find the file that matches the culture of the current user, if it's not existing it will try to find any file that matches the same language, then if it's not there it will try to find the English file then the first file in the folder, otherwise it will throw an exception 
+
+
 # Start dealing with components 
 In the _imports.razor file make sure to add the following namespaces
 ``` C#
@@ -153,6 +170,8 @@ _language["Welcome", new
 Check the sample project here to see how to develop a full Blazor WebAssembly project with storing the last selected language with more than 8 languages available for one UI:
 [Full Blazor WASM Sample](https://github.com/aksoftware98/multilanguages/tree/master/src/BlazorAKLocalization)
 
-Developed with Love by Ahmad Mozaffar
-http://ahmadmozaffar.net
+Thanks for the awesome contributors 
+<a href="https://github.com/aksoftware98/multilanguages/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=aksoftware98/multilanguages" />
+</a>
 
