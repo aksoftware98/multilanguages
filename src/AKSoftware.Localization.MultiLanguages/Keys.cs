@@ -44,10 +44,11 @@ namespace AKSoftware.Localization.MultiLanguages
             get
             {
                 var value = GetValue(key);
-                var placeholders = Regex.Matches(value, PLACEHOLDER_PATTERN);
+                
+                //var placeholders = Regex.Matches(value, PLACEHOLDER_PATTERN);
 
-                if (placeholders.Count > 0)
-                    throw new ArgumentException("Value contains placeholders, use the overload Keys indexer to pass values, to learn more check the Interpolation documentation: https://github.com/aksoftware98/multilanguages");
+                //if (placeholders.Count > 0)
+                //    throw new ArgumentException("Value contains placeholders, use the overload Keys indexer to pass values, to learn more check the Interpolation documentation: https://github.com/aksoftware98/multilanguages");
 
                 return value; 
             }
@@ -124,7 +125,7 @@ namespace AKSoftware.Localization.MultiLanguages
                     if (propertyValue == null && !setEmptyForNull)
                             throw new ArgumentNullException(nameof(item.Value));
                     else
-                        propertyValueAsString = propertyValue.ToString(); 
+                        propertyValueAsString = propertyValue?.ToString(); 
 
                     processedValue = processedValue.Replace($"{item.Value}", propertyValueAsString);
                 }

@@ -24,8 +24,8 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
             string value = _service.Keys["HomePage:Login", new
             {
-                Username = "AK Academy"
-            }];
+                Username = (string)null
+            }, true];
             Assert.AreEqual(value, "Welcome AK Academy to the system"); 
         }
 
