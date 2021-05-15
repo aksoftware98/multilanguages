@@ -5,19 +5,19 @@
     <Company>AK Software</Company>
     <Authors>Ahmad Mozaffar</Authors>
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
-    <Copyright>AK Software 2020</Copyright>
+    <Copyright>AK Software 2021</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Adding support for external extensions to suppor specific platforms like Blazor, Xamarin ...., for more details check the documentation here https://github.com/aksoftware98/multilanguages</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixing the bug of setting a nullable value when using interpolation</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>4.2.0.0</AssemblyVersion>
-    <FileVersion>4.2.0.0</FileVersion>
+    <AssemblyVersion>5.1.0</AssemblyVersion>
+    <FileVersion>5.1.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>4.2</Version>
+    <Version>5.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
