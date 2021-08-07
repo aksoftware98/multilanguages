@@ -14,10 +14,10 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>5.1.0</AssemblyVersion>
-    <FileVersion>5.1.0.0</FileVersion>
+    <AssemblyVersion>5.2.0</AssemblyVersion>
+    <FileVersion>5.2.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>5.1</Version>
+    <Version>5.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -26,7 +26,7 @@ namespace AKSoftware.Localization.MultiLanguages
         public LanguageContainer(IKeysProvider keysProvider)
         {
             _keysProvider = keysProvider;
-            _extensions = new List<WeakReference<IExtension>>();
+            _extensions = new List<IExtension>();
             SetLanguage(CultureInfo.CurrentCulture, true);
         }
 
@@ -73,26 +73,30 @@ namespace AKSoftware.Localization.MultiLanguages
             InvokeExtensions();
         }
 
+        // TODO: Remove the destroyed component from the extensions list 
         private void InvokeExtensions()
         {
             if (_extensions.Any())
             {
-                foreach (var item in _extensions)
+                foreach (var item in _extensions.ToArray())
                 {
-                    var result = item.TryGetTarget(out var extension);
-                    if (result)
-                        extension.Action.Invoke(extension.Component);
+                    if (item.Component == null)
+                    {
+                        _extensions.Remove(item);
+                        continue;
+                    }
+                    item.Action.Invoke(item.Component);
                 }
             }
         }
 
-        private readonly List<WeakReference<IExtension>> _extensions = null;
+        private readonly List<IExtension> _extensions = null;
         public void AddExtension(IExtension extension)
         {
             // Add the extension if it is not exists 
-            var value = _extensions.SingleOrDefault(r => r.TryGetTarget(out var e) && e == extension);
+            var value = _extensions.SingleOrDefault(r => r == extension);
             if (value == null)
-                _extensions.Add(new WeakReference<IExtension>(extension));
+                _extensions.Add(extension);
         }
 
     }
