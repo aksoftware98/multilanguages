@@ -29,7 +29,9 @@ namespace AKSoftware.Localization.MultiLanguages
             var languageFileNames = GetLanguageFileNames();
 
             // Get the keys from the file that has the current culture 
-            var keys = InternalGetKeys(languageFileNames.SingleOrDefault(n => n.Contains($"{culture.Name}.yml") || n.Contains($"{culture.Name}.yaml")));
+            var keys = !string.IsNullOrWhiteSpace(culture.Name)
+                ? InternalGetKeys(languageFileNames.FirstOrDefault(n => n.Contains($"{culture.Name}.yml") || n.Contains($"{culture.Name}.yaml")))
+                : default;
 
             // Get the keys from a file that has the same language 
             if (keys == null)
