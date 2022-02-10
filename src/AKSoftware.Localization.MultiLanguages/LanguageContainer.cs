@@ -14,20 +14,19 @@ namespace AKSoftware.Localization.MultiLanguages
         /// Create instance of the container initialized with the specific culture
         /// </summary>
         /// <param name="culture"></param>
-        /// <param name="keyProvider"></param>
-        public LanguageContainer(CultureInfo culture, IKeysProvider keyProvider) : this(keyProvider)
+        /// <param name="keysProvider"></param>
+        public LanguageContainer(CultureInfo culture, IKeysProvider keysProvider)
         {
+            _keysProvider = keysProvider;
+            _extensions = new List<IExtension>();
             SetLanguage(culture, true);
         }
 
         /// <summary>
         /// Create instance of the container initialized with the default culture
         /// </summary>
-        public LanguageContainer(IKeysProvider keysProvider)
+        public LanguageContainer(IKeysProvider keysProvider) : this(CultureInfo.CurrentCulture, keysProvider)
         {
-            _keysProvider = keysProvider;
-            _extensions = new List<IExtension>();
-            SetLanguage(CultureInfo.CurrentCulture, true);
         }
 
         /// <summary>
