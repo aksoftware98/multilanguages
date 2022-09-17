@@ -1,27 +1,27 @@
 ﻿@page "/fetchdata"
-
+@inject ILanguageContainerService Language
 <PageTitle>Weather forecast</PageTitle>
 
 @using BlazorServerLocalizationSample.Data
 @inject WeatherForecastService ForecastService
 
-<h1>Weather forecast</h1>
+<h1>@Language.Keys["FetchData:WeatherForcast"]</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<p>@Language.Keys["FetchData:WeatherTitle"]</p>
 
 @if (forecasts == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>@Language.Keys["FetchData:Loading"]...</em></p>
 }
 else
 {
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>@Language.Keys["FetchData:Date"]</th>
+                <th>@Language.Keys["FetchData:Temp"]. (C)</th>
+                <th>@Language.Keys["FetchData:Temp"]. (F)</th>
+                <th>@Language.Keys["FetchData:Summury"]</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +43,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        Language.InitLocalizedComponent(this);
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
+
+	
 }
