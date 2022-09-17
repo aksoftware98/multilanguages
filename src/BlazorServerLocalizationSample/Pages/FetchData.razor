@@ -1,0 +1,51 @@
+﻿@page "/fetchdata"
+@inject ILanguageContainerService Language
+<PageTitle>Weather forecast</PageTitle>
+
+@using BlazorServerLocalizationSample.Data
+@inject WeatherForecastService ForecastService
+
+<h1>@Language.Keys["FetchData:WeatherForcast"]</h1>
+
+<p>@Language.Keys["FetchData:WeatherTitle"]</p>
+
+@if (forecasts == null)
+{
+    <p><em>@Language.Keys["FetchData:Loading"]...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Language.Keys["FetchData:Date"]</th>
+                <th>@Language.Keys["FetchData:Temp"]. (C)</th>
+                <th>@Language.Keys["FetchData:Temp"]. (F)</th>
+                <th>@Language.Keys["FetchData:Summury"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Language.InitLocalizedComponent(this);
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+	
+}

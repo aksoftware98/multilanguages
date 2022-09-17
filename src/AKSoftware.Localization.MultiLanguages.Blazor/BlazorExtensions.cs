@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AKSoftware.Localization.MultiLanguages.Blazor
 {
@@ -23,14 +24,23 @@ namespace AKSoftware.Localization.MultiLanguages.Blazor
             {
                 Component = component,
             };
-            
-            var action = new Action<object>(e =>
+
+            var action = new Action<object>(async e =>
             {
-                // Call the StateHasChanged function for the component 
+                // Retrieve the StateHasChanged method and the InvokeAsync of the dispatcher to run the code on the UI thread always
                 var type = typeof(ComponentBase);
                 var stateHasChangedMethod = type.GetMethod("StateHasChanged", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                var dispatcherFunction = type.GetMethod("InvokeAsync",
+                                                        System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic,
+                                                        null,
+                                                        new Type[] { typeof(Action) },
+                                                        null);
+                // Run the state has changed in the InvokeAsync function
+                dispatcherFunction.Invoke(extension.Component, new[] { new Action(() =>
+                {
+                    stateHasChangedMethod.Invoke(extension.Component, null);
+                }) });
 
-                stateHasChangedMethod.Invoke(extension.Component, null); 
             });
 
             extension.Action = action;
@@ -39,4 +49,5 @@ namespace AKSoftware.Localization.MultiLanguages.Blazor
         }
 
     }
+
 }
