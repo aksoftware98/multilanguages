@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29709.97
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32708.82
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKSoftware.Localization.MultiLanguages", "AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj", "{6F2BA297-C752-4552-97D4-4A69277E3DF2}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9736C60C-600E-4FC2-B871-53B84973FD5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKSoftware.Localization.MultiLanguages.UWP.Tests", "..\tests\AKSoftware.Localization.MultiLanguages.UWP.Tests\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj", "{7237C4C0-D02B-447A-939B-835175685D1B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServerLocalizationSample", "BlazorServerLocalizationSample\BlazorServerLocalizationSample.csproj", "{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -187,6 +189,26 @@ Global
 		{7237C4C0-D02B-447A-939B-835175685D1B}.Release|x86.ActiveCfg = Release|x86
 		{7237C4C0-D02B-447A-939B-835175685D1B}.Release|x86.Build.0 = Release|x86
 		{7237C4C0-D02B-447A-939B-835175685D1B}.Release|x86.Deploy.0 = Release|x86
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|x64.Build.0 = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|ARM.Build.0 = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|ARM64.Build.0 = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|x64.ActiveCfg = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|x64.Build.0 = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,6 +218,7 @@ Global
 		{9828EF2F-F372-4773-9C7B-9CA452E85702} = {250EFD8C-4FB7-419C-8155-B81CFB193975}
 		{ED0A54D2-D091-45ED-A7EC-DF852935FEA1} = {250EFD8C-4FB7-419C-8155-B81CFB193975}
 		{7237C4C0-D02B-447A-939B-835175685D1B} = {9736C60C-600E-4FC2-B871-53B84973FD5B}
+		{8EA5EEEA-B317-4A54-8ACC-6CE0968E13EB} = {250EFD8C-4FB7-419C-8155-B81CFB193975}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0B8EEB9-C64F-4B59-8C57-872A2D48659E}

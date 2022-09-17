@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AKSoftware.Localization.MultiLanguages.Blazor
 {
@@ -23,14 +24,22 @@ namespace AKSoftware.Localization.MultiLanguages.Blazor
             {
                 Component = component,
             };
-            
-            var action = new Action<object>(e =>
+
+            var action = new Action<object>(async e =>
             {
                 // Call the StateHasChanged function for the component 
                 var type = typeof(ComponentBase);
                 var stateHasChangedMethod = type.GetMethod("StateHasChanged", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                var dispatcherFunction = type.GetMethod("InvokeAsync",
+                                                        System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic,
+                                                        null,
+                                                        new Type[] { typeof(Action) },
+                                                        null);
+                dispatcherFunction.Invoke(extension.Component, new[] { new Action(() =>
+                {
+                    stateHasChangedMethod.Invoke(extension.Component, null);
+                }) });
 
-                stateHasChangedMethod.Invoke(extension.Component, null); 
             });
 
             extension.Action = action;
@@ -38,5 +47,13 @@ namespace AKSoftware.Localization.MultiLanguages.Blazor
             language.AddExtension(extension);
         }
 
+    }
+
+    public class LocalizedComponent : ComponentBase
+    {
+        public async Task StateChangedAsync()
+        {
+            await InvokeAsync(StateHasChanged);
+        }
     }
 }
