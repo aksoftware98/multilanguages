@@ -19,14 +19,14 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
         }
 
         [Test]
-        public void Interpolation_Test()
+        public void Interpolation_With_Null_Value_Should_Replace_With_Empty_Test()
         {
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
             string value = _service.Keys["HomePage:Login", new
             {
                 Username = (string)null
             }, true];
-            Assert.AreEqual(value, "Welcome AK Academy to the system"); 
+            Assert.AreEqual(value, "Welcome  to the system"); 
         }
 
         [Test]
