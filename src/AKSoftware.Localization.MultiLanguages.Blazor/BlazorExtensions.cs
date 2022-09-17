@@ -27,7 +27,7 @@ namespace AKSoftware.Localization.MultiLanguages.Blazor
 
             var action = new Action<object>(async e =>
             {
-                // Call the StateHasChanged function for the component 
+                // Retrieve the StateHasChanged method and the InvokeAsync of the dispatcher to run the code on the UI thread always
                 var type = typeof(ComponentBase);
                 var stateHasChangedMethod = type.GetMethod("StateHasChanged", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
                 var dispatcherFunction = type.GetMethod("InvokeAsync",
@@ -35,6 +35,7 @@ namespace AKSoftware.Localization.MultiLanguages.Blazor
                                                         null,
                                                         new Type[] { typeof(Action) },
                                                         null);
+                // Run the state has changed in the InvokeAsync function
                 dispatcherFunction.Invoke(extension.Component, new[] { new Action(() =>
                 {
                     stateHasChangedMethod.Invoke(extension.Component, null);
@@ -49,11 +50,4 @@ namespace AKSoftware.Localization.MultiLanguages.Blazor
 
     }
 
-    public class LocalizedComponent : ComponentBase
-    {
-        public async Task StateChangedAsync()
-        {
-            await InvokeAsync(StateHasChanged);
-        }
-    }
 }
