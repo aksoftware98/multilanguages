@@ -24,6 +24,10 @@ steps:
       projects: '$(solution)'
       arguments: '--configuration $(BuildConfiguration)'
 
+- task: NDependTask@1
+  inputs:
+    viewname: 'First Perspective'
+
 - task: DotNetCoreCLI@2
   displayName: 'Packing the library'
   inputs:
