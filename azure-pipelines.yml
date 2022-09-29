@@ -25,8 +25,11 @@ steps:
       arguments: '--configuration $(BuildConfiguration)'
 
 - task: NDependTask@1
+  displayName: 'NDepend Analyze'
   inputs:
     viewname: 'First Perspective'
+  env:
+      SYSTEM_ACCESSTOKEN: $(system.accesstoken)
 
 - task: DotNetCoreCLI@2
   displayName: 'Packing the library'
