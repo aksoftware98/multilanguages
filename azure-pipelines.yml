@@ -10,12 +10,6 @@ variables:
   BuildConfiguration: 'Release'
 
 steps:
-
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '5.0.100'
-    vsVersion: '16.8.0'
 - task: DotNetCoreCLI@2
   displayName: 'Restore packages'
   inputs:
