@@ -17,6 +17,19 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             _service = new LanguageContainer(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
 
         }
+		
+        [Test]
+        public void ChangeLanguage_should_change_the_language_correctly()
+        {
+            var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
+            _service = new LanguageContainer(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
+
+            Assert.AreEqual("Hola", _service["Hello"]);
+
+            _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
+
+            Assert.AreEqual("Hello", _service["Hello"]);
+        }
 
         [Test]
         public void Interpolation_With_Null_Value_Should_Replace_With_Empty_Test()

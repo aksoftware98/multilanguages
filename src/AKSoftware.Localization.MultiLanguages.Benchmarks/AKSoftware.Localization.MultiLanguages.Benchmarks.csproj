@@ -39,4 +39,8 @@
     <PackageReference Include="BenchmarkDotNet.Annotations" Version="0.13.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj" />
+  </ItemGroup>
+
 </Project>

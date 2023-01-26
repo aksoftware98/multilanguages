@@ -23,7 +23,7 @@ public class LanguageContainerServiceBenchmarks
     [Benchmark]
     public string GetFirstLevelKey()
     {
-        return _service.Keys["FooterMessage "];
+        return _service.Keys["FooterMessage"];
     }
 
     [Benchmark]
