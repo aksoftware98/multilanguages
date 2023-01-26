@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,7 +9,7 @@ namespace AKSoftware.Localization.MultiLanguages
 {
     public class Keys
     {
-        JObject keyValues = null;
+        IReadOnlyDictionary<object, object> keyValues = null;
         private const string PLACEHOLDER_PATTERN = @"{([^}]*)}";
 
         /// <summary>
@@ -27,11 +25,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// Initialize the language file from the selected culture
         /// </summary>
         /// <param name="languageContent">String content that has the YAML language</param>
-        void initialize(string languageContent)
+        public void initialize(string languageContent)
         {
-            var dynamicResult = new Deserializer().Deserialize<dynamic>(languageContent);
-            string json = JsonConvert.SerializeObject(dynamicResult);
-            keyValues = JObject.Parse(json);
+            keyValues = new Deserializer().Deserialize<Dictionary<object, object>>(languageContent);
         }
 
         /// <summary>
@@ -142,20 +138,25 @@ namespace AKSoftware.Localization.MultiLanguages
                 if (key.Contains(":"))
                 {
                     string[] nestedKey = key.Split(':');
-                    JObject nestedValue = (JObject)keyValues[nestedKey[0]];
-                    string value = string.Empty;
+                    var nestedValue = keyValues[nestedKey[0]] as Dictionary<object, object>;
+					if (nestedValue == null)
+						return key; 
+					
+					string value = string.Empty;
                     for (int i = 1; i < nestedKey.Length; i++)
                     {
                         if (i == nestedKey.Length - 1)
                         {
                             var result = nestedValue[nestedKey[i]];
-                            if (result == null)
-                                return nestedKey[nestedKey.Length - 1];
-
-                            return (string)result;
+                            if (result is string)
+                                return (string)result;
+                            else
+                                return key;
                         }
 
-                        nestedValue = (JObject)nestedValue[nestedKey[i]];
+                        nestedValue = nestedValue[nestedKey[i]] as Dictionary<object, object>;
+                        if (nestedValue == null)
+                            return key;
                     }
 
                     return value;
