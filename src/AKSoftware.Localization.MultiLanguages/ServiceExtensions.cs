@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
 using System.Reflection;
+using AKSoftware.Localization.MultiLanguages.Providers;
 
 namespace AKSoftware.Localization.MultiLanguages
 {

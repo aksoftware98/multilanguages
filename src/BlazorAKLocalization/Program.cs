@@ -9,7 +9,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AKSoftware.Localization.MultiLanguages;
-using Blazored.LocalStorage; 
+using Blazored.LocalStorage;
+using AKSoftware.Localization.MultiLanguages.Providers;
 
 namespace BlazorAKLocalization
 {

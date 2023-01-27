@@ -3,11 +3,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace AKSoftware.Localization.MultiLanguages
+namespace AKSoftware.Localization.MultiLanguages.Providers
 {
     public abstract class KeysProvider : IKeysProvider
     {
-        protected KeysProvider(Assembly resourcesAssembly, string resourceFolderName = "Resources")
+        protected KeysProvider(Assembly resourcesAssembly, 
+                               string resourceFolderName = "Resources")
         {
             ResourceFolderName = resourceFolderName;
             _resourcesAssembly = resourcesAssembly;
@@ -16,7 +17,7 @@ namespace AKSoftware.Localization.MultiLanguages
         protected readonly Assembly _resourcesAssembly;
 
         protected string ResourceFolderName { get; private set; }
-       
+
         protected abstract string GetFileName(string cultureName);
 
         protected abstract string[] GetLanguageFileNames();
@@ -53,10 +54,10 @@ namespace AKSoftware.Localization.MultiLanguages
             return keys;
         }
 
-      
-       
 
-        public  Keys GetKeys(string cultureName)
+
+
+        public Keys GetKeys(string cultureName)
         {
             var fileName = GetFileName($"{cultureName}");
             var keys = InternalGetKeys(fileName);
