@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace AKSoftware.Localization.MultiLanguages.Providers
 {
+	/// <summary>
+    /// Keys provider of a YAML language files embedded within an assembly
+    /// </summary>
     public class EmbeddedResourceKeysProvider : IKeysProvider
     {
 
@@ -36,7 +39,7 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 			_resourcesFolderName = resourcesFolderName;
 		}
 
-        protected string[] GetLanguageFileNames()
+        private string[] GetLanguageFileNames()
         {
             var languageFileNames = _assembly
                                     .GetManifestResourceNames()
@@ -49,7 +52,12 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
             return languageFileNames;
         }
 
-        protected string GetFileName(string cultureName)
+        /// <summary>
+        /// Retrieve the full file path with an assembly resource using the file name only 
+        /// </summary>
+        /// <param name="cultureName">Culture name "en-US", "ar-SA" ..etc.</param>
+        /// <returns><see cref="string"/> represents the full path within the assembly resource</returns>
+        private string GetFilePath(string cultureName)
         {
             var fileName = _assembly
                                 .GetManifestResourceNames()
@@ -60,7 +68,12 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
             return fileName;
         }
 
-		
+		/// <summary>
+        /// Retrieve <see cref="Keys"/> instance from a give <see cref="CultureInfo"/> object
+        /// </summary>
+        /// <param name="cultureInfo">Culture info of the requested language</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
 		public Keys GetKeys(CultureInfo cultureInfo)
 		{
             if (cultureInfo == null)
@@ -69,11 +82,22 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 			return GetKeys(cultureName);
 		}
 
+		/// <summary>
+        /// Retrieve <see cref="Keys"/> instance from a give culture name
+        /// </summary>
+        /// <remarks>
+        /// Culture name must be in the following format "en-US", "ar-SA"..
+        /// </remarks>
+        /// <param name="cultureName">Name of the culture "en-US", "ar-SA" ..etc</param>
+        /// <returns><see cref="Keys"/> instance</returns>
 		public Keys GetKeys(string cultureName)
         {
+            if (string.IsNullOrWhiteSpace(cultureName))
+                throw new ArgumentNullException(nameof(cultureName));
+			
             try
             {
-                var resourcesFileName = GetFileName(cultureName); 
+                var resourcesFileName = GetFilePath(cultureName); 
                 // Read the file 
                 using (var fileStream = _assembly.GetManifestResourceStream(resourcesFileName))
                 {
