@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using AKSoftware.Localization.MultiLanguages;
 using System.Reflection;
 using AKSoftware.Localization.MultiLanguages.Providers;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 // Register the language container for Blazor Server
-builder.Services.AddLanguageContainerForBlazorServer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(), "Resources");
+builder.Services.AddLanguageContainerFromFolderForBlazorServer("Resources", CultureInfo.GetCultureInfo("en-US"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
