@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using AKSoftware.Localization.MultiLanguages;
 using System.Reflection;
+using AKSoftware.Localization.MultiLanguages.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
 
