@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServerLocalizationSam
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmarks", "Benchmarks", "{5270185F-FF5C-49EE-AAE3-11BAF2388341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKSoftware.Localization.MultiLanguages.Benchmarks", "AKSoftware.Localization.MultiLanguages.Benchmarks\AKSoftware.Localization.MultiLanguages.Benchmarks.csproj", "{F5614460-91AC-4F56-A431-C3916066E045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKSoftware.Localization.MultiLanguages.Benchmarks", "AKSoftware.Localization.MultiLanguages.Benchmarks\AKSoftware.Localization.MultiLanguages.Benchmarks.csproj", "{F5614460-91AC-4F56-A431-C3916066E045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
