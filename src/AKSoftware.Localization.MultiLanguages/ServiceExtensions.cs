@@ -50,9 +50,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="folderName"></param>
         /// <returns></returns>
         public static IServiceCollection AddLanguageContainer<TKeysProvider>(this IServiceCollection services, Assembly assembly, string folderName = "Resources")
-        where TKeysProvider : KeysProvider
+        where TKeysProvider : IKeysProvider
         {
-            services.AddSingleton<IKeysProvider, TKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName));
+            services.AddSingleton<IKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName));
             return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s =>
             {
                 var keysProvider = s.GetService<IKeysProvider>();
@@ -61,9 +61,9 @@ namespace AKSoftware.Localization.MultiLanguages
         }
 
         public static IServiceCollection AddLanguageContainer<TKeysProvider>(this IServiceCollection services, Assembly assembly, LocalizationFolderType localizationFolderType = LocalizationFolderType.InstallationFolder, string folderName = "Resources")
-            where TKeysProvider : KeysProvider
+            where TKeysProvider : IKeysProvider
         {
-            services.AddSingleton<IKeysProvider, TKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName, localizationFolderType));
+            services.AddSingleton<IKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName, localizationFolderType));
             return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s =>
             {
                 var keysProvider = s.GetService<IKeysProvider>();
@@ -118,9 +118,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="folderName"></param>
         /// <returns></returns>
         public static IServiceCollection AddLanguageContainerForBlazorServer<TKeysProvider>(this IServiceCollection services, Assembly assembly, string folderName = "Resources")
-        where TKeysProvider : KeysProvider
+        where TKeysProvider : IKeysProvider
         {
-            services.AddSingleton<IKeysProvider, TKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName));
+            services.AddSingleton<IKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName));
             return services.AddScoped<ILanguageContainerService, LanguageContainerInAssembly>(s =>
             {
                 var keysProvider = s.GetService<IKeysProvider>();
@@ -138,9 +138,9 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <param name="folderName"></param>
         /// <returns></returns>
         public static IServiceCollection AddLanguageContainerForBlazorServer<TKeysProvider>(this IServiceCollection services, Assembly assembly, LocalizationFolderType localizationFolderType = LocalizationFolderType.InstallationFolder, string folderName = "Resources")
-            where TKeysProvider : KeysProvider
-        {
-            services.AddSingleton<IKeysProvider, TKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName, localizationFolderType));
+            where TKeysProvider : IKeysProvider
+		{
+            services.AddSingleton<IKeysProvider>(s => (TKeysProvider)Activator.CreateInstance(typeof(TKeysProvider), assembly, folderName, localizationFolderType));
             return services.AddScoped<ILanguageContainerService, LanguageContainerInAssembly>(s =>
             {
                 var keysProvider = s.GetService<IKeysProvider>();

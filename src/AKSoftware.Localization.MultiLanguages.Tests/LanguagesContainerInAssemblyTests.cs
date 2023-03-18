@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using AKSoftware.Localization.MultiLanguages.Providers;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
@@ -23,12 +24,13 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
         {
             var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
             _service = new LanguageContainer(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
+            var targetKey = "HomePage:HelloWorld";
 
-            Assert.AreEqual("Hola", _service["Hello"]);
+            Assert.AreEqual("Hola món", _service[targetKey]);
 
             _service.SetLanguage(CultureInfo.GetCultureInfo("en-US"));
 
-            Assert.AreEqual("Hello", _service["Hello"]);
+            Assert.AreEqual("Hello World", _service[targetKey]);
         }
 
         [Test]

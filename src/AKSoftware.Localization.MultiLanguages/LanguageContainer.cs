@@ -58,7 +58,7 @@ namespace AKSoftware.Localization.MultiLanguages
         {
             CurrentCulture = culture;
             Keys = _keysProvider.GetKeys(culture);
-            //NB:  Not sure if this should be called here...
+            
             InvokeExtensions();
         }
 
