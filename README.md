@@ -3,7 +3,7 @@
   
 
 # AKSoftware.Localization.MultiLanguages
-### Version 5.8 is here [Check out What's New](#whats-new-in-version-580)
+### Version 5.9 is here [Check out What's New](#whats-new-in-version-590)
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
   
@@ -35,6 +35,25 @@ https://youtu.be/Xz68c8GBYz4
   
 
 ![Blazor UI with Japanease](https://raw.githubusercontent.com/aksoftware98/multilanguages/master/Example/BlazorWasmMultiLanguages/BlazorWasmMultiLanguages/wwwroot/Japan.png)
+
+# What's new in Version 5.9.0
+Version 5.9.0 with two big achievements:
+1. The performance of the library has been improved by 5x especially while retrieving nested keys, due to eliminate the usage of JSON in some places and depend efficiently on the YAML library. 
+2. The ability to store the Resources in an external folder with a specified path that you can define
+To use this feature without using Dependency Injection 
+You can refer to this sample file here:
+[Program.cs sample to fetch keys from folder](https://github.com/aksoftware98/multilanguages/blob/master/src/ConsoleAppSample/Program.cs)
+
+If you are using dependency injection you can use the newly used method: 
+``` C#
+// For .NET projects consider the following method
+services.AddLanguageContainerFromFolder("Resouces", CultureInfo.GetCultureInfo("en-US")); 
+
+// For Blazor Server
+services.AddLanguageContainerFromFolderForBlazorServer("Resouces", CultureInfo.GetCultureInfo("en-US")); 
+```
+
+**Keep in mind, the folder of the resources has to be shipped with your project**
 
   # What's new in Version 5.8.0 
   Finally **Blazor Server** is here you can get started now.
