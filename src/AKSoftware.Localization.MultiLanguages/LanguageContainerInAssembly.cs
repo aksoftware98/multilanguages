@@ -1,5 +1,6 @@
 ﻿
 using System.Globalization;
+using AKSoftware.Localization.MultiLanguages.Providers;
 
 namespace AKSoftware.Localization.MultiLanguages
 {

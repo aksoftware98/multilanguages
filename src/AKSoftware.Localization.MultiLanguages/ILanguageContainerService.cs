@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
 namespace AKSoftware.Localization.MultiLanguages
 {
-    public interface ILanguageContainerService
+	public interface ILanguageContainerService
     {
         /// <summary>
         /// Current culture associated with the selected language

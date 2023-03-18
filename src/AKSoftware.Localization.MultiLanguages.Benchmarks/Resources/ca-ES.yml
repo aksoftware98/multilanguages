@@ -1,0 +1,19 @@
+HomePage:
+  Title: Casa
+  HelloWorld: Hola món
+  Welcome: Benvingut
+  Question: Com està treballant Blazor per a vostè?
+  BriefSuvery: Breu enquesta
+  Think: Digui'ns què pensa vostè
+Counter:
+  Title: Taulell
+  ClickMe: Feu clic a mi
+FetchData:
+  Title: Obtén dades
+  WeatherForcast: Previsió
+  WeatherTitle: Aquest component demostra l'obtenció de dades del servidor
+  Loading: Càrrega
+  Date: Data
+  Temp: Temp
+  Summary: Resum
+MerryChristmas: Feliz Navidad!
