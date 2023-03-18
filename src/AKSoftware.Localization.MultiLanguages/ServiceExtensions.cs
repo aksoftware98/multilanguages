@@ -71,6 +71,27 @@ namespace AKSoftware.Localization.MultiLanguages
             });
         }
 
+		/// <summary>
+		/// Add a language container that loads the language files from a specific folder
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="folderPath">Path of the folder that contains the YAML files of the language</param>
+		/// <param name="defaultCulture">Default culture you want the app to start with</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static IServiceCollection AddLanguageContainerFromFolder(this IServiceCollection services, string folderPath, CultureInfo defaultCulture)
+        {
+            if (string.IsNullOrWhiteSpace(folderPath))
+                throw new ArgumentNullException(nameof(folderPath));
+            if (defaultCulture == null)
+                throw new ArgumentNullException(nameof(defaultCulture));
+			
+			return services.AddSingleton<ILanguageContainerService>(s =>
+			{
+				return new LanguageContainer(defaultCulture, new FolderResourceKeysProvider(folderPath));
+			});
+		}
+
 
         #region Blazor Server 
         /// <summary>
@@ -147,6 +168,29 @@ namespace AKSoftware.Localization.MultiLanguages
                 return new LanguageContainerInAssembly(keysProvider);
             });
         }
-        #endregion 
-    }
+
+
+		/// <summary>
+		/// Add a language container that loads the language files from a specific folder
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="folderPath">Path of the folder that contains the YAML files of the language</param>
+		/// <param name="defaultCulture">Default culture you want the app to start with</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static IServiceCollection AddLanguageContainerFromFolderInBlazorService(this IServiceCollection services, string folderPath, CultureInfo defaultCulture)
+		{
+			if (string.IsNullOrWhiteSpace(folderPath))
+				throw new ArgumentNullException(nameof(folderPath));
+			if (defaultCulture == null)
+				throw new ArgumentNullException(nameof(defaultCulture));
+
+			return services.AddScoped<ILanguageContainerService>(s =>
+			{
+				return new LanguageContainer(defaultCulture, new FolderResourceKeysProvider(folderPath));
+			});
+		}
+
+		#endregion
+	}
 }
