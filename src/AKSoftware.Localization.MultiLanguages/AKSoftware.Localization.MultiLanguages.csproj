@@ -5,19 +5,19 @@
     <Company>AK Software</Company>
     <Authors>Ahmad Mozaffar</Authors>
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
-    <Copyright>AK Software 2021</Copyright>
+    <Copyright>AK Software 2023</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Fix bugs and improve the library to support Blazor Server projects</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix bugs and improve the performance and add the ability </PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>5.8.0</AssemblyVersion>
-    <FileVersion>5.8.0.0</FileVersion>
+    <AssemblyVersion>5.9.0</AssemblyVersion>
+    <FileVersion>5.9.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>5.8</Version>
+    <Version>5.9</Version>
   </PropertyGroup>
 
   <ItemGroup>
