@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AKSoftware.Localization.MultiLanguages;
+using AKSoftware.Localization.MultiLanguages.Providers;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using System.Globalization;
