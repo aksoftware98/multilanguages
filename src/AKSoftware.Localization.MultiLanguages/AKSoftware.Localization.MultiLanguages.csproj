@@ -14,10 +14,10 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>5.9.1</AssemblyVersion>
-    <FileVersion>5.9.1.0</FileVersion>
+    <AssemblyVersion>5.9.11</AssemblyVersion>
+    <FileVersion>5.9.11.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>5.9.1</Version>
+    <Version>5.9.11</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
