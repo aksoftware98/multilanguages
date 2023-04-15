@@ -125,5 +125,11 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             Assert.Equal("Feliz Navidad!", value);
         }
 
+        [Fact]
+		public void GetNestedValue_When_NestedKey_NotFound_Should_Return_NestedKeyOnly()
+        {
+			var value = _service["HomePage:NotFound"];
+			Assert.Equal("NotFound", value);
+		}
     }
 }
