@@ -54,7 +54,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         /// <param name="culture">The required culture</param>
         /// <param name="isDefault">To indicates if this is the initial function</param>
-        private void SetLanguage(CultureInfo culture, bool isDefault)
+        protected virtual void SetLanguage(CultureInfo culture, bool isDefault)
         {
             CurrentCulture = culture;
             Keys = _keysProvider.GetKeys(culture);
@@ -66,7 +66,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// Set language manually based on a specific culture
         /// </summary>
         /// <param name="culture">The required culture</param>
-        public void SetLanguage(CultureInfo culture)
+        public virtual void SetLanguage(CultureInfo culture)
         {
             CurrentCulture = culture;
             Keys = _keysProvider.GetKeys(culture.Name);
