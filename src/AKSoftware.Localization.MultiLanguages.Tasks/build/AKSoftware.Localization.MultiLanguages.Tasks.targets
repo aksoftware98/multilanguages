@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!--Defining all the text files input parameters-->
+	<ItemGroup>
+    <LanguageFiles Include="$(RootFolder)\*en-US.yml" />
+	</ItemGroup>
+
+  <Target Name="BeforeCompile">
+    <SampleTask />
+  </Target>
+  
+	<!--It is generated a target which is executed before the compilation-->
+	<Target Name="BeforeCompile" Inputs="@(LanguageFiles)" Outputs="$(RootFolder)\$(KeysClass).generated.cs">
+		<!--Calling our custom task-->
+    <LanguageKeysGenerator KeysClassName="$(KeysClass)" KeysNamespaceName="$(KeysNamespace)" LanguageFiles="@(LanguageFiles)">
+			<Output TaskParameter="ClassNameFile" PropertyName="KeysClassFileName" />
+		</LanguageKeysGenerator>
+		<!--Our generated file is included to be compiled-->
+		<ItemGroup>
+			<Compile Remove="$(KeysClassFileName)" />
+			<Compile Include="$(KeysClassFileName)" />
+		</ItemGroup>
+	</Target>
+
+	<!--The generated file is deleted after a general clean. It will force the regeneration on rebuild-->
+	<Target Name="AfterClean">
+		<Delete Files="$(RootFolder)\$(KeysClass).generated.cs" />
+	</Target>
+</Project>

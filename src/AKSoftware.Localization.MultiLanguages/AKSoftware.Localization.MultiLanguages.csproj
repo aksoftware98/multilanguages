@@ -14,10 +14,10 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>5.9.11</AssemblyVersion>
-    <FileVersion>5.9.11.0</FileVersion>
+    <AssemblyVersion>6.0.27</AssemblyVersion>
+    <FileVersion>6.0.27-preview</FileVersion>
+    <Version>6.0.27-preview</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>5.9.11</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -37,7 +37,13 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="docs\README.md" Pack="true" PackagePath="\"/>
+    <None Include="docs\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages.Core\AKSoftware.Localization.MultiLanguages.Core.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages.Tasks\AKSoftware.Localization.MultiLanguages.Tasks.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\AppSettingStronglyTyped\AppSettingStronglyTyped.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
