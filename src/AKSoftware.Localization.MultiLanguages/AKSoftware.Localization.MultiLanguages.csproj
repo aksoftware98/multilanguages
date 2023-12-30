@@ -10,14 +10,14 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Fix bugs and improve the performance and add the ability to store resource files in external folders</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix bugs and improve the performance and add the ability to store resource files in external folders. Fix the bug of throwing an exception when the key is not founds</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>5.9.11</AssemblyVersion>
-    <FileVersion>5.9.11.0</FileVersion>
+    <AssemblyVersion>5.9.12</AssemblyVersion>
+    <FileVersion>5.9.12.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>5.9.11</Version>
+    <Version>5.9.12</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 

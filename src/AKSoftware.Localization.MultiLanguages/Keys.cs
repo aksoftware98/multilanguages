@@ -136,7 +136,11 @@ namespace AKSoftware.Localization.MultiLanguages
 			if (key.Contains(":"))
 			{
 				string[] nestedKey = key.Split(':');
-				var nestedValue = keyValues[nestedKey[0]] as Dictionary<object, object>;
+				keyValues.TryGetValue(nestedKey[0], out object currentKey);
+				if (currentKey == null)
+					return key;
+
+				var nestedValue = currentKey as Dictionary<object, object>;
 				if (nestedValue == null)
 					return key;
 
@@ -166,12 +170,10 @@ namespace AKSoftware.Localization.MultiLanguages
 			}
 			else
 			{
-				var result = keyValues[key];
-				if (result == null)
-					return key;
-
-				return (string)result;
-
+				var result = keyValues.ContainsKey(key) 
+									? (string)keyValues[key] : 
+									key;
+				return result;
 			}
 		}
 	}

@@ -30,6 +30,33 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
         }
 
         [Fact]
+        public void GetNotExistedKeyFromFolderResource_ShouldReturnTheKeyItself()
+        {
+			// Arrange 
+			var key = "NotFoundKey";
+
+			// Act 
+			var value = _languageContainer[key];
+
+			// Assert
+			Assert.Equal("NotFoundKey", value);
+		}
+
+
+		[Fact]
+		public void GetNotExistedNestedKeyFromFolderResource_ShouldReturnTheKeyItself()
+		{
+			// Arrange 
+			var key = "NotFoundKey:Hello";
+
+			// Act 
+			var value = _languageContainer[key];
+
+			// Assert
+			Assert.Equal("NotFoundKey:Hello", value);
+		}
+
+		[Fact]
 		public void ChangeLanguage_ShouldChangeItSuccessfully()
         {
             // Arrange 
