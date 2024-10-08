@@ -99,5 +99,13 @@ namespace AKSoftware.Localization.MultiLanguages
                 _extensions.Add(extension);
         }
 
+        /// <summary>
+        /// Get a list of the keys in the language file
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetKeys()
+        {
+            return Keys.KeyValues.Keys.Select(k => k.ToString()).ToList();
+        }
     }
 }

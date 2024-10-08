@@ -17,3 +17,9 @@ FetchData:
   Temp: Temp
   Summary: Resum
 MerryChristmas: Feliz Navidad!
+Contacts:
+  Address: 
+    Title: Adreça
+    Street: Carrer
+    City: Ciutat
+    Country: País
