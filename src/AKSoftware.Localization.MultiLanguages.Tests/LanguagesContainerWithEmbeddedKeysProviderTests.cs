@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using Xunit;
+using FluentAssertions;
 
 namespace AKSoftware.Localization.MultiLanguages.Tests
 {
@@ -165,6 +166,22 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
 
             //Assert
             Assert.True(found);
+        }
+
+        [Fact]
+        public void Enumerate_Should_Handle_Nested_Keys_Gracefully()
+        {
+            var keys = new List<string>();
+
+            foreach (var item in _service.Keys)
+            {
+                keys.Add(item.Key.ToString());
+            }
+
+            keys.Should().HaveCount(20);
+            keys[0].Should().Be("HomePage:Title");
+            keys.Should().ContainEquivalentOf("MerryChristmas");
+            keys.Should().ContainEquivalentOf("Contacts:Address:City");
         }
     }
 }
