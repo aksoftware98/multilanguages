@@ -36,6 +36,7 @@ https://youtu.be/Xz68c8GBYz4
 
 ![Blazor UI with Japanease](https://raw.githubusercontent.com/aksoftware98/multilanguages/master/Example/BlazorWasmMultiLanguages/BlazorWasmMultiLanguages/wwwroot/Japan.png)
 
+
 # What's new in Version 5.9.0
 Version 5.9.0 with two big achievements:
 1. The performance of the library has been improved by 5x especially while retrieving nested keys, due to eliminate the usage of JSON in some places and depend efficiently on the YAML library. 
@@ -364,7 +365,24 @@ Check the sample project here to see how to develop a full Blazor WebAssembly pr
 
 [Full Blazor WASM Sample](https://github.com/aksoftware98/multilanguages/tree/master/src/BlazorAKLocalization)
 
-  
+# Upcoming in Version 6.0
+We are currently working on version 6.  Here are the upcoming features.
+
+**The ability to get all the keys for the current culture.**
+
+```C#
+List<string> keys = _language.GetKeys();
+```
+
+**The ability to loop through the key values for the current culture.**
+
+```C#
+foreach (KeyValuePair<object, object> keyValue in _service.Keys)
+{
+	Console.WriteLine($"{keyValue.Key}: {keyValue.Value}");
+}
+```
+
 
 Thanks for the awesome contributors
 

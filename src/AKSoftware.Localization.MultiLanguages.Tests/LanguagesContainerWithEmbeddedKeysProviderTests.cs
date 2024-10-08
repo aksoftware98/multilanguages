@@ -1,4 +1,5 @@
-﻿using AKSoftware.Localization.MultiLanguages.Providers;
+﻿using System;
+using AKSoftware.Localization.MultiLanguages.Providers;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
@@ -131,5 +132,39 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
 			var value = _service["HomePage:NotFound"];
 			Assert.Equal("NotFound", value);
 		}
+
+        [Fact]
+        public void Should_Be_Able_To_Get_Keys()
+        {
+            //Arrange
+            string expectedKey = "MerryChristmas";
+
+            //Act
+            var keys = _service.GetKeys();
+
+            //Assert
+            Assert.Contains(expectedKey, keys);
+        }
+
+        [Fact]
+        public void Should_Be_Able_To_Enumerate()
+        {
+            //Arrange
+            string expectedKey = "MerryChristmas";
+            bool found = false;
+
+            //Act
+            foreach (KeyValuePair<object, object> keyValue in _service.Keys)
+            {
+                if (keyValue.Key.ToString() == expectedKey)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            //Assert
+            Assert.True(found);
+        }
     }
 }

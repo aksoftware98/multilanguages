@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,16 +8,18 @@ using YamlDotNet.Serialization;
 
 namespace AKSoftware.Localization.MultiLanguages
 {
-	public class Keys
-	{
-		IReadOnlyDictionary<object, object> keyValues = null;
+	public class Keys : IEnumerable<KeyValuePair<object, object>>
+    {
+		
 		private const string PLACEHOLDER_PATTERN = @"{([^}]*)}";
 
-		/// <summary>
-		/// Initialize the language object for a specific culture
-		/// </summary>
-		/// <param name="languageContent">String content that has the YAML language</param>
-		public Keys(string languageContent)
+        internal IReadOnlyDictionary<object, object> KeyValues { get; private set; }
+    
+        /// <summary>
+        /// Initialize the language object for a specific culture
+        /// </summary>
+        /// <param name="languageContent">String content that has the YAML language</param>
+        public Keys(string languageContent)
 		{
 			initialize(languageContent);
 		}
@@ -27,7 +30,7 @@ namespace AKSoftware.Localization.MultiLanguages
 		/// <param name="languageContent">String content that has the YAML language</param>
 		public void initialize(string languageContent)
 		{
-			keyValues = new Deserializer().Deserialize<Dictionary<object, object>>(languageContent);
+			KeyValues = new Deserializer().Deserialize<Dictionary<object, object>>(languageContent);
 		}
 
 		/// <summary>
@@ -136,7 +139,7 @@ namespace AKSoftware.Localization.MultiLanguages
 			if (key.Contains(":"))
 			{
 				string[] nestedKey = key.Split(':');
-				keyValues.TryGetValue(nestedKey[0], out object currentKey);
+				KeyValues.TryGetValue(nestedKey[0], out object currentKey);
 				if (currentKey == null)
 					return key;
 
@@ -170,12 +173,22 @@ namespace AKSoftware.Localization.MultiLanguages
 			}
 			else
 			{
-				var result = keyValues.ContainsKey(key) 
-									? (string)keyValues[key] : 
+				var result = KeyValues.ContainsKey(key) 
+									? (string)KeyValues[key] : 
 									key;
 				return result;
 			}
 		}
-	}
+
+        public IEnumerator<KeyValuePair<object, object>> GetEnumerator()
+        {
+            return KeyValues.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
 }
 
