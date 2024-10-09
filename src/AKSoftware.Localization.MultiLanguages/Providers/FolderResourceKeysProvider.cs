@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace AKSoftware.Localization.MultiLanguages.Providers
 {
-	public class FolderResourceKeysProvider : IKeysProvider
+	public class FolderResourceKeysProvider : BaseKeysProvider
 	{
 
 		private readonly string _folderPath;
@@ -14,7 +16,10 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 			if (string.IsNullOrWhiteSpace(folderPath))
 				throw new ArgumentNullException(nameof(folderPath));
 
-			_folderPath = folderPath;
+			if (!Directory.Exists(folderPath))
+                throw new DirectoryNotFoundException($"The folder path {folderPath} does not exist");
+
+            _folderPath = folderPath;
 		}
 
 		/// <summary>
@@ -23,7 +28,7 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 		/// <param name="cultureName">Culture object that represents the language you are trying to retrieve</param>
 		/// <returns></returns>
 		/// <exception cref="ArgumentNullException"></exception>
-		public Keys GetKeys(CultureInfo cultureInfo)
+		public override Keys GetKeys(CultureInfo cultureInfo)
 		{
 			return GetKeys(cultureInfo.Name);
 		}
@@ -34,13 +39,22 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 		/// <param name="cultureName">name of the culture in the following format "en-US", "ar-SA" ..etc</param>
 		/// <returns></returns>
 		/// <exception cref="ArgumentNullException"></exception>
-		public Keys GetKeys(string cultureName)
+		public override Keys GetKeys(string cultureName)
 		{
 			if (string.IsNullOrWhiteSpace(cultureName))
 				throw new ArgumentNullException(nameof(cultureName));
 
-			var filePath = Path.Combine(_folderPath, $"{cultureName}.yml");
-			try
+			string filePath = Path.Combine(_folderPath, $"{cultureName}.yml");
+
+            if (!File.Exists(filePath))
+            {
+                filePath = Path.Combine(_folderPath, $"{cultureName}.yaml");
+            }
+
+			if (!File.Exists(filePath))
+                throw new FileNotFoundException($"The file {cultureName}.yml or {cultureName}.yaml does not exist in the folder {_folderPath}");
+
+            try
 			{
 				// Read the content of the file 
 				var fileContent = File.ReadAllText(filePath);
@@ -52,5 +66,31 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 				throw;
 			}
 		}
-	}
+
+        /// <summary>
+        /// Get a list of the registered languages
+        /// </summary>
+        public override List<CultureInfo> RegisteredLanguages
+        {
+            get
+            {
+				List<string> files = Directory.GetFiles(_folderPath, "*.yml").ToList();
+                files.AddRange(Directory.GetFiles(_folderPath, "*.yaml"));
+
+                List<CultureInfo> cultures = new List<CultureInfo>();
+
+                foreach (var file in files)
+                {
+                    if (YamlFilePattern.IsMatch(file))
+                    {
+                        string cultureName = Path.GetFileNameWithoutExtension(file);
+                        cultures.Add(new CultureInfo(cultureName));
+                    }
+                }
+
+				return cultures;
+            }
+
+        }
+    }
 }

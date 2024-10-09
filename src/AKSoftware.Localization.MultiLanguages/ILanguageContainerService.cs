@@ -47,5 +47,10 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         /// <returns></returns>
         List<string> GetKeys();
+
+        /// <summary>
+        /// Get a list of the registered languages
+        /// </summary>
+        List<CultureInfo> RegisteredLanguages { get; }
     }
 }

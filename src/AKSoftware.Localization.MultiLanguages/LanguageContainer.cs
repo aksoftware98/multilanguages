@@ -107,5 +107,10 @@ namespace AKSoftware.Localization.MultiLanguages
         {
             return Keys.KeyValues.Keys.Select(k => k.ToString()).ToList();
         }
+
+        /// <summary>
+        /// Get a list of the registered languages
+        /// </summary>
+        public List<CultureInfo> RegisteredLanguages => _keysProvider.RegisteredLanguages;
     }
 }
