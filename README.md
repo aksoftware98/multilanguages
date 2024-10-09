@@ -383,6 +383,11 @@ foreach (KeyValuePair<object, object> keyValue in _service.Keys)
 }
 ```
 
+**The ability to get all the registered languages.**
+
+```C#
+List<CultureInfo> registeredLanguages = _language.RegisteredLanguages;
+```
 
 Thanks for the awesome contributors
 
