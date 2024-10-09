@@ -1,4 +1,5 @@
 ﻿using AKSoftware.Localization.MultiLanguages.Providers;
+using FluentAssertions.Common;
 using System.Globalization;
 using Xunit;
 
@@ -70,6 +71,19 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             languageContainer.SetLanguage(CultureInfo.GetCultureInfo("ca-ES"));
             var secondValue = languageContainer[key];
             Assert.Equal("Hola món", secondValue);
+        }
+
+        [Fact]
+        public void Should_Be_Able_To_Get_Registered_Languages()
+        {
+            //Arrange
+            var expectedLanguage = "ca-ES";
+
+            //Act
+            var languages = _languageContainer.RegisteredLanguages;
+
+            //Assert
+            Assert.Contains(CultureInfo.GetCultureInfo(expectedLanguage), languages);
         }
     }
 }

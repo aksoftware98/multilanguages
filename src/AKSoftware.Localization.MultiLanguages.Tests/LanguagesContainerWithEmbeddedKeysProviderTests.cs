@@ -183,5 +183,18 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             keys.Should().ContainEquivalentOf("MerryChristmas");
             keys.Should().ContainEquivalentOf("Contacts:Address:City");
         }
+
+        [Fact]
+        public void Should_Be_Able_To_Get_Registered_Languages()
+        {
+            //Arrange
+            var expectedLanguage = "ca-ES";
+
+            //Act
+            var languages = _service.RegisteredLanguages;
+
+            //Assert
+            Assert.Contains(CultureInfo.GetCultureInfo(expectedLanguage), languages);
+        }
     }
 }

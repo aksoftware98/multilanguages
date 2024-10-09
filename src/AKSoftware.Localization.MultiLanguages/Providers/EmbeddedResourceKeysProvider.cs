@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 	/// <summary>
 	/// Keys provider of a YAML language files embedded within an assembly
 	/// </summary>
-	public class EmbeddedResourceKeysProvider : IKeysProvider
+	public class EmbeddedResourceKeysProvider : BaseKeysProvider
 	{
-
-		private readonly Assembly _assembly;
+		private List<CultureInfo> _registeredLanguages;
+        private readonly Assembly _assembly;
 		private readonly string _resourcesFolderName = "Resources";
 
 		public EmbeddedResourceKeysProvider(Assembly assembly,
@@ -39,18 +40,7 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 			_resourcesFolderName = resourcesFolderName;
 		}
 
-		private string[] GetLanguageFileNames()
-		{
-			var languageFileNames = _assembly
-									.GetManifestResourceNames()
-									.Where(s =>
-											s.Contains(_resourcesFolderName) &&
-												(s.Contains(".yml") ||
-												 s.Contains(".yaml")) &&
-												 s.Contains("-"))
-									.ToArray();
-			return languageFileNames;
-		}
+
 
 		/// <summary>
 		/// Retrieve the full file path with an assembly resource using the file name only 
@@ -74,7 +64,7 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 		/// <param name="cultureInfo">Culture info of the requested language</param>
 		/// <returns></returns>
 		/// <exception cref="ArgumentNullException"></exception>
-		public Keys GetKeys(CultureInfo cultureInfo)
+		public override Keys GetKeys(CultureInfo cultureInfo)
 		{
 			if (cultureInfo == null)
 				throw new ArgumentNullException(nameof(cultureInfo));
@@ -90,7 +80,7 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 		/// </remarks>
 		/// <param name="cultureName">Name of the culture "en-US", "ar-SA" ..etc</param>
 		/// <returns><see cref="Keys"/> instance</returns>
-		public Keys GetKeys(string cultureName)
+		public override Keys GetKeys(string cultureName)
 		{
 			if (string.IsNullOrWhiteSpace(cultureName))
 				throw new ArgumentNullException(nameof(cultureName));
@@ -113,5 +103,51 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 			}
 		}
 
-	}
+        /// <summary>
+        /// Get a list of the registered languages
+        /// </summary>
+        public override IEnumerable<CultureInfo> RegisteredLanguages
+        {
+            get
+            {
+				//Lazy loading
+                if (_registeredLanguages != null)
+                    return _registeredLanguages;
+
+                var languageFileNames = GetLanguageFileNames();
+
+				var cultures = new List<CultureInfo>();
+                foreach (var languageFileName in languageFileNames)
+                {
+					int resourceIndex = languageFileName.IndexOf(_resourcesFolderName, StringComparison.Ordinal);
+
+					if (resourceIndex == -1)
+                        continue;
+
+                    string file = languageFileName.Substring(resourceIndex + _resourcesFolderName.Length + 1);
+
+                    if (YamlFilePattern.IsMatch(file))
+                    {
+                        string cultureName = Path.GetFileNameWithoutExtension(file);
+                        cultures.Add(new CultureInfo(cultureName));
+                    }
+                }
+
+				_registeredLanguages = cultures;
+                return _registeredLanguages;
+            }
+        }
+
+        private string[] GetLanguageFileNames()
+        {
+            var languageFileNames = _assembly
+                .GetManifestResourceNames()
+                .Where(s =>
+                    s.Contains(_resourcesFolderName) &&
+                    (s.Contains(".yml") ||
+                     s.Contains(".yaml")))
+                .ToArray();
+            return languageFileNames;
+        }
+    }
 }

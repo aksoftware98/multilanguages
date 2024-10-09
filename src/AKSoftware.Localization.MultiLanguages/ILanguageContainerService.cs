@@ -24,7 +24,7 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         /// <param name="key">Key of the value</param>
         /// <param name="keyValues">Object that holds the name of the properties to be replaced with, the object can be of any type</param>
-        /// <param name="setEmptyIfNull">Set the behaviour of the null value either to replace it with empty or throw an exception</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
         /// <returns>Localized value</returns>
         string this[string key, object keyValues, bool setEmptyIfNull = false] { get; }
 
@@ -47,5 +47,10 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         /// <returns></returns>
         List<string> GetKeys();
+
+        /// <summary>
+        /// Get a list of the registered languages
+        /// </summary>
+        IEnumerable<CultureInfo> RegisteredLanguages { get; }
     }
 }

@@ -383,7 +383,59 @@ foreach (KeyValuePair<object, object> keyValue in _service.Keys)
 }
 ```
 
+**The ability to get all the registered languages.**
 
+```C#
+IEnumerable<CultureInfo> registeredLanguages = _language.RegisteredLanguages;
+```
+
+Full example with a drop-down that is bound to the languages.
+
+```C#
+@page "/"
+@using System.Globalization
+
+<select @bind="SelectedCulture" @bind:event="onchange">
+    @foreach (var culture in Cultures)
+    {
+        <option value="@culture.Name">@culture.EnglishName</option>
+    }
+</select>
+
+@code {
+    [Inject] private ILanguageContainerService _language { get; set; }
+	
+    public IEnumerable<CultureInfo> Cultures { get; set; } = new List<CultureInfo>();
+    
+    private string _selectedCulture;
+    public string SelectedCulture
+    {
+        get => _selectedCulture;
+        set
+        {
+            if (_selectedCulture != value)
+            {
+                _selectedCulture = value;
+                _language.SetLanguage(CultureInfo.GetCultureInfo(value));
+            }
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        _language.InitLocalizedComponent(this);
+		
+        // Initialize the Cultures list here if not already populated
+        if (Cultures.Count == 0)
+        {
+            Cultures = _language.GetRegisteredLanguages();
+        }
+
+        // Set initial selected culture
+        _selectedCulture = _language.CurrentCulture.Name;
+    }
+}
+```
 Thanks for the awesome contributors
 
 <a  href="https://github.com/aksoftware98/multilanguages/graphs/contributors">
