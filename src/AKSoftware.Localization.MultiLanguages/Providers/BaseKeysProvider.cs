@@ -28,6 +28,6 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
         /// <summary>
         /// Get a list of the registered languages
         /// </summary>
-        public abstract List<CultureInfo> RegisteredLanguages { get; }
+        public abstract IEnumerable<CultureInfo> RegisteredLanguages { get; }
     }
 }

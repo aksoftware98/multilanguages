@@ -106,7 +106,7 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
         /// <summary>
         /// Get a list of the registered languages
         /// </summary>
-        public override List<CultureInfo> RegisteredLanguages
+        public override IEnumerable<CultureInfo> RegisteredLanguages
         {
             get
             {
@@ -114,9 +114,9 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
                 if (_registeredLanguages != null)
                     return _registeredLanguages;
 
-                string[] languageFileNames = GetLanguageFileNames();
+                var languageFileNames = GetLanguageFileNames();
 
-				List<CultureInfo> cultures = new List<CultureInfo>();
+				var cultures = new List<CultureInfo>();
                 foreach (var languageFileName in languageFileNames)
                 {
 					int resourceIndex = languageFileName.IndexOf(_resourcesFolderName, StringComparison.Ordinal);

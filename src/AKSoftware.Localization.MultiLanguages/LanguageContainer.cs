@@ -111,6 +111,6 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <summary>
         /// Get a list of the registered languages
         /// </summary>
-        public List<CultureInfo> RegisteredLanguages => _keysProvider.RegisteredLanguages;
+        public IEnumerable<CultureInfo> RegisteredLanguages => _keysProvider.RegisteredLanguages;
     }
 }

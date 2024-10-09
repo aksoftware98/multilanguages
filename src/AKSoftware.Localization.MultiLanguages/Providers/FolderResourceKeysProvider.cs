@@ -70,14 +70,13 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
         /// <summary>
         /// Get a list of the registered languages
         /// </summary>
-        public override List<CultureInfo> RegisteredLanguages
+        public override IEnumerable<CultureInfo> RegisteredLanguages
         {
             get
             {
-				List<string> files = Directory.GetFiles(_folderPath, "*.yml").ToList();
-                files.AddRange(Directory.GetFiles(_folderPath, "*.yaml"));
+				var files = Directory.GetFiles(_folderPath, "*.yml").ToList();
 
-                List<CultureInfo> cultures = new List<CultureInfo>();
+                var cultures = new List<CultureInfo>();
 
                 foreach (var file in files)
                 {
