@@ -386,10 +386,10 @@ foreach (KeyValuePair<object, object> keyValue in _service.Keys)
 **The ability to get all the registered languages.**
 
 ```C#
-List<CultureInfo> registeredLanguages = _language.RegisteredLanguages;
+IEnumerable<CultureInfo> registeredLanguages = _language.RegisteredLanguages;
 ```
 
-Full example with a drop down that is bound to the languages.
+Full example with a drop-down that is bound to the languages.
 
 ```C#
 @page "/"
@@ -405,7 +405,7 @@ Full example with a drop down that is bound to the languages.
 @code {
     [Inject] private ILanguageContainerService _language { get; set; }
 	
-    public List<CultureInfo> Cultures { get; set; } = new List<CultureInfo>();
+    public IEnumerable<CultureInfo> Cultures { get; set; } = new List<CultureInfo>();
     
     private string _selectedCulture;
     public string SelectedCulture
