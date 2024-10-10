@@ -196,5 +196,32 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             //Assert
             Assert.Contains(CultureInfo.GetCultureInfo(expectedLanguage), languages);
         }
+
+        [Fact]
+        public void Should_Be_Able_To_Get_By_Enum()
+        {
+            //Arrange
+            string expected = "Feliz Navidad!";
+
+            //Act
+            var value = _service[MyEnum.MerryChristmas];
+
+            //Assert
+            Assert.Equal(expected, value);
+        }
+
+        [Fact]
+        public void Should_Be_Able_To_Get_By_Enum_With_Description()
+        {
+            //Arrange
+            string expected = "Casa";
+
+            //Act
+            _service.SetLanguage(CultureInfo.GetCultureInfo("ca-ES"));
+            var value = _service[MyEnum.HomePageTitle];
+
+            //Assert
+            Assert.Equal(expected, value);
+        }
     }
 }

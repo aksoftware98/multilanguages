@@ -40,12 +40,63 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         public CultureInfo CurrentCulture { get; private set; }
 
+        /// <summary>
+        /// Get the translation of the string key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Localized value</returns>
         public string this[string key] => Keys[key];
 
+        /// <summary>
+        /// Get the translation of the enum key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Localized value</returns>
+        public string this[Enum key] => Keys[key];
+
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">Object that holds the name of the properties to be replaced with, the object can be of any type</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
+        /// <returns>Localized value</returns>
         public string this[string key, object keyValues, bool setEmptyIfNull = false] => Keys[(string)key, keyValues, (bool)setEmptyIfNull];
 
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">Object that holds the name of the properties to be replaced with, the object can be of any type</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
+        /// <returns>Localized value</returns>
+        public string this[Enum key, object keyValues, bool setEmptyIfNull] => Keys[key, keyValues, setEmptyIfNull];
+
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">IDictionary that holds the name of the properties to be replaced with</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
+        /// <returns>Localized value</returns>
         public string this[string key, IDictionary<string, object> keyValues, bool setEmptyIfNull] => Keys[(string)key, keyValues, (bool)setEmptyIfNull];
 
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">IDictionary that holds the name of the properties to be replaced with</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
+        /// <returns>Localized value</returns>
+        public string this[Enum key, IDictionary<string, object> keyValues, bool setEmptyIfNull] =>
+            Keys[key, keyValues, setEmptyIfNull];
+
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">Object that holds the name of the properties to be replaced with, the object can be of any type</param>
+        /// <returns>Localized value</returns>
         public string this[object key, object keyValues] => Keys[(string)key, keyValues];
 
 
@@ -105,7 +156,33 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <returns></returns>
         public List<string> GetKeys()
         {
-            return Keys.KeyValues.Keys.Select(k => k.ToString()).ToList();
+            var result = new List<string>();
+            FlattenKeysRecursive(Keys.KeyValues, "", result);
+            return result;
+        }
+
+        private void FlattenKeysRecursive(object obj, string prefix, List<string> result)
+        {
+            if (obj is IReadOnlyDictionary<object, object> dict)
+            {
+                foreach (var kvp in dict)
+                {
+                    string newPrefix = string.IsNullOrEmpty(prefix) ? kvp.Key.ToString() : $"{prefix}:{kvp.Key}";
+
+                    if (kvp.Value is IReadOnlyDictionary<object, object>)
+                    {
+                        FlattenKeysRecursive(kvp.Value, newPrefix, result);
+                    }
+                    else
+                    {
+                        result.Add(newPrefix);
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(prefix))
+            {
+                result.Add(prefix);
+            }
         }
 
         /// <summary>
