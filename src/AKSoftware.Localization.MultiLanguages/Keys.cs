@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -34,7 +35,7 @@ namespace AKSoftware.Localization.MultiLanguages
         }
 
         /// <summary>
-        /// 
+        /// Get the translation by a string key
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -51,6 +52,33 @@ namespace AKSoftware.Localization.MultiLanguages
 
                 return value;
             }
+        }
+
+
+        /// <summary>
+        /// Get the translation by an enum key 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public string this[Enum key]
+        {
+            get
+            {
+                if (key == null)
+                {
+                    throw new ArgumentNullException(nameof(key));
+                }
+
+                return this[GetEnumDescription(key)];
+            }
+        }
+
+        private string GetEnumDescription<T>(T value) where T : Enum
+        {
+            var fi = value.GetType().GetField(value.ToString());
+            var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+            return attributes.Length > 0 ? attributes[0].Description : value.ToString();
         }
 
         public class StringComparerIgnoreCase : IEqualityComparer<string>
@@ -97,6 +125,17 @@ namespace AKSoftware.Localization.MultiLanguages
             }
         }
 
+        public string this[Enum key, IDictionary<string, object> values, bool setEmptyForNull = false]
+        {
+            get
+            {
+                if (key == null)
+                {
+                    throw new ArgumentNullException(nameof(key));
+                }
+                return this[GetEnumDescription(key), values, setEmptyForNull];
+            }
+        }
 
         public string this[string key, object keyValues, bool setEmptyForNull = false]
         {
@@ -133,6 +172,17 @@ namespace AKSoftware.Localization.MultiLanguages
             }
         }
 
+        public string this[Enum key, object keyValues, bool setEmptyForNull = false]
+        {
+            get
+            {
+                if (key == null)
+                {
+                    throw new ArgumentNullException(nameof(key));
+                }
+                return this[GetEnumDescription(key), keyValues, setEmptyForNull];
+            }
+        }
 
         private string GetValue(string key)
         {

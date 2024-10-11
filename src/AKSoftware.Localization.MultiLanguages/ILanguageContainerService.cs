@@ -17,10 +17,22 @@ namespace AKSoftware.Localization.MultiLanguages
         /// </summary>
         Keys Keys { get; }
 
+        /// <summary>
+        /// Get the translation of the string key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Localized value</returns>
         string this[string key] { get; }
 
         /// <summary>
-        /// Dictionary of of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// Get the translation of the enum key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>Localized value</returns>
+        string this[Enum key] { get; }
+
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
         /// </summary>
         /// <param name="key">Key of the value</param>
         /// <param name="keyValues">Object that holds the name of the properties to be replaced with, the object can be of any type</param>
@@ -28,7 +40,32 @@ namespace AKSoftware.Localization.MultiLanguages
         /// <returns>Localized value</returns>
         string this[string key, object keyValues, bool setEmptyIfNull = false] { get; }
 
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">Object that holds the name of the properties to be replaced with, the object can be of any type</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
+        /// <returns>Localized value</returns>
+        string this[Enum key, object keyValues, bool setEmptyIfNull = false] { get; }
+
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">IDictionary that holds the name of the properties to be replaced with</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
+        /// <returns>Localized value</returns>
         string this[string key, IDictionary<string, object> keyValues, bool setEmptyIfNull = false] { get; }
+
+        /// <summary>
+        /// Dictionary of the keyword for a value that holds variables to be replaced for example (Welcome {{firstname}} to the system), you can replace the firstname placeholder with any value you pass to it
+        /// </summary>
+        /// <param name="key">Key of the value</param>
+        /// <param name="keyValues">IDictionary that holds the name of the properties to be replaced with</param>
+        /// <param name="setEmptyIfNull">Set the behavior of the null value either to replace it with empty or throw an exception</param>
+        /// <returns>Localized value</returns>
+        string this[Enum key, IDictionary<string, object> keyValues, bool setEmptyIfNull = false] { get; }
 
         /// <summary>
         /// Set a new language explicitly
