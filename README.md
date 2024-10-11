@@ -368,13 +368,31 @@ Check the sample project here to see how to develop a full Blazor WebAssembly pr
 # Upcoming in Version 6.0
 We are currently working on version 6.  Here are the upcoming features.
 
-## The ability to get all the keys for the current culture.
+* [Specify the assembly by name](#specify-the-assembly-by-name)
+* [Get all the keys for the current culture](#get-all-the-keys-for-the-current-culture)
+* [Use an Enum as a translation key](#use-an-enum-as-a-translation-key)
+* [Loop through the key values for the current culture](#loop-through-the-key-values-for-the-current-culture)
+* [Get all the registered languages](#get-all-the-registered-languages)
+* [Generate a Static Constants Keys File](#generate-a-static-constants-keys-file)
+* [Generate an Enum Keys File](#generate-an-enum-keys-file)
+
+## Specify the assembly by name
+If you have multiple projects in your Visual Studio Solution that depend upon language translation, as of version 6.0 and higher you can specify the assembly by name.  Place your resources in a project that can be used by the other projects in your Solution.
+
+Example Usage
+```C#
+string assemblyName = "MyCompany.MyProject.Common";
+EmbeddedResourceKeysProvider keysProvider = new EmbeddedResourceKeysProvider(assemblyName, "Resources");
+LanguageContainer service = new LanguageContainer(CultureInfo.GetCultureInfo("en-US"), keysProvider);
+```
+
+## Get all the keys for the current culture
 
 ```C#
 List<string> keys = _language.GetKeys();
 ```
 
-## The ability to loop through the key values for the current culture.
+## Loop through the key values for the current culture.
 
 ```C#
 foreach (KeyValuePair<object, object> keyValue in _service.Keys)
@@ -383,7 +401,7 @@ foreach (KeyValuePair<object, object> keyValue in _service.Keys)
 }
 ```
 
-## The ability to get all the registered languages.
+## Get all the registered languages
 
 ```C#
 IEnumerable<CultureInfo> registeredLanguages = _language.RegisteredLanguages;
@@ -436,8 +454,8 @@ Full example with a drop-down that is bound to the languages.
     }
 }
 ```
-## The ability to use an Enum
-The name of the enum will be used as the key.  If there is a Description attribute, the Description will be used as the key.  
+## Use an Enum as a translation key
+The name of the enum will be used as the key.  If there is a Description attribute, the Description will be used as the key. Note, as of Version 6.0 and higher, the library now has the ability to generate a LanguageKeys Enum file.  
 
 Example Enum
 ```C#
@@ -455,7 +473,7 @@ Example Usage
 ```
 
 
-## Create a Static Constants Keys File
+## Generate a Static Constants Keys File
 We are currently working on a CLI but you can also create a static constants file using this method.
 
 ```C#
@@ -496,7 +514,7 @@ Here is an example of the usage.
 <h1>@languageContainer.Keys[LanguageKeys.FirstName]</h1>
 ```
 
-## Create an Enum Keys File
+## Generate an Enum Keys File
 We are currently working on a CLI but you can also create an enum keys file using this method.
 
 ```C#

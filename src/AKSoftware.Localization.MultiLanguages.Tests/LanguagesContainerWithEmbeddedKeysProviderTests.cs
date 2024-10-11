@@ -223,5 +223,34 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             //Assert
             Assert.Equal(expected, value);
         }
+
+        [Fact]
+        public void Should_Be_Able_To_Specify_The_Assembly_By_Name()
+        {
+            //Arrange
+            string expected = "Feliz Navidad!";
+            string assemblyName = "AKSoftware.Localization.MultiLanguages.Tests";
+            EmbeddedResourceKeysProvider keysProvider = new EmbeddedResourceKeysProvider(assemblyName);
+            LanguageContainer service = new LanguageContainer(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
+
+            //Act
+            var value = service[MyEnum.MerryChristmas];
+
+            //Assert
+            Assert.Equal(expected, value);
+        }
+
+        [Fact]
+        public void Invalid_Assembly_Name_Should_Throw_An_Argument_Exception()
+        {
+            //Arrange
+            string assemblyName = "Invalid.Assembly.Name";
+
+            //Act
+            Action act = () => new EmbeddedResourceKeysProvider(assemblyName);
+
+            //Assert
+            act.Should().Throw<ArgumentException>();
+        }
     }
 }
