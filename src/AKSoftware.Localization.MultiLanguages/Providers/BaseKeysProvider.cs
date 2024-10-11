@@ -6,9 +6,13 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 {
     public abstract class BaseKeysProvider : IKeysProvider
     {
+        /// <summary>
+        /// Three groups:  en.yml, en-US.yml, az-Latn-AZ.yml
+        /// https://www.csharp-examples.net/culture-names/
+        /// </summary>
         protected Regex YamlFilePattern =
             new Regex(
-                @"^([A-Za-z]{2}\-[A-Za-z]+\-[A-Za-z]{2}\.yml)|([A-Za-z]{2}\-[A-Za-z]{2}\.yml)|([A-Za-z]{2}\.yml)$",
+                @"^([A-Za-z]{2}\-[A-Za-z]+\-[A-Za-z]{2}\.ya?ml)|([A-Za-z]{2}\-[A-Za-z]{2}\.ya?ml)|([A-Za-z]{2}\.ya?ml)$",
                 RegexOptions.Compiled);
 
         /// <summary>
