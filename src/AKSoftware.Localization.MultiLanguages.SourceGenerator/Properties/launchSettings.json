@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Console Debugger": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\AKSoftware.Localization.MultiLanguages.SourceGenerator.Debugger\\AKSoftware.Localization.MultiLanguages.SourceGenerator.Debugger.csproj"
+    }
+  }
+}

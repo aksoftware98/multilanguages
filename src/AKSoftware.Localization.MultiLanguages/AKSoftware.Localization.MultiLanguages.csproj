@@ -25,7 +25,7 @@
     <PackageReference Include="Microsoft.csharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="YamlDotNet" Version="9.1.0" />
+    <PackageReference Include="YamlDotNet" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
