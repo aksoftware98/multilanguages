@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -17,57 +18,93 @@ namespace AKSoftware.Localization.MultiLanguages.SourceGenerator
         public void Execute(GeneratorExecutionContext context)
         {
             // Try to fetch the en-US yaml file
-            var englishFile = context
-                                .AdditionalFiles
-                                .FirstOrDefault(f => f.Path.EndsWith("en-US.yml") || f.Path.EndsWith("en-US.yaml"));
+            if (!context.TryGetEnUSFileContent(out var fileContent))
+                return; 
 
-            if (englishFile == null)
-            {
-                context.ReportDiagnostic(Diagnostic.Create(new DiagnosticDescriptor("AKSML001", "No en-US file found", "No en-US file found", "Localization", DiagnosticSeverity.Warning, true), Location.None));
-                return;
-            }
-
-            // Read the content of the file
-            var fileContent = englishFile.GetText()?.ToString();
             // Deserialize the yaml file into a dictionary of object, object
             var keyValues = new YamlDotNet.Serialization.Deserializer().Deserialize<Dictionary<string, object>>(fileContent);
 
-            // Generate the source code
-            var keys = new StringBuilder();
-            string prefix = string.Empty;
-            PopulateKeys(keys, keyValues, prefix);
-
-            string sourceCode = $@"
-using System;
-
-namespace AKSoftware.Localization.MultiLanguages.Keys
-{{
-    public static class LanguageKeys
-    {{
-        {keys.ToString()}
-    }}
-}}
-                ";
-
-            context.AddSource($"LanguageKeys.g.cs", sourceCode);
+            context.AddSource($"LanguageKeys.g.cs", BuildClass(fileContent));
         }
 
         public void Initialize(GeneratorInitializationContext context)
         {
         }
 
-        private void PopulateKeys(StringBuilder keysBuilder, Dictionary<string, object> keyValues, string prefix)
+        public string BuildClass(string fileContent)
         {
+            var keyValues = new YamlDotNet.Serialization.Deserializer().Deserialize<Dictionary<object, object>>(fileContent);
+            var classes = new List<string>(); 
+            BuildClass(keyValues, string.Empty, classes);
+
+            var allClasses = string.Join(Environment.NewLine, classes);
+
+            var sourceCode = $@"
+using System;
+using AKSoftware.Localization.MultiLanguages;
+
+namespace AKSoftware.Localization.MultiLanguages
+{{
+{allClasses}
+}}";
+
+            return sourceCode;
+        }
+
+        private void BuildClass(Dictionary<object, object> keyValues, string prefix, List<string> classes)
+        {
+            prefix = string.IsNullOrEmpty(prefix) ? string.Empty : $"{prefix}:";
+            var className = prefix.Replace(":", "");
+
+            var interfaceKeysBuilder = new StringBuilder();
+            var keysBuilder = new StringBuilder();
+            var constructorBuilder = new StringBuilder();
+
             foreach (var item in keyValues)
             {
-                if (item.Value is string)
-                    keysBuilder.AppendLine($"\t\tpublic const string {prefix}{item.Key} = {item.Value};");
-                else if (item.Value is Dictionary<string, object> dictionary)
+                if (item.Value is Dictionary<object, object> nestedKeyValues)
                 {
-                    PopulateKeys(keysBuilder, dictionary, $"{prefix}{item.Key}_");
+                    
+                    var nestedPropertyName = $"{className}{item.Key}";
+                    var property = $"\t\tpublic I{nestedPropertyName}KeysAccessor {item.Key} {{ get; }}";
+                    keysBuilder.AppendLine(property);
+                    interfaceKeysBuilder.AppendLine(property);
+                    constructorBuilder.AppendLine($"\t\t\t{nestedPropertyName} = new {nestedPropertyName}KeysAccessor(_languageContainer, \"{prefix}{item.Key}\");");
+                    BuildClass(nestedKeyValues, nestedPropertyName, classes);
+                }
+                else
+                {
+                    keysBuilder.AppendLine($"\t\tpublic string {item.Key} => _languageContainer[\"{prefix}{item.Key}\"];");
+                    interfaceKeysBuilder.AppendLine($"\t\tpublic string {item.Key} {{ get; }}");
                 }
             }
+
+            var newClassName = $"{className}KeysAccessor";
+            var interfaceName = $"I{className}KeysAccessor";
+            var constructorParameters = string.IsNullOrWhiteSpace(prefix) ? "ILanguageContainerService languageContainer" : "ILanguageContainerService languageContainer, string prefix";
+            var sourceCode = $@"
+            
+    public interface {interfaceName}
+    {{
+{interfaceKeysBuilder}
+    }}
+    
+    public class {newClassName} : {interfaceName}
+    {{
+        private readonly ILanguageContainerService _languageContainer;
+        public {newClassName}({constructorParameters})
+        {{
+            _languageContainer = languageContainer;
+{constructorBuilder}
+        }}
+
+{keysBuilder}
+    }}";
+
+
+            classes.Add(sourceCode);
         }
+
 
     }
 }

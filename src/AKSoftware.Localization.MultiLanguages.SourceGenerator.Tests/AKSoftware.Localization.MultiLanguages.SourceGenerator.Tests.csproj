@@ -18,8 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages.SourceGenerator\AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj"
-                      OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="false"/>
+              
+                      />
 
   </ItemGroup>
 
