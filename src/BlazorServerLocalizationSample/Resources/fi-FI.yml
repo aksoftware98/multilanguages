@@ -17,3 +17,6 @@ FetchData:
   Date: Päivämäärä
   Temp: Temp
   Summary: Yhteenveto
+NavMenu:
+  About: Noin
+  BlazorServerLocalizationSample: Blazor-palvelimen lokalisoinnin esimerkki

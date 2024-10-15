@@ -17,3 +17,6 @@ FetchData:
   Date: 日付
   Temp: 一時
   Summary: 概要
+NavMenu:
+  About: に関しては
+  BlazorServerLocalizationSample: Blazor Server ローカリゼーション サンプル

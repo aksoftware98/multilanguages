@@ -17,3 +17,6 @@ FetchData:
   Date: Dattero
   Temp: Temp
   Summary: Sommario
+NavMenu:
+  About: Circa
+  BlazorServerLocalizationSample: Esempio di localizzazione di Blazor Server

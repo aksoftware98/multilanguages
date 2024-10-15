@@ -17,4 +17,7 @@ FetchData:
  Date: Date
  Temp: Temp
  Summary: Summary
+NavMenu:
+ About: About
+ BlazorServerLocalizationSample: Blazor Server Localization Sample
 

@@ -17,3 +17,6 @@ FetchData:
   Date: Дата
   Temp: Темп
   Summary: Резюме
+NavMenu:
+  About: За
+  BlazorServerLocalizationSample: Пример за локализация на сървъра на Blazor

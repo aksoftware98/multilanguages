@@ -1,7 +1,7 @@
 HomePage:
   Title: Domicile
   HelloWorld: Salut tout le monde
-  Welcome: Bienvenue {nom d’utilisateur} dans le test
+  Welcome: Bienvenue {username} dans le test
   Question: Comment Blazor travaille-t-il pour vous ?
   BriefSurvey: Bref sondage
   Think: Dites-nous ce que vous en pensez
@@ -17,3 +17,6 @@ FetchData:
   Date: Date
   Temp: Intérimaire
   Summary: Résumé
+NavMenu:
+  About: Environ
+  BlazorServerLocalizationSample: Exemple de localisation de serveur Blazor

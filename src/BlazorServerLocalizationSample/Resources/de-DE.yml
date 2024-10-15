@@ -1,7 +1,7 @@
 HomePage:
   Title: Heim
   HelloWorld: Hallo Welt
-  Welcome: Willkommen {Benutzername} zum Test
+  Welcome: Willkommen {username} zum Test
   Question: Wie funktioniert Blazor bei Ihnen?
   BriefSurvey: Kurzer Überblick
   Think: Sag uns, was du denkst
@@ -17,3 +17,6 @@ FetchData:
   Date: Datum
   Temp: Aushilfe
   Summary: Zusammenfassung
+NavMenu:
+  About: Über
+  BlazorServerLocalizationSample: Beispiel für die Lokalisierung von Blazor Server

@@ -26,7 +26,7 @@ namespace AKSoftware.Localization.MultiLanguages
         private const string StringType = "string";
         private const string PropertyTypeGroup = "propertyType";
         private const string ContentGroup = "content";
-        //We intentionally do not end with a ] because of other parameters that may be in the string
+        
         private Regex _keyReferenceRegex;
 
         private static Regex _propertyRegex =
@@ -499,7 +499,7 @@ namespace AKSoftware.Localization.MultiLanguages
         {
             ValidateParseParameters(parms);
             string escapedKeyReference = Regex.Escape(parms.KeyReference);
-            string pattern = $@"({escapedKeyReference}\.Keys\[""?(?<content>[^,""]+)?""?)|({escapedKeyReference}\[""?(?<content>[^,""]+)?""?)";
+            string pattern = $@"({escapedKeyReference}\.Keys\[""?(?<content>[^,""\]]+)?)|({escapedKeyReference}\[""?(?<content>[^,""\]]+)?)";
 
             _keyReferenceRegex = new Regex(pattern, RegexOptions.Compiled | RegexOptions.Multiline);
             var existingKeyValues = ReadYamlFile(parms.ResourceFilePath);

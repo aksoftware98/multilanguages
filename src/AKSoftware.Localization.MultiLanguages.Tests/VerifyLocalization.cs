@@ -25,8 +25,8 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             parms.WildcardPatterns = new List<string>() { "*.razor" };
             parms.ExcludeDirectories = new List<string>();
             parms.ExcludeFiles = new List<string>();
-            parms.ResourceFilePath = Path.Combine(TestHelper.GetSolutionPath(), "BlazorServerLocalizationSample", "Resources", "en-US.yml");
-            parms.RemoveLocalizedKeys = true;
+            parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample",
+                "Resources", "en-US.yml");
             parms.KeyReference = "Language";
 
             //Act   
@@ -37,50 +37,12 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             if (parseResults.Any())
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Not all source code files are localized.");
+                sb.AppendLine(
+                    "Not all source code files are localized. See documentation here: https://github.com/aksoftware98/multilanguages");
                 foreach (var parseResult in parseResults)
                 {
-                    sb.AppendLine($"{Path.GetFileName(parseResult.FilePath)} | {parseResult.MatchValue} | {parseResult.LocalizableString}");
-                }
-
-                Assert.Fail(sb.ToString());
-            }
-        }
-
-        /// <summary>
-        /// If this test is failing it means that there are new strings that need to be localized
-        /// and if they were to be created automatically, there would be the same key that have different values
-        /// </summary>
-        [Fact]
-        public void VerifyNoDuplicateKeys()
-        {
-            //Arrange
-            ParseParms parms = new ParseParms();
-            string solutionPath = TestHelper.GetSolutionPath();
-            string pagesPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Pages");
-            string sharedPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Shared");
-            parms.SourceDirectories = new List<string> { pagesPath, sharedPath };
-            parms.WildcardPatterns = new List<string>() { "*.razor" };
-            parms.ExcludeDirectories = new List<string>();
-            parms.ExcludeFiles = new List<string>();
-            parms.ResourceFilePath = Path.Combine(TestHelper.GetSolutionPath(), "BlazorServerLocalizationSample", "Resources", "en-US.yml");
-            parms.KeyReference = "Language";
-
-            //Act   
-            ParseCodeLogic logic = new ParseCodeLogic();
-            Dictionary<string, List<string>> failedKeys = logic.GetDuplicateKeys(parms);
-
-            //Assert
-            if (failedKeys.Any())
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Missing localized values would have duplicate keys.");
-                foreach (var failedKey in failedKeys)
-                {
-                    foreach (var item in failedKey.Value)
-                    {
-                        sb.AppendLine($"{failedKey.Key} : {item}");
-                    }
+                    sb.AppendLine(
+                        $"{Path.GetFileName(parseResult.FilePath)} | {parseResult.MatchValue} | {parseResult.LocalizableString}");
                 }
 
                 Assert.Fail(sb.ToString());
@@ -103,18 +65,21 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             parms.WildcardPatterns = new List<string>() { "*.razor" };
             parms.ExcludeDirectories = new List<string>();
             parms.ExcludeFiles = new List<string>();
-            parms.ResourceFilePath = Path.Combine(TestHelper.GetSolutionPath(), "BlazorServerLocalizationSample", "Resources", "en-US.yml");
+            parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample",
+                "Resources", "en-US.yml");
             parms.KeyReference = "Language";
 
             //Act
             ParseCodeLogic logic = new ParseCodeLogic();
-            IEnumerable<ParseResult> parseResults = logic.GetExistingLocalizedStrings(parms).Where(o => String.IsNullOrEmpty(o.LocalizableString));
+            IEnumerable<ParseResult> parseResults = logic.GetExistingLocalizedStrings(parms)
+                .Where(o => String.IsNullOrEmpty(o.LocalizableString));
 
             //Assert
             if (parseResults.Any())
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Not all keys can be found in the resource file.");
+                sb.AppendLine(
+                    "Not all keys can be found in the resource file.  See documentation here: https://github.com/aksoftware98/multilanguages");
                 foreach (var parseResult in parseResults)
                 {
                     sb.AppendLine($"{parseResult.FilePath} | {parseResult.MatchValue}");
@@ -139,7 +104,8 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             parms.WildcardPatterns = new List<string>() { "*.razor" };
             parms.ExcludeDirectories = new List<string>();
             parms.ExcludeFiles = new List<string>();
-            parms.ResourceFilePath = Path.Combine(TestHelper.GetSolutionPath(), "BlazorServerLocalizationSample", "Resources", "en-US.yml");
+            parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample",
+                "Resources", "en-US.yml");
             parms.KeyReference = "Language";
 
             //Act
@@ -150,10 +116,54 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             if (unusedKeys.Any())
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("There are unused keys in the resource file.");
+                sb.AppendLine(
+                    "There are unused keys in the resource file.  See documentation here: https://github.com/aksoftware98/multilanguages");
                 foreach (var unusedKey in unusedKeys)
                 {
                     sb.AppendLine(unusedKey);
+                }
+
+                Assert.Fail(sb.ToString());
+            }
+        }
+
+
+        /// <summary>
+        /// If this test is failing it means that there are new strings that need to be localized
+        /// and if they were to be created automatically, there would be the same key that have different values
+        /// </summary>
+        [Fact]
+        public void VerifyNoDuplicateKeys()
+        {
+            //Arrange
+            ParseParms parms = new ParseParms();
+            string solutionPath = TestHelper.GetSolutionPath();
+            string pagesPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Pages");
+            string sharedPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Shared");
+            parms.SourceDirectories = new List<string> { pagesPath, sharedPath };
+            parms.WildcardPatterns = new List<string>() { "*.razor" };
+            parms.ExcludeDirectories = new List<string>();
+            parms.ExcludeFiles = new List<string>();
+            parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample",
+                "Resources", "en-US.yml");
+            parms.KeyReference = "Language";
+
+            //Act   
+            ParseCodeLogic logic = new ParseCodeLogic();
+            Dictionary<string, List<string>> failedKeys = logic.GetDuplicateKeys(parms);
+
+            //Assert
+            if (failedKeys.Any())
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(
+                    "Missing localized values would have duplicate keys.  See documentation here: https://github.com/aksoftware98/multilanguages");
+                foreach (var failedKey in failedKeys)
+                {
+                    foreach (var item in failedKey.Value)
+                    {
+                        sb.AppendLine($"{failedKey.Key} : {item}");
+                    }
                 }
 
                 Assert.Fail(sb.ToString());

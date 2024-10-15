@@ -17,3 +17,6 @@ FetchData:
   Date: ഈന്തപ്പന
   Temp: താപനില
   Summary: സംഗ്രഹം
+NavMenu:
+  About: കുറിച്ച്
+  BlazorServerLocalizationSample: Blazor Server Localization Sample

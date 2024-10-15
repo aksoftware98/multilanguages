@@ -1,7 +1,7 @@
 HomePage:
   Title: وطن
   HelloWorld: مرحبا بالعالم
-  Welcome: مرحبا ب {اسم المستخدم} في الاختبار
+  Welcome: مرحبا ب {username} في الاختبار
   Question: كيف يعمل Blazor من أجلك؟
   BriefSurvey: مسح موجز
   Think: أخبرنا ما رأيك
@@ -17,3 +17,6 @@ FetchData:
   Date: تاريخ
   Temp: درجة الحرارة
   Summary: ملخص
+NavMenu:
+  About: عن
+  BlazorServerLocalizationSample: نموذج تعريب خادم Blazor

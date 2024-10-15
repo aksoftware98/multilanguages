@@ -1,7 +1,7 @@
 HomePage:
   Title: Llar
   HelloWorld: Hola món
-  Welcome: Benvingut {nom d'usuari} a la prova
+  Welcome: Benvingut {username} a la prova
   Question: Com treballa Blazor per a tu?
   BriefSurvey: Breu enquesta
   Think: Explica'ns què en penses
@@ -17,3 +17,6 @@ FetchData:
   Date: Datar
   Temp: Temp
   Summary: Resum
+NavMenu:
+  About: Sobre
+  BlazorServerLocalizationSample: Exemple de localització del servidor Blazor
