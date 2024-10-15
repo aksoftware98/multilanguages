@@ -1,18 +1,19 @@
 HomePage:
-  Title: المنزل
+  Title: وطن
   HelloWorld: مرحبا بالعالم
-  Welcome: اهلا وسهلا {username} في التجربة
-  Question: كيف يعمل بلازور لديك؟
-  BriefSuvery: مسح موجز
+  Welcome: مرحبا ب {اسم المستخدم} في الاختبار
+  Question: كيف يعمل Blazor من أجلك؟
+  BriefSurvey: مسح موجز
   Think: أخبرنا ما رأيك
+  Please: رجاءً
 Counter:
-  Title: مكافحه
-  ClickMe: انقر فوق Me
+  Title: عداد
+  ClickMe: انقر فوق "أنا"
 FetchData:
   Title: جلب البيانات
   WeatherForcast: توقعات الطقس
-  WeatherTitle: يوضح هذا المكون جلب البيانات من الملقم
+  WeatherTitle: يوضح هذا المكون جلب البيانات من الخادم
   Loading: تحميل
   Date: تاريخ
-  Temp: Temp
-  Summary: موجز
+  Temp: درجة الحرارة
+  Summary: ملخص

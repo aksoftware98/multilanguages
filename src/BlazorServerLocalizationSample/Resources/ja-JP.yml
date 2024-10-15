@@ -1,18 +1,19 @@
 HomePage:
-  Title: ホーム
+  Title: 家
   HelloWorld: ハローワールド
-  Welcome: テストする{username}へようこそ
-  Question: ブレイザはどのようにあなたのために働いていますか?
-  BriefSuvery: 簡単な調査
+  Welcome: テストに{username}を歓迎します
+  Question: Blazorはどのように機能していますか?
+  BriefSurvey: 簡易調査
   Think: どう思うか教えてください
+  Please: お願いします
 Counter:
   Title: カウンター
-  ClickMe: '[私] をクリックします。'
+  ClickMe: クリックミー
 FetchData:
-  Title: データのフェッチ
+  Title: データの取得
   WeatherForcast: 天気予報
-  WeatherTitle: このコンポーネントは、サーバーからデータをフェッチする方法を示します。
-  Loading: 読み込み
+  WeatherTitle: このコンポーネントは、サーバーからデータを取得する方法を示しています
+  Loading: 積載
   Date: 日付
-  Temp: 温度
+  Temp: 一時
   Summary: 概要

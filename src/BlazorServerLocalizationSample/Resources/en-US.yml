@@ -3,8 +3,9 @@ HomePage:
  HelloWorld: Hello World
  Welcome: Welcome {username} to the test
  Question: How is Blazor working for you?
- BriefSuvery: Brief Survey
+ BriefSurvey: Brief Survey
  Think: Tell us what do you think
+ Please: Please
 Counter:
  Title: Counter
  ClickMe: Click Me

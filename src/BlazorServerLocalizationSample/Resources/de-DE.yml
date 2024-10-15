@@ -1,18 +1,19 @@
 HomePage:
-  Title: Startseite
+  Title: Heim
   HelloWorld: Hallo Welt
-  Welcome: Willkommen {username} zum Test
-  Question: Wie arbeitet Blazor für Sie?
-  BriefSuvery: Kurze Übersicht
-  Think: Sagen Sie uns, was Sie denken
+  Welcome: Willkommen {Benutzername} zum Test
+  Question: Wie funktioniert Blazor bei Ihnen?
+  BriefSurvey: Kurzer Überblick
+  Think: Sag uns, was du denkst
+  Please: Bitte
 Counter:
   Title: Zähler
-  ClickMe: Click Me
+  ClickMe: Klick mich
 FetchData:
-  Title: Abrufen von Daten
+  Title: Daten abrufen
   WeatherForcast: Wettervorhersage
   WeatherTitle: Diese Komponente veranschaulicht das Abrufen von Daten vom Server
   Loading: Laden
   Date: Datum
-  Temp: Temp
+  Temp: Aushilfe
   Summary: Zusammenfassung

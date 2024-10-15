@@ -375,6 +375,9 @@ We are currently working on version 6.  Here are the upcoming features.
 * [Get all the registered languages](#get-all-the-registered-languages)
 * [Generate a Static Constants Keys File](#generate-a-static-constants-keys-file)
 * [Generate an Enum Keys File](#generate-an-enum-keys-file)
+* [Verify All Source Code Files Are Localized](#verify-all-source-code-files-are-localized)
+* [Verify All Keys Can Be Found](#verify-all-keys-can-be-found)
+* [Verify No Unused Keys](#verify-no-unused-keys)
 
 ## Specify the assembly by name
 If you have multiple projects in your Visual Studio Solution that depend upon language translation, as of version 6.0 and higher you can specify the assembly by name.  Place your resources in a project that can be used by the other projects in your Solution.
@@ -555,6 +558,70 @@ namespace MyCompany.Project
 Here is an example of the usage.
 ``` Razor
 <h1>@languageContainer.Keys[LanguageKeys.FirstName]</h1>
+```
+
+## Verify All Source Code Files Are Localized
+As you are adding and changing Razor files in your your project, you can verify that all source code files have been localized. If the result is empty then everything has been localized.
+
+Example:
+
+```C#
+ParseParms parms = new ParseParms();
+string solutionPath = TestHelper.GetSolutionPath();
+string pagesPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Pages");
+string sharedPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Shared");
+parms.SourceDirectories = new List<string> { pagesPath, sharedPath };
+parms.WildcardPatterns = new List<string>() { "*.razor" };
+parms.ExcludeDirectories = new List<string>();
+parms.ExcludeFiles = new List<string>();
+parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Resources", "en-US.yml");
+parms.RemoveLocalizedKeys = true;
+
+ParseLogic logic = new ParseLogic();
+
+List<ParseResult> result = logic.GetLocalizableStrings(parms);
+```
+
+## Verify All Keys Can Be Found
+You can verify that there is not a typo in your Razor file for the localization key.  When the list is not blank there are typos.   
+
+Example:
+
+```C#
+ParseParms parms = new ParseParms();
+string solutionPath = TestHelper.GetSolutionPath();
+string pagesPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Pages");
+string sharedPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Shared");
+parms.SourceDirectories = new List<string> { pagesPath, sharedPath };
+parms.WildcardPatterns = new List<string>() { "*.razor" };
+parms.ExcludeDirectories = new List<string>();
+parms.ExcludeFiles = new List<string>();
+parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Resources", "en-US.yml");
+
+ParseLogic logic = new ParseLogic();
+
+List<ParseResult> result = logic.GetExistingLocalizedStrings(parms).Where(o => String.IsNullOrEmpty(o.LocalizableString));
+```
+
+## Verify No Unused Keys
+Detect if you have keys in your en-US.yml file that are not being used in your razor files.
+
+Example:
+
+```C#
+ParseParms parms = new ParseParms();
+string solutionPath = TestHelper.GetSolutionPath();
+string pagesPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Pages");
+string sharedPath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Shared");
+parms.SourceDirectories = new List<string> { pagesPath, sharedPath };
+parms.WildcardPatterns = new List<string>() { "*.razor" };
+parms.ExcludeDirectories = new List<string>();
+parms.ExcludeFiles = new List<string>();
+parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample", "Resources", "en-US.yml");
+
+ParseLogic logic = new ParseLogic();
+
+List<ParseResult> result = logic.GetUnusedKeys(parms);
 ```
 
 # Thanks for the awesome contributors

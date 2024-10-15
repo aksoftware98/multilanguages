@@ -1,18 +1,19 @@
 HomePage:
-  Title: Kotisivu
+  Title: Koti
   HelloWorld: Moi maailma
   Welcome: Tervetuloa {username} testiin
-  Question: Miten Blazor voi työskennellä sinulle?
-  BriefSuvery: Lyhyt tutkimus
-  Think: Kerro meille, mitä mieltä olet
+  Question: Miten Blazor toimii sinulle?
+  BriefSurvey: Lyhyt kysely
+  Think: Kerro meille mielipiteesi
+  Please: Anteeksi
 Counter:
   Title: Laskuri
   ClickMe: Valitse Minä
 FetchData:
   Title: Hae tiedot
-  WeatherForcast: Ennuste
-  WeatherTitle: Tämä osa näyttää tietojen noutamisen palvelimesta
-  Loading: Lastaus
+  WeatherForcast: Sääennuste
+  WeatherTitle: Tämä komponentti osoittaa tietojen noutamisen palvelimelta
+  Loading: Lastaaminen
   Date: Päivämäärä
   Temp: Temp
   Summary: Yhteenveto
