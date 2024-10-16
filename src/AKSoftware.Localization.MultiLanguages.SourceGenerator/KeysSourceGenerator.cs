@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AKSoftware.Localization.MultiLanguages.SourceGenerator
 {
@@ -19,7 +20,7 @@ namespace AKSoftware.Localization.MultiLanguages.SourceGenerator
         {
             // Try to fetch the en-US yaml file
             if (!context.TryGetEnUSFileContent(out var fileContent))
-                return; 
+                return;
 
             // Deserialize the yaml file into a dictionary of object, object
             var keyValues = new YamlDotNet.Serialization.Deserializer().Deserialize<Dictionary<string, object>>(fileContent);
@@ -34,7 +35,7 @@ namespace AKSoftware.Localization.MultiLanguages.SourceGenerator
         public string BuildClass(string fileContent)
         {
             var keyValues = new YamlDotNet.Serialization.Deserializer().Deserialize<Dictionary<object, object>>(fileContent);
-            var classes = new List<string>(); 
+            var classes = new List<string>();
             BuildClass(keyValues, string.Empty, classes);
 
             var allClasses = string.Join(Environment.NewLine, classes);
@@ -64,7 +65,7 @@ namespace AKSoftware.Localization.MultiLanguages
             {
                 if (item.Value is Dictionary<object, object> nestedKeyValues)
                 {
-                    
+
                     var nestedPropertyName = $"{className}{item.Key}";
                     var property = $"\t\tpublic I{nestedPropertyName}KeysAccessor {item.Key} {{ get; }}";
                     keysBuilder.AppendLine(property);
@@ -72,10 +73,70 @@ namespace AKSoftware.Localization.MultiLanguages
                     constructorBuilder.AppendLine($"\t\t\t{nestedPropertyName} = new {nestedPropertyName}KeysAccessor(_languageContainer, \"{prefix}{item.Key}\");");
                     BuildClass(nestedKeyValues, nestedPropertyName, classes);
                 }
-                else
+                else // Value is string
                 {
-                    keysBuilder.AppendLine($"\t\tpublic string {item.Key} => _languageContainer[\"{prefix}{item.Key}\"];");
-                    interfaceKeysBuilder.AppendLine($"\t\tpublic string {item.Key} {{ get; }}");
+                    // Check if the value contains interpolations 
+                    var value = item.Value;
+                    var regex = Regex.Matches(value.ToString(), @"\{([^}]*)\}");
+                    if (regex.Count > 0)
+                    {
+                        // Append a method that accepts the parameters
+                        var parameters = new List<string>();
+                        var parameterAssignments = new StringBuilder();
+                        var parameterIndex = 0;
+                        foreach (var group in regex)
+                        {
+                            if (group is Group g)
+                            {
+                                var rawName = g.Value.Replace("{", "").Replace("}", "");
+                                var parameterName = rawName;
+                                // Imrove the name of the parameter
+                                if (parameterName.Length > 0 && char.IsDigit(parameterName[0]))
+                                    parameterName = $"_{parameterName}";
+                                if (parameterName.Contains(" "))
+                                    parameterName = parameterName.Replace(" ", "_");
+                                if (parameterName.Contains("-"))
+                                    parameterName = parameterName.Replace("-", "_");
+                                if (parameterName.Contains("#"))
+                                    parameterName = parameterName.Replace("#", "Number");
+                                if (parameterName.Contains("."))
+                                    parameterName = parameterName.Replace(".", "Dot");
+                                if (parameterName.Contains("$"))
+                                    parameterName = parameterName.Replace("$", "_");
+                                if (parameterName.Contains("%"))
+                                    parameterName = parameterName.Replace("%", "_");
+                                if (parameterName.Contains("&"))
+                                    parameterName = parameterName.Replace("&", "_");
+                                if (parameterName.Contains("*"))
+                                    parameterName = parameterName.Replace("*", "_");
+                                if (parameterName.Contains("/"))
+                                    parameterName = parameterName.Replace("/", "_");
+                                if (parameterName.Contains("\\"))
+                                    parameterName = parameterName.Replace("\\", "_");
+                                if (parameterName.Contains(":"))
+                                    parameterName = parameterName.Replace(":", "_");
+
+                                parameters.Add($"string {parameterName}");
+                                parameterAssignments.AppendLine($"\t\t\t\t{rawName} = {parameterName},");
+                            }
+
+                        }
+                        // Append the method for interpolation
+                        var methodParameters = string.Join(",", parameters);
+                        keysBuilder.AppendLine($"\t\tpublic string {item.Key}({methodParameters})");
+                        keysBuilder.AppendLine($"\t\t\t=> _languageContainer[\"{prefix}{item.Key}\", new");
+                        keysBuilder.AppendLine($"\t\t\t{{");
+                        keysBuilder.AppendLine($"{parameterAssignments}");
+                        keysBuilder.AppendLine($"\t\t\t}}");
+
+                        interfaceKeysBuilder.AppendLine($"\t\tpublic string {item.Key}({methodParameters});");
+                    }
+                    else // Append normal string 
+                    {
+                        keysBuilder.AppendLine($"\t\tpublic string {item.Key} => _languageContainer[\"{prefix}{item.Key}\"];");
+                        interfaceKeysBuilder.AppendLine($"\t\tpublic string {item.Key} {{ get; }}");
+                    }
+
                 }
             }
 

@@ -36,12 +36,14 @@ public class KeysAccessorGeneratorTests
     [Fact]
     public void YamlWithoutInterpolation_Should_GenerateKeysAsReadOnlyProperties()
     {
-        
+        var generatedContext = _generator.BuildClass(VALID_FLAT_YAML);
+
     }
 
     [Fact]
     public void YamlWithInterpolation_Should_GenerateKeysAsMethodsWithParameters()
     {
+        var generatedContext = _generator.BuildClass(VALID_INTERPOLATED_YAML);
 
     }
 
@@ -61,5 +63,9 @@ public class KeysAccessorGeneratorTests
         About:
             Title: About Title
             Subtitle: About Subtitle
+        """;
+
+    private const string VALID_INTERPOLATED_YAML = """
+        Contact: Email us via {email} and call us on {phone}
         """;
 }
