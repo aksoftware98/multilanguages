@@ -181,7 +181,6 @@ namespace AKSoftware.Localization.MultiLanguages
 {keysBuilder}
     }}";
 
-
             classes.Add(sourceCode);
         }
 
