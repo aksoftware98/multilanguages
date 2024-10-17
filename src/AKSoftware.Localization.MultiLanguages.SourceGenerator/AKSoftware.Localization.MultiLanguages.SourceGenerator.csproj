@@ -12,15 +12,16 @@
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
     <PackageReleaseNotes>Fix bugs and improve the performance and add the ability to store resource files in external folders</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <AssemblyVersion>5.9.0</AssemblyVersion>
-    <FileVersion>5.9.0.0</FileVersion>
+    <AssemblyVersion>6.0.0</AssemblyVersion>
+    <FileVersion>6.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <EnforceExtendedAnalyzerRules>false</EnforceExtendedAnalyzerRules>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PackageVersion>6.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj" />
+    <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj" PrivateAssets="all" />
     <PackageReference Include="YamlDotNet" Version="9.1.0" PrivateAssets="all" GeneratePathProperty="true"  />
   </ItemGroup>
 
@@ -41,5 +42,13 @@
       <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
   </Target>
+
+  <Target Name="EmbedProjectDependency" AfterTargets="Build">
+    <ItemGroup>
+      <None Include="$(OutputPath)\AKSoftware.Localization.MultiLanguages.dll"
+            Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    </ItemGroup>
+  </Target>
+
 </Project>
 
