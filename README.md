@@ -3,7 +3,7 @@
   
 
 # AKSoftware.Localization.MultiLanguages
-### Version 5.8 is here [Check out What's New](#whats-new-in-version-580)
+### Version 5.9 is here [Check out What's New](#whats-new-in-version-590)
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
   
@@ -35,6 +35,26 @@ https://youtu.be/Xz68c8GBYz4
   
 
 ![Blazor UI with Japanease](https://raw.githubusercontent.com/aksoftware98/multilanguages/master/Example/BlazorWasmMultiLanguages/BlazorWasmMultiLanguages/wwwroot/Japan.png)
+
+
+# What's new in Version 5.9.0
+Version 5.9.0 with two big achievements:
+1. The performance of the library has been improved by 5x especially while retrieving nested keys, due to eliminate the usage of JSON in some places and depend efficiently on the YAML library. 
+2. The ability to store the Resources in an external folder with a specified path that you can define
+To use this feature without using Dependency Injection 
+You can refer to this sample file here:
+[Program.cs sample to fetch keys from folder](https://github.com/aksoftware98/multilanguages/blob/master/src/ConsoleAppSample/Program.cs)
+
+If you are using dependency injection you can use the newly used method: 
+``` C#
+// For .NET projects consider the following method
+services.AddLanguageContainerFromFolder("Resouces", CultureInfo.GetCultureInfo("en-US")); 
+
+// For Blazor Server
+services.AddLanguageContainerFromFolderForBlazorServer("Resouces", CultureInfo.GetCultureInfo("en-US")); 
+```
+
+**Keep in mind, the folder of the resources has to be shipped with your project**
 
   # What's new in Version 5.8.0 
   Finally **Blazor Server** is here you can get started now.
@@ -345,9 +365,199 @@ Check the sample project here to see how to develop a full Blazor WebAssembly pr
 
 [Full Blazor WASM Sample](https://github.com/aksoftware98/multilanguages/tree/master/src/BlazorAKLocalization)
 
-  
+# Upcoming in Version 6.0
+We are currently working on version 6.  Here are the upcoming features.
 
-Thanks for the awesome contributors
+* [Specify the assembly by name](#specify-the-assembly-by-name)
+* [Get all the keys for the current culture](#get-all-the-keys-for-the-current-culture)
+* [Use an Enum as a translation key](#use-an-enum-as-a-translation-key)
+* [Loop through the key values for the current culture](#loop-through-the-key-values-for-the-current-culture)
+* [Get all the registered languages](#get-all-the-registered-languages)
+* [Generate a Static Constants Keys File](#generate-a-static-constants-keys-file)
+* [Generate an Enum Keys File](#generate-an-enum-keys-file)
+
+## Specify the assembly by name
+If you have multiple projects in your Visual Studio Solution that depend upon language translation, as of version 6.0 and higher you can specify the assembly by name.  Place your resources in a project that can be used by the other projects in your Solution.
+
+Example Usage
+```C#
+string assemblyName = "MyCompany.MyProject.Common";
+EmbeddedResourceKeysProvider keysProvider = new EmbeddedResourceKeysProvider(assemblyName, "Resources");
+LanguageContainer service = new LanguageContainer(CultureInfo.GetCultureInfo("en-US"), keysProvider);
+```
+
+## Get all the keys for the current culture
+
+```C#
+List<string> keys = _language.GetKeys();
+```
+
+## Loop through the key values for the current culture.
+
+```C#
+foreach (KeyValuePair<object, object> keyValue in _service.Keys)
+{
+	Console.WriteLine($"{keyValue.Key}: {keyValue.Value}");
+}
+```
+
+## Get all the registered languages
+
+```C#
+IEnumerable<CultureInfo> registeredLanguages = _language.RegisteredLanguages;
+```
+
+Full example with a drop-down that is bound to the languages.
+
+```C#
+@page "/"
+@using System.Globalization
+
+<select @bind="SelectedCulture" @bind:event="onchange">
+    @foreach (var culture in Cultures)
+    {
+        <option value="@culture.Name">@culture.EnglishName</option>
+    }
+</select>
+
+@code {
+    [Inject] private ILanguageContainerService _language { get; set; }
+	
+    public IEnumerable<CultureInfo> Cultures { get; set; } = new List<CultureInfo>();
+    
+    private string _selectedCulture;
+    public string SelectedCulture
+    {
+        get => _selectedCulture;
+        set
+        {
+            if (_selectedCulture != value)
+            {
+                _selectedCulture = value;
+                _language.SetLanguage(CultureInfo.GetCultureInfo(value));
+            }
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        _language.InitLocalizedComponent(this);
+		
+        // Initialize the Cultures list here if not already populated
+        if (Cultures.Count == 0)
+        {
+            Cultures = _language.GetRegisteredLanguages();
+        }
+
+        // Set initial selected culture
+        _selectedCulture = _language.CurrentCulture.Name;
+    }
+}
+```
+## Use an Enum as a translation key
+The name of the enum will be used as the key.  If there is a Description attribute, the Description will be used as the key. Note, as of Version 6.0 and higher, the library now has the ability to generate a LanguageKeys Enum file.  
+
+Example Enum
+```C#
+	public enum LanguageKeys
+	{
+		[Description("HomePage:Title")]
+		HomePageTitle,
+		FirstName
+	}
+```
+
+Example Usage
+``` Razor
+<h1>@languageContainer.Keys[LanguageKeys.HomePageTitle]</h1>
+```
+
+
+## Generate a Static Constants Keys File
+We are currently working on a CLI but you can also create a static constants file using this method.
+
+```C#
+var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
+var languageContainer = new LanguageContainer(CultureInfo.GetCultureInfo("en-US"), keysProvider);
+var createCodeLogic = new CreateCodeLogic(languageContainer);
+string namespace = "MyCompany.Project";
+string className = "LanguageKeys";
+string filePath = @"c:\somedirectory\LanguageKeys.cs"
+createCodeLogic.CreateStaticConstantsKeysFile(namespaceName, className, filePath);
+```
+
+This will produce a file like this.
+
+```C#
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+//      
+//     For more information see: https://github.com/aksoftware98/multilanguages
+// </auto-generated>
+//------------------------------------------------------------------------------
+namespace MyCompany.Project
+{
+	public static class LanguageKeys
+	{
+	    public const HomePageTitle = "HomePage:Title";
+		public const FirstName = "FirstName";
+	}
+}
+```
+
+Here is an example of the usage.
+``` Razor
+<h1>@languageContainer.Keys[LanguageKeys.FirstName]</h1>
+```
+
+## Generate an Enum Keys File
+We are currently working on a CLI but you can also create an enum keys file using this method.
+
+```C#
+var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
+var languageContainer = new LanguageContainer(CultureInfo.GetCultureInfo("en-US"), keysProvider);
+var createCodeLogic = new CreateCodeLogic(languageContainer);
+string namespace = "MyCompany.Project";
+string enumName = "LanguageKeys";
+string filePath = @"c:\somedirectory\LanguageKeys.cs"
+createCodeLogic.CreateEnumKeysFile(namespaceName, enumName, filePath);
+```
+
+This will produce a file like this.
+
+```C#
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+//      
+//     For more information see: https://github.com/aksoftware98/multilanguages
+// </auto-generated>
+//------------------------------------------------------------------------------
+using System.ComponentModel;
+namespace MyCompany.Project
+{
+	public enum LanguageKeys
+	{
+        [Description("HomePage:Title")]
+		HomePageTitle,
+		FirstName
+	}
+}
+```
+
+Here is an example of the usage.
+``` Razor
+<h1>@languageContainer.Keys[LanguageKeys.FirstName]</h1>
+```
+
+# Thanks for the awesome contributors
 
 <a  href="https://github.com/aksoftware98/multilanguages/graphs/contributors">
 

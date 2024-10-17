@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
 using System.Reflection;
@@ -178,7 +178,7 @@ namespace AKSoftware.Localization.MultiLanguages
 		/// <param name="defaultCulture">Default culture you want the app to start with</param>
 		/// <returns></returns>
 		/// <exception cref="ArgumentNullException"></exception>
-		public static IServiceCollection AddLanguageContainerFromFolderInBlazorService(this IServiceCollection services, string folderPath, CultureInfo defaultCulture)
+		public static IServiceCollection AddLanguageContainerFromFolderForBlazorServer(this IServiceCollection services, string folderPath, CultureInfo defaultCulture)
 		{
 			if (string.IsNullOrWhiteSpace(folderPath))
 				throw new ArgumentNullException(nameof(folderPath));

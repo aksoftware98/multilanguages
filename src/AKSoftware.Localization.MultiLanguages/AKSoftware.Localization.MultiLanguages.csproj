@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Fix bugs and improve the performance and add the ability to store resource files in external folders</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix bugs and improve the performance and add the ability to store resource files in external folders. Fix the bug of throwing an exception when the key is not founds</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>

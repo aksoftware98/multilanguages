@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace AKSoftware.Localization.MultiLanguages.Providers
 {
@@ -20,5 +21,10 @@ namespace AKSoftware.Localization.MultiLanguages.Providers
 		/// <param name="cultureName"></param>
 		/// <returns></returns>
 		Keys GetKeys(string cultureName);
+
+        /// <summary>
+        /// Get a list of the registered languages
+        /// </summary>
+        IEnumerable<CultureInfo> RegisteredLanguages { get; }
     }
 }
