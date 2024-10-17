@@ -6,7 +6,7 @@ namespace AKSoftware.Localization.MultiLanguages.Tests.CodeGeneratorTests;
 /// <summary>
 /// TODO Add the assertions to the tests to verify the generated code using the Rosyln syntax tree
 /// </summary>
-public class KeysAccessorGeneratorTests
+public class KeysAccessorGeneratorTests : KeysGeneratorTestBase
 {
 
     [Fact]
@@ -44,25 +44,5 @@ public class KeysAccessorGeneratorTests
     }
 
 
-    private const string VALID_FLAT_YAML = """
-        HelloWorld: Hello World
-        Title: Title
-        Home: Home
-        About: About us
-        """;
-
-    private const string VALID_NESTED_YAML = """
-        Contact: Contact us
-        Home:
-            Title: Home Title
-            Subtitle: Home Subtitle
-        About:
-            Title: About Title
-            Subtitle: About Subtitle
-        """;
-
-    private const string VALID_INTERPOLATED_YAML = """
-        Contact: Email us via {email} and call us on {phone}
-        """;
 
 }
