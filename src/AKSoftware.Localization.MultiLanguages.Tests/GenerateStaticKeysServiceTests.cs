@@ -1,4 +1,5 @@
-﻿using AKSoftware.Localization.MultiLanguages.Providers;
+﻿using AKSoftware.Localization.MultiLanguages.CodeGeneration;
+using AKSoftware.Localization.MultiLanguages.Providers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,15 +11,15 @@ using Xunit;
 
 namespace AKSoftware.Localization.MultiLanguages.Tests
 {
-    public class CreateCodeLogicTests
+    public class GenerateStaticKeysServiceTests
     {
         ILanguageContainerService _languageContainer;
-        ICreateCodeLogic _createCodeLogic;
-        public CreateCodeLogicTests()
+        IGenerateKeysService _createCodeLogic;
+        public GenerateStaticKeysServiceTests()
         {
             var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
             _languageContainer = new LanguageContainer(CultureInfo.GetCultureInfo("ca-ES"), keysProvider);
-            _createCodeLogic = new CreateCodeLogic(_languageContainer);
+            _createCodeLogic = new GenerateStaticKeysService(_languageContainer);
         }
 
         [Fact]
