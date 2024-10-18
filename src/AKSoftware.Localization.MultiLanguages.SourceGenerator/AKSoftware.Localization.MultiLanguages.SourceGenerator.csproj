@@ -5,25 +5,30 @@
     <LangVersion>8.0</LangVersion>
     <Company>AK Software</Company>
     <Authors>Ahmad Mozaffar</Authors>
-    <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
+    <Description>Source Generator to provide a simple and direct access for the LanguageContainer and the keys in a strongly-typed fashion.</Description>
     <Copyright>AK Software 2024</Copyright>
-    <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
-    <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Fix bugs and improve the performance and add the ability to store resource files in external folders</PackageReleaseNotes>
+    <PackageTags>AKSoftware, Languages, Localization, Globalization, Source Generator</PackageTags>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <AssemblyVersion>6.0.0</AssemblyVersion>
-    <FileVersion>6.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <EnforceExtendedAnalyzerRules>false</EnforceExtendedAnalyzerRules>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <PackageVersion>6.0.0-alpha</PackageVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
+    <PackageIcon>AkMultiLanguages.png</PackageIcon>
+    <AssemblyVersion>6.0.0</AssemblyVersion>
+    <FileVersion>6.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>6.0.0-alpha</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj" PrivateAssets="all" />
     <PackageReference Include="YamlDotNet" Version="9.1.0" PrivateAssets="all" GeneratePathProperty="true" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" PrivateAssets="all" GeneratePathProperty="true"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,7 +58,16 @@
 
   <!-- Include the .props file in the package -->
   <ItemGroup>
+    <None Include="..\..\LICENSE" Link="LICENSE">
+      <PackagePath></PackagePath>
+      <Pack>True</Pack>
+    </None>
     <None Include="build\AKSoftware.Localization.MultiLanguages.SourceGenerator.props" Pack="true" PackagePath="build" />
+   <None Include="AkMultiLanguages.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="docs\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
