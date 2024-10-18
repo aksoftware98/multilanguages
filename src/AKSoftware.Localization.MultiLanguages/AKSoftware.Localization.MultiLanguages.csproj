@@ -7,7 +7,7 @@
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
     <Copyright>AK Software 2023</Copyright>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Fix bugs and improve the performance and add the ability to store resource files in external folders. Fix the bug of throwing an exception when the key is not founds</PackageReleaseNotes>
+    <PackageReleaseNotes>Add capability to list languages dynamically, list and enumerate all keys, genreate static keys class and full keys accessor classes, in addition to bug fixes and improvements</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
