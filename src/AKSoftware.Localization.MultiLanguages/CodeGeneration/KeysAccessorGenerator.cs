@@ -22,6 +22,7 @@ namespace AKSoftware.Localization.MultiLanguages.CodeGeneration
         {
             return @"
 using AKSoftware.Localization.MultiLanguages;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AKSoftware.Localization.MultiLanguages
 {
@@ -145,7 +146,7 @@ namespace AKSoftware.Localization.MultiLanguages
                         keysBuilder.AppendLine($"\t\t\t=> _languageContainer[\"{prefix}{item.Key}\", new");
                         keysBuilder.AppendLine($"\t\t\t{{");
                         keysBuilder.AppendLine($"{parameterAssignments}");
-                        keysBuilder.AppendLine($"\t\t\t}}");
+                        keysBuilder.AppendLine($"\t\t\t}}];");
 
                         interfaceKeysBuilder.AppendLine($"\t\tpublic string {item.Key}({methodParameters});");
                     }

@@ -1,0 +1,12 @@
+<Project>
+  <!-- Define the en-US.yaml/yml files to be added as an additional file and embedded resource -->
+  <ItemGroup>
+    <!-- Add as AdditionalFiles for the analyzer -->
+    <AdditionalFiles Include="**/*.yml" />
+    <AdditionalFiles Include="**/*.yaml" />
+
+    <!-- Also embed the same files as EmbeddedResources -->
+    <EmbeddedResource Include="**/*.yml" />
+    <EmbeddedResource Include="**/*.yaml" />
+  </ItemGroup>
+</Project>

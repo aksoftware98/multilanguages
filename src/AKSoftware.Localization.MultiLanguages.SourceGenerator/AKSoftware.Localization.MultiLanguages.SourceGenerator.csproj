@@ -17,14 +17,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <EnforceExtendedAnalyzerRules>false</EnforceExtendedAnalyzerRules>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <PackageVersion>6.0</PackageVersion>
+    <PackageVersion>6.0.0-alpha</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj" PrivateAssets="all" />
-    <PackageReference Include="YamlDotNet" Version="9.1.0" PrivateAssets="all" GeneratePathProperty="true"  />
+    <PackageReference Include="YamlDotNet" Version="9.1.0" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" PrivateAssets="all" GeneratePathProperty="true"/>
   </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" PrivateAssets="all" />
@@ -38,17 +38,23 @@
   <Target Name="GetDependencyTargetPaths">
     <ItemGroup>
       <TargetPathWithTargetPlatformMoniker Include="$(PKGYamlDotNet)\lib\net20\YamlDotNet.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PKGMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" IncludeRuntimeDependency="false" />
       <None Include="$(PKGYamlDotNet)\lib\net20\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
       <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+      <None Include="$(PKGMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
   </Target>
 
   <Target Name="EmbedProjectDependency" AfterTargets="Build">
     <ItemGroup>
-      <None Include="$(OutputPath)\AKSoftware.Localization.MultiLanguages.dll"
-            Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+      <None Include="$(OutputPath)\AKSoftware.Localization.MultiLanguages.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
   </Target>
+
+  <!-- Include the .props file in the package -->
+  <ItemGroup>
+    <None Include="build\AKSoftware.Localization.MultiLanguages.SourceGenerator.props" Pack="true" PackagePath="build" />
+  </ItemGroup>
 
 </Project>
 

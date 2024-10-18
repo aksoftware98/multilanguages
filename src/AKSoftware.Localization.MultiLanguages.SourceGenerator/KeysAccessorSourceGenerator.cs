@@ -15,7 +15,7 @@ namespace AKSoftware.Localization.MultiLanguages.SourceGenerator
     /// The generated class take interpolation into consideration.
     /// </summary>
     [Generator]
-    public class KeysDecoratorSourceGenerator : ISourceGenerator
+    public class KeysAccessorSourceGenerator : ISourceGenerator
     {
         public void Execute(GeneratorExecutionContext context)
         {
