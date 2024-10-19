@@ -1,18 +1,27 @@
 
+
   
   
 
 # AKSoftware.Localization.MultiLanguages
-### Version 5.9 is here [Check out What's New](#whats-new-in-version-590)
+### v6.0.0-alpha
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
   
 
 ![Nuget](https://img.shields.io/nuget/dt/AKSoftware.Localization.MultiLanguages?color=nuget&label=Nuget&style=plastic)
 
-  
+  <img width="100" src="https://github.com/aksoftware98/multilanguages/blob/master/src/AKSoftware.Localization.MultiLanguages/AkMultiLanguages.png?raw=true" />
+    <img width="100" src="https://github.com/aksoftware98/multilanguages/blob/master/src/AKSoftware.Localization.MultiLanguages.Blazor/AkMultiLanguages.png?raw=true" />
 
-Build awesome .NET applications that supports more than 69+ languages with just a few lines of code, in addition to an easy translation tool that helps you translate all your content to any language you want with just one click
+.NET most advanced localization package for your solutions, light, fast, super easy to use, and much more.
+Making your app available in many languages should be a simple straightforward process, *AKSoftware.Localization.Multilanguages* offers the ultimate solution.
+
+<img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/yaml-based.png?raw=true" />
+<img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/hierarchy-friendly.png?raw=true" />
+<img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/source-generator.png?raw=true" />
+<img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/interpolation-support.png?raw=true" />
+
 
 Could be used for all type of .NET Apps (Blazor, UWP, Xamarin, Windows, ASP.NET Core MVC, Razor Pages ....)
 
@@ -37,61 +46,30 @@ https://youtu.be/Xz68c8GBYz4
 ![Blazor UI with Japanease](https://raw.githubusercontent.com/aksoftware98/multilanguages/master/Example/BlazorWasmMultiLanguages/BlazorWasmMultiLanguages/wwwroot/Japan.png)
 
 
-# What's new in Version 5.9.0
-Version 5.9.0 with two big achievements:
-1. The performance of the library has been improved by 5x especially while retrieving nested keys, due to eliminate the usage of JSON in some places and depend efficiently on the YAML library. 
-2. The ability to store the Resources in an external folder with a specified path that you can define
-To use this feature without using Dependency Injection 
-You can refer to this sample file here:
-[Program.cs sample to fetch keys from folder](https://github.com/aksoftware98/multilanguages/blob/master/src/ConsoleAppSample/Program.cs)
+# Why YAML
+Most common solution for multilanguage in .NET is the .resx resource files. .resx files are XML based so they are not too friendly to deal with and most likely a GUI tool is needed for keys management. XML is also huge and slower to parse. On the other hand, YAML is new, very fast to parse, and file structure is very simple and doesn't contain any single not-needed character which make the file size too small comparing to the XML one.
+For modern SPA apps with Blazor WebAssembly for example, large language files with .resx might slow down the load time for the download.
+YAML file structure allows for nested objects which a lovely feature you can take advantage of to build an organized language key-values files without long concatenated names.
+Finally, due to the simplicity of YAML, it's makes it very easy to build automation on top of it like source generator and static classes creation.
 
-If you are using dependency injection you can use the newly used method: 
-``` C#
-// For .NET projects consider the following method
-services.AddLanguageContainerFromFolder("Resouces", CultureInfo.GetCultureInfo("en-US")); 
+# Features
+AKSoftware.Localization.Multilanguage prvoides all the feature set needed for any multilanguage support like:
+- Easy to get started.
+- Online traslator tool to translate your files in one click for more 65 languages  https://akmultilanguages.azurewebsites.net
+- Light and high-performant
+- Blazor Server & WebAssembly support
+- Out of the box state management for **Blazor** components
+- Multiple language file sources (Files in folder or embedded files)
+- String interpolation support
+- Dynamically list all language keys
+- Dynamically list all available langauges
+- Dependency injection support
+- Hierarcy language keys in YAML
+- Code generators to generate full keys accessor service, static class with const strings, enums, and more..
+- v6.1 will bring the localization assistant to localize existing apps with minimal effort.
+- Full UWP support
 
-// For Blazor Server
-services.AddLanguageContainerFromFolderForBlazorServer("Resouces", CultureInfo.GetCultureInfo("en-US")); 
-```
 
-**Keep in mind, the folder of the resources has to be shipped with your project**
-
-  # What's new in Version 5.8.0 
-  Finally **Blazor Server** is here you can get started now.
-  The **only** change that you need to do that is different from others is in your **program.cs** file make sure to use the following function to register the Language Container
-``` C#
-...
-// Register the language container for Blazor Server
-builder.Services.AddLanguageContainerForBlazorServer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(), "Resources");
-...
-```
- Check out the following [Blazor Server Sample](https://github.com/aksoftware98/multilanguages/tree/master/src/BlazorServerLocalizationSample)
-
-# UWP Support in Version 5.0.0
-
-Special thanks for the contributor [Michael Gerfen](https://github.com/gerfen) for updating the library to add support to the UWP.
-
-This version contains a major update that adds support for a new package under the name AKSoftware.Localization.MultiLangauges.UWP you can install it from Nuget with the following command
-
-  
-
-``` PS
-
-Install-Package AKSoftware.Localization.MultiLangauges.UWP
-
-```
-
-  
-
-# What's new in Version 5.0.0
-
-In the latest version of the library because right it started to support UWP and not only Blazor a new interface and abstract type has been introduced that allows you to easily create a keys provider to fetch your keys not only from the embedded resources, also from any source you would like (External folder, FTP, Azure Blob Storage ...etc)
-
-By default there is the ***EmbeddedResourceKeysProvider*** to fetch the files from the resources and you can create your own by inhereting from the interface ***IKeysProvider***
-
-More about the implementation in the Wiki soon
-
-  
 
 # Getting Started
 
@@ -103,7 +81,7 @@ For Nuget Package Manager install the package
 
 ``` PS
 
-Install-Package AKSoftware.Localization.MultiLanguages
+Install-Package AKSoftware.Localization.MultiLanguages -Version 6.0.0-alpha
 
 ```
 
@@ -111,7 +89,7 @@ Install-Package AKSoftware.Localization.MultiLanguages
 
 ``` CLI
 
-dotnet add package AKSoftware.Localization.MultiLanuages
+dotnet add package AKSoftware.Localization.MultiLanuages --version 6.0.0-alpha
 
 ```
 
@@ -121,7 +99,7 @@ dotnet add package AKSoftware.Localization.MultiLanuages
 
 ``` PS
 
-Install-Package AKSoftware.Localization.MultiLanguages.Blazor
+Install-Package AKSoftware.Localization.MultiLanguages.Blazor -Version 6.0.0-alpha
 
 ```
 
@@ -129,11 +107,31 @@ Install-Package AKSoftware.Localization.MultiLanguages.Blazor
 
 ``` CLI
 
-dotnet add package AKSoftware.Localization.MultiLanuages.Blazor
+dotnet add package AKSoftware.Localization.MultiLanuages.Blazor --version 6.0.0-alpha
 
 ```
 
+**For Source Generator** install:
+(Nuget Package Manager Console)
   
+``` PS
+
+Install-Package AKSoftware.Localization.MultiLanguages.SourceGenerator -Version 6.0.0-alpha
+
+```
+
+(Using dotNet CLI)
+
+``` CLI
+
+dotnet add package AKSoftware.Localization.MultiLanuages.SourceGenerator--version 6.0.0-alpha
+
+```
+
+>**Source Generator Note**
+> When using the source generator, the package will take care of setting the file as embedded resources, and it generates a new interface named **IKeysAccessor** this service wraps the access to all the keys and tested keys in your language files.
+> 
+> However, the package must be installed the project that contains the en-US.yml file, so if your solution is a single project you can directly install it in the same project. If your solution consists of multiple projects and you want to use the localization across all of them, make sure to create a seperate project for localization and reference it in your other projects.
   
 
 ## Create the Resources Folder
@@ -165,6 +163,9 @@ Welcome: Welcome
   
 
 Select the file in the Solution Explorer window and from the properties window set the build action property to "Embeded Resources"
+
+>**Note**
+>In case of using the Source Generator package, that will be taken care of automatically.
 
   
 
@@ -232,6 +233,12 @@ builder.Services.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.Get
 
 If you don't specify a default culture the library will try to find the file that matches the culture of the current user, if it's not existing it will try to find any file that matches the same language, then if it's not there it will try to find the English file then the first file in the folder, otherwise it will throw an exception
 
+> **Source Generator Note** 
+> In case of using the Source Generator and want to have direct access without using the ILanguageContainerService and provide the key as string make sure to also register the auto-generated interface instance in your dependency injection container:
+> ``
+> builder.Services.AddKeysAccessor();
+> ``
+
   
   
 
@@ -249,17 +256,24 @@ using  AKSoftware.Localization.MultiLanguages.Blazor
 
 With in your components that you want to localize inject the service
 
-``` C#
+```csharp
 
 @inject  ILanguageContainerService  languageContainer
 
 ```
+or with Source Genertaor inject the keys accessor instead
+```csharp
+@inject IKeysAccessor KeysAccessor
+```
 
 And start getting the values from your files just like this
 
-``` Razor
-
+```razor
+@* Without Source Generator *@
 <h1>@languageContainer.Keys["HelloWorld"]</h1>
+
+@* With Source Generator *@
+<h1>@KeysAccessor.HelloWorld</h1>
 
 ```
 
@@ -267,7 +281,7 @@ And start getting the values from your files just like this
 
 And to be able to get the state updated for each component that contains localized text call the extension method in the OnInitialized or OnInitializedAsync overriden methods for each component as following
 
-``` C#
+```csharp
 
 protected  override  void  OnInitialized()
 
@@ -343,8 +357,8 @@ In C# to replace the value of username and version parameters at runtime you can
 
   
 
-```C#
-
+```csharp
+// Without Source Generator
 _language["Welcome", new
 
 {
@@ -355,6 +369,9 @@ Version = "v4.0"
 
 }]
 
+
+// With Source Generator
+KeysAccessor.Welcome("aksoftware98", "v4.0")
 ```
 
   
@@ -365,18 +382,9 @@ Check the sample project here to see how to develop a full Blazor WebAssembly pr
 
 [Full Blazor WASM Sample](https://github.com/aksoftware98/multilanguages/tree/master/src/BlazorAKLocalization)
 
-# Upcoming in Version 6.0
+# Upcoming in Version 6.1
 We are currently working on version 6.  Here are the upcoming features.
-
-* [Specify the assembly by name](#specify-the-assembly-by-name)
-* [Get all the keys for the current culture](#get-all-the-keys-for-the-current-culture)
-* [Use an Enum as a translation key](#use-an-enum-as-a-translation-key)
-* [Loop through the key values for the current culture](#loop-through-the-key-values-for-the-current-culture)
-* [Get all the registered languages](#get-all-the-registered-languages)
-* [Generate a Static Constants Keys File](#generate-a-static-constants-keys-file)
-* [Generate an Enum Keys File](#generate-an-enum-keys-file)
-* [Verify All Source Code Files Are Localized](#verify-all-source-code-files-are-localized)
-* [Verify All Keys Can Be Found](#verify-all-keys-can-be-found)
+Verify All Keys Can Be Found](#verify-all-keys-can-be-found)
 * [Verify No Unused Keys](#verify-no-unused-keys)
 * [Verify No Duplicate Keys](#verify-no-duplicate-keys)
 
@@ -480,7 +488,7 @@ Example Usage
 ## Generate a Static Constants Keys File
 We are currently working on a CLI but you can also create a static constants file using this method.
 
-```C#
+```csharp
 var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
 var languageContainer = new LanguageContainer(CultureInfo.GetCultureInfo("en-US"), keysProvider);
 var createCodeLogic = new CreateCodeLogic(languageContainer);
@@ -521,19 +529,19 @@ Here is an example of the usage.
 ## Generate an Enum Keys File
 We are currently working on a CLI but you can also create an enum keys file using this method.
 
-```C#
+```csharp
 var keysProvider = new EmbeddedResourceKeysProvider(Assembly.GetExecutingAssembly());
 var languageContainer = new LanguageContainer(CultureInfo.GetCultureInfo("en-US"), keysProvider);
-var createCodeLogic = new CreateCodeLogic(languageContainer);
+var codeGeneratorService= new GenerateStaticKeysService(languageContainer);
 string namespace = "MyCompany.Project";
 string enumName = "LanguageKeys";
 string filePath = @"c:\somedirectory\LanguageKeys.cs"
-createCodeLogic.CreateEnumKeysFile(namespaceName, enumName, filePath);
+codeGeneratorService.CreateEnumKeysFile(namespaceName, enumName, filePath);
 ```
 
 This will produce a file like this.
 
-```C#
+```csharp
 //------------------------------------------------------------------------------
 // <auto-generated>
 //     This code was generated by a tool.
@@ -568,7 +576,7 @@ As you are adding and changing Razor files in your your project, you can verify 
 
 Example:
 
-```C#
+```csharp
 /// <summary>
 /// If this test is failing it means that there are new strings in your razor file or in your model file Required Attribute that need to be localized.
 /// </summary>
@@ -611,7 +619,7 @@ You can verify that there is not a typo in your Razor file for the localization 
 
 Example:
 
-```C#
+```csharp
 /// <summary>
 /// If this test is failing it means that you manually typed in a key in your razor file,
 /// and it does not exist in the en-US.yml file, or you deleted a key value pair in the en-Us.yml file that was in use.
@@ -655,7 +663,7 @@ Detect if you have keys in your en-US.yml file that are not being used in your r
 
 Example:
 
-```C#
+```csharp
 /// <summary>
 /// If this test is failing, it means that you have keys in your en-US.yml file that are not being used in your razor files.
 /// </summary>
@@ -699,7 +707,7 @@ public void VerifyNoUnusedKeys()
 In this situation, there are strings that need to be localized but it would result in duplicate keys if automatically created.  You might need to manually create the key and values.
 
 Example
-```C#
+```csharp
 /// <summary>
 /// If this test is failing it means that there are new strings that need to be localized
 /// and if they were to be created automatically, there would be the same key that have different values
