@@ -3,7 +3,10 @@
   
   
 
-# AKSoftware.Localization.MultiLanguages
+# Blazor Localization
+# ASP.NET Localization
+## AKSoftware.Localization.MultiLanguages
+
 ### v6.0.0-alpha
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
@@ -14,8 +17,33 @@
   <img width="100" src="https://github.com/aksoftware98/multilanguages/blob/master/src/AKSoftware.Localization.MultiLanguages/AkMultiLanguages.png?raw=true" />
     <img width="100" src="https://github.com/aksoftware98/multilanguages/blob/master/src/AKSoftware.Localization.MultiLanguages.Blazor/AkMultiLanguages.png?raw=true" />
 
-.NET most advanced localization package for your solutions, light, fast, super easy to use, and much more.
-Making your app available in many languages should be a simple straightforward process, *AKSoftware.Localization.Multilanguages* offers the ultimate solution.
+The most advanced .NET localization package for your projects; light, fast, super easy to use, and much more.
+Making your app available in many languages is now a simple straightforward process, *AKSoftware.Localization.Multilanguages* offers the ultimate solution.  
+
+Why MultiLanguages is better:
+
+| Feature                                                                        | .NET Localization  | AKSoftware.Localization.MultiLanguages |
+|--------------------------------------------------------------------------------|:------------------:|:--------------------------------------:|
+| Memory Heavy, Hard to Maintain RESX Resource Files                             | :heavy_check_mark: |                                        |
+| Less Memory, Easy to Maintain YAML Resource Files                              |                    | :heavy_check_mark:                     |
+| Generate English Resource YAML File from Localizable Strings from your UI Code |                    | :heavy_check_mark:                     |
+| Replace Localizable Strings with Variables                                     |                    | :heavy_check_mark:                     |
+| Data Attribute Localization                                                    | :heavy_check_mark: | :heavy_check_mark:                     |
+| Hierarchal Language Key Support                                                |                    | :heavy_check_mark:                     |
+| Translate Resource Files into 69 Different Languages                           |                    | :heavy_check_mark:                     |
+| String Interpolation                                                           |                    | :heavy_check_mark:                     |
+| Get Registered Languages                                                       |                    | :heavy_check_mark:                     |
+| Use Enum as Translation Key                                                    | :heavy_check_mark: | :heavy_check_mark:                     |
+| Generate Enum Translation Key Code                                             |                    | :heavy_check_mark:                     |
+| Use Static Class as Translation Key                                            | :heavy_check_mark: | :heavy_check_mark:                     |
+| Generate Static Class Translation Key Code                                     | :heavy_check_mark: | :heavy_check_mark:                     |
+| Verify All Source Code Files are Localized                                     |                    | :heavy_check_mark:                     |
+| Verify All Keys Can Be Found                                                   |                    | :heavy_check_mark:                     |
+| Verify There Are No Unused Keys                                                |                    | :heavy_check_mark:                     |
+| Verify There Are No Duplicate Keys                                             |                    | :heavy_check_mark:                     |
+
+
+### Key Features
 
 <img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/yaml-based.png?raw=true" />
 <img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/hierarchy-friendly.png?raw=true" />
@@ -23,11 +51,11 @@ Making your app available in many languages should be a simple straightforward p
 <img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/interpolation-support.png?raw=true" />
 
 
-Could be used for all type of .NET Apps (Blazor, UWP, Xamarin, Windows, ASP.NET Core MVC, Razor Pages ....)
+It can be used for all type of .NET Apps (Blazor, UWP, Xamarin, Windows, ASP.NET Core MVC, Razor Pages ....)
 
 https://akmultilanguages.azurewebsites.net
 
-Build with Love by Ahmad Mozaffar
+Built with Love by Ahmad Mozaffar
 
 http://ahmadmozaffar.net
 
@@ -748,6 +776,47 @@ public void VerifyNoDuplicateKeys()
 
 		Assert.Fail(sb.ToString());
 	}
+}
+```
+
+## Create or Update Resource File from Localizable Strings
+Instead of manually creating all the key value pairs, you can parse your .razor, HTML, etc files and create your en-US.yml file
+
+Example
+```C#
+public void CreateOrUpdateResourceFileFromLocalizableStringsExample()
+{
+	ParseParms parms = new ParseParms();
+	string solutionPath = TestHelper.GetSolutionPath();
+	string componentsPath = Path.Combine(solutionPath, "BedBrigade.Client", "Components");
+	string modelPath = Path.Combine(solutionPath, "BedBrigade.Common", "Models");
+	parms.SourceDirectories = new List<string>() { componentsPath, modelPath };
+	parms.WildcardPatterns = new List<string>() { "*.razor", "*.cs" };
+	parms.ExcludeDirectories = new List<string>();
+	parms.ExcludeFiles = new List<string>();
+	parms.ResourceFilePath = Path.Combine(TestHelper.GetSolutionPath(), "BedBrigade.Client", "Resources", "en-US.yml");
+	CreateCodeLogic logic = new CreateCodeLogic();
+	logic.CreateOrUpdateResourceFileFromLocalizableStrings(parms);
+}
+```
+## Replace Localizable Strings With Variables
+Instead of manually searching and replacing all of the hard coded localizable strings in your UI code, you can automatically create a resource file and then replace them with the keys.
+
+Example
+```C#
+public void ReplaceLocalizableStringsWithVariablesExample()
+{
+	ParseParms parms = new ParseParms();
+	string solutionPath = TestHelper.GetSolutionPath();
+	string componentsPath = Path.Combine(solutionPath, "BedBrigade.Client", "Components");
+	string modelPath = Path.Combine(solutionPath, "BedBrigade.Common", "Models");
+	parms.SourceDirectories = new List<string>() { componentsPath, modelPath };
+	parms.WildcardPatterns = new List<string>() { "*.razor", "*.cs" };
+	parms.ExcludeDirectories = new List<string>();
+	parms.ExcludeFiles = new List<string>();
+	parms.ResourceFilePath = Path.Combine(TestHelper.GetSolutionPath(), "BedBrigade.Client", "Resources", "en-US.yml");
+	CreateCodeLogic logic = new CreateCodeLogic();
+	logic.ReplaceLocalizableStringsWithVariables(parms);
 }
 ```
 
