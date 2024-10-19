@@ -1,18 +1,22 @@
 HomePage:
-  Title: Casa
+  Title: Llar
   HelloWorld: Hola món
-  Welcome: Bienvenida {username} a la prueba
-  Question: Com està treballant Blazor per a vostè?
-  BriefSuvery: Breu enquesta
-  Think: Digui'ns què pensa vostè
+  Welcome: Benvingut {username} a la prova
+  Question: Com treballa Blazor per a tu?
+  BriefSurvey: Breu enquesta
+  Think: Explica'ns què en penses
+  Please: Si us plau
 Counter:
   Title: Taulell
-  ClickMe: Feu clic a mi
+  ClickMe: Fes clic a mi
 FetchData:
-  Title: Obtén dades
+  Title: Fetch Data
   WeatherForcast: Previsió
-  WeatherTitle: Aquest component demostra l'obtenció de dades del servidor
+  WeatherTitle: Aquest component demostra la obtenció de dades del servidor
   Loading: Càrrega
-  Date: Data
+  Date: Datar
   Temp: Temp
   Summary: Resum
+NavMenu:
+  About: Sobre
+  BlazorServerLocalizationSample: Exemple de localització del servidor Blazor

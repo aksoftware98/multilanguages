@@ -1,18 +1,22 @@
 HomePage:
   Title: Casa
   HelloWorld: Salve, mondo
-  Welcome: Benvenuto {username} per il test
-  Question: Come sta Blazor a lavorare per te?
-  BriefSuvery: Breve indagine
+  Welcome: Benvenuto {username} al test
+  Question: In che modo Blazor sta lavorando per te?
+  BriefSurvey: Breve sondaggio
   Think: Dicci cosa ne pensi
+  Please: Per favore
 Counter:
   Title: Contatore
-  ClickMe: Fare clic su Me
+  ClickMe: Fai clic su di me
 FetchData:
   Title: Recupera dati
   WeatherForcast: Previsioni meteo
   WeatherTitle: Questo componente illustra il recupero dei dati dal server
   Loading: Caricamento
-  Date: Data
+  Date: Dattero
   Temp: Temp
-  Summary: Riepilogo
+  Summary: Sommario
+NavMenu:
+  About: Circa
+  BlazorServerLocalizationSample: Esempio di localizzazione di Blazor Server
