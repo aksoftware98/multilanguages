@@ -35,6 +35,7 @@ Why MultiLanguages is better:
 | Get Registered Languages                                                       |                    | :heavy_check_mark:                     |
 | Use Enum as Translation Key                                                    | :heavy_check_mark: | :heavy_check_mark:                     |
 | Generate Enum Translation Key Code                                             |                    | :heavy_check_mark:                     |
+| Source generator for injectable keys accessor service                          |                    | :heavy_check_mark:                     |
 | Use Static Class as Translation Key                                            | :heavy_check_mark: | :heavy_check_mark:                     |
 | Generate Static Class Translation Key Code                                     | :heavy_check_mark: | :heavy_check_mark:                     |
 | Verify All Source Code Files are Localized                                     |                    | :heavy_check_mark:                     |
