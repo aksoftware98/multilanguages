@@ -1,11 +1,7 @@
-
-
-  
-  
-
-# Blazor Localization
-# ASP.NET Localization
-## AKSoftware.Localization.MultiLanguages
+# AKSoftware.Localization.MultiLanguages
+## Blazor Localization
+## ASP.NET Localization
+## .NET Localization
 
 ### v6.0.0-alpha
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
