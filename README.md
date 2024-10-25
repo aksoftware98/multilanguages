@@ -23,7 +23,7 @@ Why MultiLanguages is better:
 | Memory Heavy, Hard to Maintain RESX Resource Files                             | :heavy_check_mark: |                                        |
 | Less Memory, Easy to Maintain YAML Resource Files                              |                    | :heavy_check_mark:                     |
 | Generate English Resource YAML File from Localizable Strings from your UI Code |                    | :heavy_check_mark:                     |
-| Replace Localizable Strings with Variables                                     |                    | :heavy_check_mark:                     |
+| Automatically Replace Localizable Strings with Variables                                     |                    | :heavy_check_mark:                     |
 | Data Attribute Localization                                                    | :heavy_check_mark: | :heavy_check_mark:                     |
 | Hierarchal Language Key Support                                                |                    | :heavy_check_mark:                     |
 | Translate Resource Files into 69 Different Languages                           |                    | :heavy_check_mark:                     |
@@ -72,7 +72,7 @@ https://youtu.be/Xz68c8GBYz4
 
 
 # Why YAML
-Most common solution for multilanguage in .NET is the .resx resource files. .resx files are XML based so they are not too friendly to deal with and most likely a GUI tool is needed for keys management. XML is also huge and slower to parse. On the other hand, YAML is new, very fast to parse, and file structure is very simple and doesn't contain any single not-needed character which make the file size too small comparing to the XML one.
+Most common solution for multilanguage in .NET are .resx resource files. .resx files are XML based so they are not too friendly to deal with and most likely a GUI tool is needed for keys management. XML is also huge and slower to parse. On the other hand, YAML is new, very fast to parse, and the file structure is very simple and doesn't contain any unneeded characters which make the file size smaller compared to XML.
 For modern SPA apps with Blazor WebAssembly for example, large language files with .resx might slow down the load time for the download.
 YAML file structure allows for nested objects which a lovely feature you can take advantage of to build an organized language key-values files without long concatenated names.
 Finally, due to the simplicity of YAML, it's makes it very easy to build automation on top of it like source generator and static classes creation.
@@ -80,8 +80,8 @@ Finally, due to the simplicity of YAML, it's makes it very easy to build automat
 # Features
 AKSoftware.Localization.Multilanguage prvoides all the feature set needed for any multilanguage support like:
 - Easy to get started.
-- Online traslator tool to translate your files in one click for more 65 languages  https://akmultilanguages.azurewebsites.net
-- Light and high-performant
+- Online translator tool to translate your files in one click for more 65 languages  https://akmultilanguages.azurewebsites.net
+- Light and high-performance
 - Blazor Server & WebAssembly support
 - Out of the box state management for **Blazor** components
 - Multiple language file sources (Files in folder or embedded files)
@@ -89,7 +89,7 @@ AKSoftware.Localization.Multilanguage prvoides all the feature set needed for an
 - Dynamically list all language keys
 - Dynamically list all available langauges
 - Dependency injection support
-- Hierarcy language keys in YAML
+- Hierarchical language keys in YAML
 - Code generators to generate full keys accessor service, static class with const strings, enums, and more..
 - v6.1 will bring the localization assistant to localize existing apps with minimal effort.
 - Full UWP support
@@ -187,7 +187,7 @@ Welcome: Welcome
 
   
 
-Select the file in the Solution Explorer window and from the properties window set the build action property to "Embeded Resources"
+Select the file in the Solution Explorer window and from the properties window set the build action property to "Embedded Resource"
 
 >**Note**
 >In case of using the Source Generator package, that will be taken care of automatically.
@@ -412,6 +412,7 @@ We are currently working on version 6.  Here are the upcoming features.
 Verify All Keys Can Be Found](#verify-all-keys-can-be-found)
 * [Verify No Unused Keys](#verify-no-unused-keys)
 * [Verify No Duplicate Keys](#verify-no-duplicate-keys)
+* [Data Attribute Localization Validation](#data-attribute-localization-validation)
 
 ## Specify the assembly by name
 If you have multiple projects in your Visual Studio Solution that depend upon language translation, as of version 6.0 and higher you can specify the assembly by name.  Place your resources in a project that can be used by the other projects in your Solution.
@@ -814,6 +815,53 @@ public void ReplaceLocalizableStringsWithVariablesExample()
 	parms.ResourceFilePath = Path.Combine(TestHelper.GetSolutionPath(), "BedBrigade.Client", "Resources", "en-US.yml");
 	CreateCodeLogic logic = new CreateCodeLogic();
 	logic.ReplaceLocalizableStringsWithVariables(parms);
+}
+```
+
+## Data Attribute Localization Validation
+In order to localize validation messages, use the Create or Update [Resource File from Localizable Strings](#create-or-update-resource-file-from-localizable-strings) feature.  Below is a full Blazor example using a Contact Us Page.
+
+```C#
+public partial class ContactUsPage : ComponentBase
+{
+	[Inject] private ILanguageContainerService Language { get; set; }
+	private ContactUs _contactUs;
+	private ValidationMessageStore _validationMessageStore;
+	private EditContext? EC { get; set; }
+	
+	protected override void OnInitialized()
+	{
+		Language.InitLocalizedComponent(this);
+		_contactUs = new Common.Models.ContactUs();
+		EC = new EditContext(_contactUs);
+		_validationMessageStore = new ValidationMessageStore(EC);
+	}
+	
+	private ClearValidationMessages()
+	{
+		_validationMessageStore.Clear();
+	}
+	
+	private bool IsValid()
+        {
+		ClearValidationMessages();
+		bool isValid = ValidationLocalization.ValidateModel(_contactUs, _validationMessageStore, Language);
+		if (!isValid)
+		{
+			EC.NotifyValidationStateChanged();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private void HandleSubmitClick()
+	{
+		if (!IsValid())
+			return;
+			
+		//Handle Form Submission
+	}
 }
 ```
 

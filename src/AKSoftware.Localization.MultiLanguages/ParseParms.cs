@@ -4,7 +4,7 @@ namespace AKSoftware.Localization.MultiLanguages
 {
     public class ParseParms
     {
-        public List<string> Prefixes { get; set; } = new List<string>() {"Required","MaxLength", "Dynamic"};
+        public List<string> Prefixes { get; set; } = new List<string>() { "Dynamic"};
         public List<string> SourceDirectories { get; set; } = new List<string>();
         public List<string> WildcardPatterns { get; set; } = new List<string>();
         public List<string> ExcludeDirectories { get; set; } = new List<string>();
