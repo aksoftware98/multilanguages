@@ -28,6 +28,7 @@ namespace AKSoftware.Localization.MultiLanguages.Tests
             parms.ResourceFilePath = Path.Combine(solutionPath, "BlazorServerLocalizationSample",
                 "Resources", "en-US.yml");
             parms.KeyReference = "Language";
+            parms.RemoveLocalizedKeys = true;
 
             //Act   
             ParseCodeLogic logic = new ParseCodeLogic();

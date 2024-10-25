@@ -11,41 +11,23 @@ namespace AKSoftware.Localization.MultiLanguages
 {
     public class ParseCodeLogic
     {
+        private DataAttributeParsing _dataAttributeParsing = new DataAttributeParsing();
+
         private static List<string> _ignoreStartsWith = new List<string>()
         {
-            "http://", "https://", "class=", "style=", "src=", "alt=", "width=", "height=", "id=", "if (", "var ", "%",
-            "display:", "}", "else", "@*", "["
+            "http://", "https://", "class=", "style=", "src=", "alt=", "width=", "height=", "id=", "if (", "var ", "%", "display:", "else", "@", "<", "["
         };
 
         private static List<string> _ignoreContains = new List<string>()
         {
-            "@(", "@_", "[@_", "=\""
+            "@(", "@_", "[@_", "=\"", "{", "}", "(\""
         };
 
         private const string ReplacementMarker = "~~~";
-        private const string StringType = "string";
-        private const string PropertyTypeGroup = "propertyType";
         private const string ContentGroup = "content";
-        
         private Regex _keyReferenceRegex;
 
-        private static Regex _propertyRegex =
-            new Regex(@"public\s+(?<propertyType>[^\s\?]+\??)\s+(?<content>\w+)\s*{\s*get;\s*set;\s*}",
-                RegexOptions.Compiled | RegexOptions.Multiline);
 
-        private static Regex _requiredAttributeWithMessageRegex = new Regex(
-            @"\[Required\(ErrorMessage\s*=\s*""(?<content>.*?)""\)\]", RegexOptions.Compiled | RegexOptions.Multiline);
-
-        private static Regex _requiredAttributeRegex = new Regex(
-            @"\[Required\]", RegexOptions.Compiled | RegexOptions.Multiline);
-
-        private static Regex _maxLengthAttributeWithMessageRegex = new Regex(
-            @"\[MaxLength\((?<maxLength>\d+),\s*ErrorMessage\s*=\s*""(?<content>.*?)""\)\]",
-            RegexOptions.Compiled | RegexOptions.Multiline);
-
-        private static Regex _maxLengthAttributeRegex = new Regex(
-            @"\[MaxLength\((?<maxLength>\d+)\]",
-            RegexOptions.Compiled | RegexOptions.Multiline);
 
         private static Regex _styleTag = new Regex(@"<style[^>]*>[^<]*<\/style>", RegexOptions.Compiled | RegexOptions.Multiline);
         private static Regex _scriptTag = new Regex(@"<script[^>]*>[^<]*<\/script>", RegexOptions.Compiled | RegexOptions.Multiline);
@@ -149,10 +131,7 @@ namespace AKSoftware.Localization.MultiLanguages
 
                 if (Path.GetExtension(file) == ".cs")
                 {
-                    fileResults.AddRange(GetRequiredWithErrorMessageInText(content));
-                    fileResults.AddRange(GetRequiredAttributeInText(content));
-                    fileResults.AddRange(GetMaxLengthAttributesWithErrorMessageInText(content));
-                    fileResults.AddRange(GetMaxLengthAttributesInText(content));
+                    fileResults = _dataAttributeParsing.ParseDataAttributes(fileResults, content);
                 }
                 else
                 {
@@ -169,7 +148,7 @@ namespace AKSoftware.Localization.MultiLanguages
             if (parms.RemoveLocalizedKeys)
             {
                 var existingKeyValues = ReadYamlFile(parms.ResourceFilePath);
-                result = RemoveLocalizedKeys(parms, result, existingKeyValues);
+                result = RemoveLocalizedKeys(result, existingKeyValues);
             }
 
             return result
@@ -181,148 +160,36 @@ namespace AKSoftware.Localization.MultiLanguages
 
 
 
-        private List<ParseResult> RemoveLocalizedKeys(ParseParms parms, List<ParseResult> parseResults, Dictionary<string, string> existingKeyValues)
+        private List<ParseResult> RemoveLocalizedKeys(List<ParseResult> parseResults, Dictionary<string, string> existingKeyValues)
         {
             List<ParseResult> result = new List<ParseResult>();
+            var attributePrefixes = _dataAttributeParsing.GetDataAttributePrefixes();
 
             foreach (var parseResult in parseResults)
             {
-                if (parms.Prefixes.Any(o => parseResult.Key.StartsWith(o))
-                    && !existingKeyValues.ContainsKey(parseResult.Key))
+                //Special logic for data attributes
+                if (attributePrefixes.Any(o => parseResult.Key.StartsWith(o) && parseResult.Key.Length > o.Length))
+                {
+                    if (!existingKeyValues.ContainsKey(parseResult.Key))
+                    {
+                        result.Add(parseResult);
+                    }
+                }
+                else
                 {
                     result.Add(parseResult);
                 }
+
             }
 
             return result;
         }
 
-        private List<ParseResult> GetMaxLengthAttributesWithErrorMessageInText(string text)
-        {
-            List<ParseResult> result = new List<ParseResult>();
 
-            MatchCollection matches = _maxLengthAttributeWithMessageRegex.Matches(text);
 
-            foreach (Match match in matches)
-            {
-                string errorMessage = match.Groups[ContentGroup].Value;
-                string maxLength = match.Groups["maxLength"].Value;
-                int index = text.IndexOf(match.Value);
-                Match propertyStringMatch = _propertyRegex.Match(text.Substring(index));
-                string propertyName = propertyStringMatch.Groups[ContentGroup].Value;
-                string propertyType = propertyStringMatch.Groups[PropertyTypeGroup].Value;
 
-                //TODO:  We currently only support string properties for required
-                if (!propertyType.ToLower().StartsWith(StringType))
-                    continue;
 
-                result.Add(new ParseResult
-                {
-                    LocalizableString = errorMessage,
-                    MatchingExpression = _maxLengthAttributeWithMessageRegex,
-                    FilePath = string.Empty,
-                    MatchValue = match.Value,
-                    Key = $"MaxLength{propertyName}{maxLength}"
-                });
-            }
 
-            return result;
-        }
-
-        private List<ParseResult> GetMaxLengthAttributesInText(string text)
-        {
-            List<ParseResult> result = new List<ParseResult>();
-
-            MatchCollection matches = _maxLengthAttributeRegex.Matches(text);
-
-            foreach (Match match in matches)
-            {
-                string maxLength = match.Groups["maxLength"].Value;
-                int index = text.IndexOf(match.Value);
-                Match propertyStringMatch = _propertyRegex.Match(text.Substring(index));
-                string propertyName = propertyStringMatch.Groups[ContentGroup].Value;
-                string propertyType = propertyStringMatch.Groups[PropertyTypeGroup].Value;
-
-                //TODO:  We currently only support string properties for required
-                if (!propertyType.ToLower().StartsWith(StringType))
-                    continue;
-
-                string errorMessage = $"{StringUtil.InsertSpaces(propertyName)} has a maximum length of {maxLength} characters";
-                result.Add(new ParseResult
-                {
-                    LocalizableString = errorMessage,
-                    MatchingExpression = _maxLengthAttributeRegex,
-                    FilePath = string.Empty,
-                    MatchValue = match.Value,
-                    Key = $"MaxLength{propertyName}{maxLength}"
-                });
-            }
-
-            return result;
-        }
-
-        private List<ParseResult> GetRequiredWithErrorMessageInText(string text)
-        {
-            List<ParseResult> result = new List<ParseResult>();
-
-            MatchCollection matches = _requiredAttributeWithMessageRegex.Matches(text);
-
-            foreach (Match match in matches)
-            {
-                string errorMessage = match.Groups[ContentGroup].Value;
-                int index = text.IndexOf(match.Value);
-                Match propertyStringMatch = _propertyRegex.Match(text.Substring(index));
-                string propertyName = propertyStringMatch.Groups[ContentGroup].Value;
-                string propertyType = propertyStringMatch.Groups[PropertyTypeGroup].Value;
-
-                //TODO:  We currently only support string properties for required
-                if (!propertyType.ToLower().StartsWith(StringType))
-                    continue;
-
-                result.Add(new ParseResult
-                {
-                    LocalizableString = errorMessage,
-                    MatchingExpression = _requiredAttributeWithMessageRegex,
-                    FilePath = string.Empty,
-                    MatchValue = match.Value,
-                    Key = $"Required{propertyName}"
-                });
-            }
-
-            return result;
-        }
-
-        private List<ParseResult> GetRequiredAttributeInText(string text)
-        {
-            List<ParseResult> result = new List<ParseResult>();
-
-            MatchCollection matches = _requiredAttributeRegex.Matches(text);
-
-            foreach (Match match in matches)
-            {
-                int index = text.IndexOf(match.Value);
-                Match propertyStringMatch = _propertyRegex.Match(text.Substring(index));
-                string propertyName = propertyStringMatch.Groups[ContentGroup].Value;
-                string propertyType = propertyStringMatch.Groups[PropertyTypeGroup].Value;
-
-                //TODO:  We currently only support string properties for required
-                if (!propertyType.ToLower().StartsWith(StringType))
-                    continue;
-
-                string errorMessage = $"{StringUtil.InsertSpaces(propertyName)} is required";
-
-                result.Add(new ParseResult
-                {
-                    LocalizableString = errorMessage,
-                    MatchingExpression = _requiredAttributeWithMessageRegex,
-                    FilePath = string.Empty,
-                    MatchValue = match.Value,
-                    Key = $"Required{propertyName}"
-                });
-            }
-
-            return result;
-        }
 
 
         /// <summary>
@@ -374,7 +241,7 @@ namespace AKSoftware.Localization.MultiLanguages
             return result;
         }
 
-        
+
         private List<ParseResult> GetExistingLocalizedStringsInText(string html,
             Dictionary<string, string> existingKeyValues)
         {
@@ -475,8 +342,10 @@ namespace AKSoftware.Localization.MultiLanguages
             // Read existing keys from the YAML file
             var existingKeys = ReadYamlFile(parms.ResourceFilePath).Keys.ToList();
 
-            //Exclude Required, MaxLength, Dynamic because those are used dynamically in ValidationLocalization
-            existingKeys = existingKeys.Where(k => !parms.Prefixes.Any(p => k.StartsWith(p))).ToList();
+            var attributePrefixes = _dataAttributeParsing.GetDataAttributePrefixes();
+            //Exclude Data Attributes and Dynamic because those are used dynamically in ValidationLocalization
+            existingKeys = existingKeys.Where(k => !parms.Prefixes.Any(p => k.StartsWith(p))
+                                                   && !attributePrefixes.Any(ap => k.StartsWith(ap))).ToList();
 
             // Get localizable strings to find keys in use
             var parseResults = GetExistingLocalizedStrings(parms);
@@ -498,12 +367,13 @@ namespace AKSoftware.Localization.MultiLanguages
         public List<ParseResult> GetExistingLocalizedStrings(ParseParms parms)
         {
             ValidateParseParameters(parms);
+
             string escapedKeyReference = Regex.Escape(parms.KeyReference);
             string pattern = $@"({escapedKeyReference}\.Keys\[""?(?<content>[^,""\]]+)?)|({escapedKeyReference}\[""?(?<content>[^,""\]]+)?)";
-
             _keyReferenceRegex = new Regex(pattern, RegexOptions.Compiled | RegexOptions.Multiline);
+
             var existingKeyValues = ReadYamlFile(parms.ResourceFilePath);
-            List<string> files =  GetAllFilesForSourceDirectoriesAndWildcards(parms);
+            List<string> files = GetAllFilesForSourceDirectoriesAndWildcards(parms);
 
             List<string> filesToProcess = files
                 .Where(o => parms.ExcludeFiles.All(a => a != Path.GetFileName(o)))
@@ -541,7 +411,7 @@ namespace AKSoftware.Localization.MultiLanguages
                 }
             }
 
-            return files.Distinct().OrderBy(o => o) .ToList();
+            return files.Distinct().OrderBy(o => o).ToList();
         }
 
         internal Dictionary<string, string> ReadYamlFile(string filePath)
@@ -677,5 +547,13 @@ namespace AKSoftware.Localization.MultiLanguages
 
             }
         }
+
+
+
+
+
+
+
+
     }
 }
