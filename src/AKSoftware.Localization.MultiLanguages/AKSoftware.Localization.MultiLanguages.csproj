@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
     <Company>AK Software</Company>
     <Authors>Ahmad Mozaffar</Authors>
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
@@ -14,10 +14,10 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>6.0.0</AssemblyVersion>
-    <FileVersion>6.0.0</FileVersion>
+    <AssemblyVersion>6.0.1</AssemblyVersion>
+    <FileVersion>6.0.1</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.0.0-alpha</Version>
+    <Version>6.0.1</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 

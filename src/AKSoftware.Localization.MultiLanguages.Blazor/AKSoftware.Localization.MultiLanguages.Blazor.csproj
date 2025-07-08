@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <Authors>Ahmad Mozaffar</Authors>
     <Company>AK Software</Company>
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code, Blazor extensions helps the library to track the status of the components and update them whenever the SetLanguage function being called</Description>
@@ -17,7 +17,7 @@
     <AssemblyVersion>6.0.0</AssemblyVersion>
     <FileVersion>6.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.0.0-alpha</Version>
+    <Version>6.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
