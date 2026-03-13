@@ -80,6 +80,12 @@ namespace AKSoftware.Localization.MultiLanguages
         void AddExtension(IExtension extension);
 
         /// <summary>
+        /// Remove an extension from the extensions collection
+        /// </summary>
+        /// <param name="extension">Extension object to remove</param>
+        void RemoveExtension(IExtension extension);
+
+        /// <summary>
         /// Get a list of the keys in the language file
         /// </summary>
         /// <returns></returns>

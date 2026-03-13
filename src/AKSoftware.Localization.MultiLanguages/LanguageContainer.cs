@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace AKSoftware.Localization.MultiLanguages
     {
 
         private readonly IKeysProvider _keysProvider;
+        private readonly object _extensionsLock = new object();
 
         /// <summary>
         /// Create instance of the container initialized with the specific culture
@@ -109,7 +110,7 @@ namespace AKSoftware.Localization.MultiLanguages
         {
             CurrentCulture = culture;
             Keys = _keysProvider.GetKeys(culture);
-            
+
             InvokeExtensions();
         }
 
@@ -124,30 +125,53 @@ namespace AKSoftware.Localization.MultiLanguages
             InvokeExtensions();
         }
 
-        // TODO: Remove the destroyed component from the extensions list 
         private void InvokeExtensions()
         {
-            if (_extensions.Any())
+            IExtension[] snapshot;
+            lock (_extensionsLock)
             {
-                foreach (var item in _extensions.ToArray())
+                snapshot = _extensions.ToArray();
+            }
+
+            var toRemove = new List<IExtension>();
+            foreach (var item in snapshot)
+            {
+                if (item.Component == null)
                 {
-                    if (item.Component == null)
-                    {
+                    toRemove.Add(item);
+                    continue;
+                }
+                item.Action.Invoke(item.Component);
+            }
+
+            if (toRemove.Count > 0)
+            {
+                lock (_extensionsLock)
+                {
+                    foreach (var item in toRemove)
                         _extensions.Remove(item);
-                        continue;
-                    }
-                    item.Action.Invoke(item.Component);
                 }
             }
         }
 
         private readonly List<IExtension> _extensions = null;
+
         public void AddExtension(IExtension extension)
         {
-            // Add the extension if it is not exists 
-            var value = _extensions.SingleOrDefault(r => r == extension);
-            if (value == null)
-                _extensions.Add(extension);
+            lock (_extensionsLock)
+            {
+                var value = _extensions.SingleOrDefault(r => r == extension);
+                if (value == null)
+                    _extensions.Add(extension);
+            }
+        }
+
+        public void RemoveExtension(IExtension extension)
+        {
+            lock (_extensionsLock)
+            {
+                _extensions.Remove(extension);
+            }
         }
 
         /// <summary>
