@@ -1,0 +1,37 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [master, feature/upgrade-dotnet10]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore src/AKSoftware.Localization.MultiLanguages.sln
+
+      - name: Build core library
+        run: dotnet build src/AKSoftware.Localization.MultiLanguages/AKSoftware.Localization.MultiLanguages.csproj --configuration Release --no-restore
+
+      - name: Build Blazor extension
+        run: dotnet build src/AKSoftware.Localization.MultiLanguages.Blazor/AKSoftware.Localization.MultiLanguages.Blazor.csproj --configuration Release --no-restore
+
+      - name: Build source generator
+        run: dotnet build src/AKSoftware.Localization.MultiLanguages.SourceGenerator/AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test src/AKSoftware.Localization.MultiLanguages.Tests/AKSoftware.Localization.MultiLanguages.Tests.csproj --configuration Release --no-restore --verbosity normal
