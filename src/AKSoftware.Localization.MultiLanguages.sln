@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32708.82
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11612.150
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKSoftware.Localization.MultiLanguages", "AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj", "{6F2BA297-C752-4552-97D4-4A69277E3DF2}"
 EndProject
@@ -127,6 +127,8 @@ Global
 		{9828EF2F-F372-4773-9C7B-9CA452E85702}.Release|x86.ActiveCfg = Release|Any CPU
 		{9828EF2F-F372-4773-9C7B-9CA452E85702}.Release|x86.Build.0 = Release|Any CPU
 		{ED0A54D2-D091-45ED-A7EC-DF852935FEA1}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{ED0A54D2-D091-45ED-A7EC-DF852935FEA1}.Debug|Any CPU.Build.0 = Debug|x86
+		{ED0A54D2-D091-45ED-A7EC-DF852935FEA1}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{ED0A54D2-D091-45ED-A7EC-DF852935FEA1}.Debug|ARM.ActiveCfg = Debug|ARM
 		{ED0A54D2-D091-45ED-A7EC-DF852935FEA1}.Debug|ARM.Build.0 = Debug|ARM
 		{ED0A54D2-D091-45ED-A7EC-DF852935FEA1}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -173,6 +175,8 @@ Global
 		{D2471408-2889-4AE4-9015-24CA4C948253}.Release|x86.ActiveCfg = Release|x86
 		{D2471408-2889-4AE4-9015-24CA4C948253}.Release|x86.Build.0 = Release|x86
 		{7237C4C0-D02B-447A-939B-835175685D1B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7237C4C0-D02B-447A-939B-835175685D1B}.Debug|Any CPU.Build.0 = Debug|x86
+		{7237C4C0-D02B-447A-939B-835175685D1B}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{7237C4C0-D02B-447A-939B-835175685D1B}.Debug|ARM.ActiveCfg = Debug|ARM
 		{7237C4C0-D02B-447A-939B-835175685D1B}.Debug|ARM.Build.0 = Debug|ARM
 		{7237C4C0-D02B-447A-939B-835175685D1B}.Debug|ARM.Deploy.0 = Debug|ARM

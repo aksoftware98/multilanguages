@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection;
+using AKSoftware.Localization.MultiLanguages.Providers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AKSoftware.Localization.MultiLanguages.UWP.Tests
