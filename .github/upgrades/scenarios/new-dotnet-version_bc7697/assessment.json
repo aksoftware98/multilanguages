@@ -1,0 +1,1674 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-05-06T21:09:21.2836325Z",
+  "analysisEndTime": "2026-05-06T21:09:24.7292387Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 14,
+      "issues": 7,
+      "incidents": 49,
+      "effort": 49
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 21,
+        "Optional": 2,
+        "Potential": 26,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 19,
+        "Project": 17,
+        "Api": 13
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "AKSoftware.Localization.MultiLanguages.Benchmarks\\AKSoftware.Localization.MultiLanguages.Benchmarks.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages.Benchmarks",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net6.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 11,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 219,
+        "linesOfCode": 35,
+        "totalApiScanned": 43,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "1df3067d-0b09-45dd-b1cd-f4f22a277b5d",
+          "ruleId": "Project.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.Benchmarks\\AKSoftware.Localization.MultiLanguages.Benchmarks.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0;net10.0\nRecommended target framework: net6.0;net10.0;net10.0",
+              "protected": "Current target framework: net6.0;net10.0\nRecommended target framework: net6.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.Benchmarks\\AKSoftware.Localization.MultiLanguages.Benchmarks.csproj",
+            "snippet": "Current target framework: net6.0;net10.0\nRecommended target framework: net6.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: net6.0;net10.0\nRecommended target framework: net6.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0;net10.0",
+              "RecommendedTargetFramework": "net6.0;net10.0;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AKSoftware.Localization.MultiLanguages.Blazor\\AKSoftware.Localization.MultiLanguages.Blazor.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages.Blazor",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net8.0",
+          "net9.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 2,
+        "linesTotal": 69,
+        "linesOfCode": 68,
+        "totalApiScanned": 38,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "73d7ddc4-bc3b-4086-8725-285c83c29e2f",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.Blazor\\AKSoftware.Localization.MultiLanguages.Blazor.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Components.Web, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.7",
+              "protected": "Microsoft.AspNetCore.Components.Web, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.7"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.Blazor\\AKSoftware.Localization.MultiLanguages.Blazor.csproj",
+            "snippet": "Microsoft.AspNetCore.Components.Web, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.7",
+            "protectedSnippet": "Microsoft.AspNetCore.Components.Web, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.7",
+            "label": "Microsoft.AspNetCore.Components.Web 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Components.Web",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9537e8d4-0995-40f1-86de-d2022026a737",
+          "ruleId": "Project.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.Blazor\\AKSoftware.Localization.MultiLanguages.Blazor.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0;net9.0;net10.0\nRecommended target framework: net8.0;net9.0;net10.0;net10.0",
+              "protected": "Current target framework: net8.0;net9.0;net10.0\nRecommended target framework: net8.0;net9.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.Blazor\\AKSoftware.Localization.MultiLanguages.Blazor.csproj",
+            "snippet": "Current target framework: net8.0;net9.0;net10.0\nRecommended target framework: net8.0;net9.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: net8.0;net9.0;net10.0\nRecommended target framework: net8.0;net9.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0;net9.0;net10.0",
+              "RecommendedTargetFramework": "net8.0;net9.0;net10.0;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 4,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0",
+          "net8.0",
+          "net9.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 25,
+        "numberOfCodeFiles": 25,
+        "linesTotal": 3555,
+        "linesOfCode": 3555,
+        "totalApiScanned": 3505,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "f22cec64-da64-474b-af2d-e08c1869e3bb",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Components.Forms, 3.1.32\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Forms, and replace with new package Microsoft.AspNetCore.Components.Forms 10.0.7",
+              "protected": "Microsoft.AspNetCore.Components.Forms, 3.1.32\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Forms, and replace with new package Microsoft.AspNetCore.Components.Forms 10.0.7"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+            "snippet": "Microsoft.AspNetCore.Components.Forms, 3.1.32\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Forms, and replace with new package Microsoft.AspNetCore.Components.Forms 10.0.7",
+            "protectedSnippet": "Microsoft.AspNetCore.Components.Forms, 3.1.32\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Forms, and replace with new package Microsoft.AspNetCore.Components.Forms 10.0.7",
+            "label": "Microsoft.AspNetCore.Components.Forms 3.1.32",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Components.Forms",
+              "PackageVersion": "3.1.32",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "b3b07b0f-c06f-419f-93a6-748923380d49",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7",
+              "protected": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7",
+            "label": "Microsoft.Extensions.DependencyInjection.Abstractions 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "d619da2f-dc3d-4c7a-ac5b-58015d4c9ca5",
+          "ruleId": "NuGet.0003",
+          "projectPath": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "System.ComponentModel.Annotations, 5.0.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+              "protected": "System.ComponentModel.Annotations, 5.0.0\n\nRecommendation:\n\nPackage functionality included with new framework reference"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+            "snippet": "System.ComponentModel.Annotations, 5.0.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+            "protectedSnippet": "System.ComponentModel.Annotations, 5.0.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+            "label": "System.ComponentModel.Annotations 5.0.0",
+            "properties": {
+              "PackageId": "System.ComponentModel.Annotations",
+              "PackageVersion": "5.0.0",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "30b80c9d-f706-4121-907e-afce9914993e",
+          "ruleId": "Project.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: netstandard2.0;net8.0;net9.0;net10.0\nRecommended target framework: netstandard2.0;net8.0;net9.0;net10.0;net10.0",
+              "protected": "Current target framework: netstandard2.0;net8.0;net9.0;net10.0\nRecommended target framework: netstandard2.0;net8.0;net9.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages\\AKSoftware.Localization.MultiLanguages.csproj",
+            "snippet": "Current target framework: netstandard2.0;net8.0;net9.0;net10.0\nRecommended target framework: netstandard2.0;net8.0;net9.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: netstandard2.0;net8.0;net9.0;net10.0\nRecommended target framework: netstandard2.0;net8.0;net9.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "netstandard2.0;net8.0;net9.0;net10.0",
+              "RecommendedTargetFramework": "netstandard2.0;net8.0;net9.0;net10.0;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AKSoftware.Localization.MultiLanguages.SourceGenerator\\AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages.SourceGenerator",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 121,
+        "linesOfCode": 121,
+        "totalApiScanned": 58,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "d6c3b9ec-f864-4776-a685-38b7bb72418b",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.SourceGenerator\\AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7",
+              "protected": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.SourceGenerator\\AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection.Abstractions, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.7",
+            "label": "Microsoft.Extensions.DependencyInjection.Abstractions 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1a1f8cfe-e22f-4f30-99e3-cfca8315d4f0",
+          "ruleId": "Project.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.SourceGenerator\\AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: netstandard2.0;net10.0\nRecommended target framework: netstandard2.0;net10.0;net10.0",
+              "protected": "Current target framework: netstandard2.0;net10.0\nRecommended target framework: netstandard2.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.SourceGenerator\\AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj",
+            "snippet": "Current target framework: netstandard2.0;net10.0\nRecommended target framework: netstandard2.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: netstandard2.0;net10.0\nRecommended target framework: netstandard2.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "netstandard2.0;net10.0",
+              "RecommendedTargetFramework": "netstandard2.0;net10.0;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AKSoftware.Localization.MultiLanguages.Tests\\AKSoftware.Localization.MultiLanguages.Tests.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages.Tests",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net8.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 34,
+        "numberOfCodeFiles": 12,
+        "linesTotal": 2738,
+        "linesOfCode": 1036,
+        "totalApiScanned": 894,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "03351f98-619a-48e7-8978-ba2055b39d78",
+          "ruleId": "NuGet.0005",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.Tests\\AKSoftware.Localization.MultiLanguages.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "xunit, 2.4.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+              "protected": "xunit, 2.4.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.Tests\\AKSoftware.Localization.MultiLanguages.Tests.csproj",
+            "snippet": "xunit, 2.4.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+            "protectedSnippet": "xunit, 2.4.2\n\nRecommendation:\n\nThis package will only be updated for security issues. All future feature work has moved onto v3.\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+            "label": "xunit 2.4.2",
+            "properties": {
+              "PackageId": "xunit",
+              "PackageVersion": "2.4.2",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "0c67984a-8da8-4163-bc90-c9ec73d69dfe",
+          "ruleId": "Project.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.Tests\\AKSoftware.Localization.MultiLanguages.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+              "protected": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.Tests\\AKSoftware.Localization.MultiLanguages.Tests.csproj",
+            "snippet": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0;net10.0",
+              "RecommendedTargetFramework": "net8.0;net10.0;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages.UWP",
+        "projectKind": "Uwp",
+        "frameworks": [
+          "net5.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": false,
+        "numberOfFiles": 13,
+        "numberOfCodeFiles": 12,
+        "linesTotal": 885,
+        "linesOfCode": 852,
+        "totalApiScanned": 560,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "ead2cd75-e4d3-47ec-a292-a215e2b85f2e",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+              "protected": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+            "label": "Microsoft.Extensions.DependencyInjection 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1b5b190d-0277-404a-bb9f-272d31f210c8",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+              "protected": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+            "snippet": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+            "protectedSnippet": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+            "label": "Microsoft.NETCore.UniversalWindowsPlatform 6.2.10",
+            "properties": {
+              "PackageId": "Microsoft.NETCore.UniversalWindowsPlatform",
+              "PackageVersion": "6.2.10",
+              "PackageNewVersion": null,
+              "PackageReplacements": "Replace with new package Microsoft.WindowsAppSDK=2.0.1;Microsoft.Graphics.Win2D=1.1.0;Microsoft.Windows.Compatibility=10.0.7"
+            }
+          }
+        },
+        {
+          "incidentId": "f0ab2076-a12e-4982-a63b-7e56dbacf3c8",
+          "ruleId": "NuGet.0001",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Xaml.Behaviors.Uwp.Managed, 2.0.1\n\nRecommendation:\n\nNo supported version found",
+              "protected": "Microsoft.Xaml.Behaviors.Uwp.Managed, 2.0.1\n\nRecommendation:\n\nNo supported version found"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+            "snippet": "Microsoft.Xaml.Behaviors.Uwp.Managed, 2.0.1\n\nRecommendation:\n\nNo supported version found",
+            "protectedSnippet": "Microsoft.Xaml.Behaviors.Uwp.Managed, 2.0.1\n\nRecommendation:\n\nNo supported version found",
+            "label": "Microsoft.Xaml.Behaviors.Uwp.Managed 2.0.1",
+            "properties": {
+              "PackageId": "Microsoft.Xaml.Behaviors.Uwp.Managed",
+              "PackageVersion": "2.0.1",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "637cc768-7d56-4544-b7e4-f86131a4065b",
+          "ruleId": "Project.0001",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj"
+          }
+        },
+        {
+          "incidentId": "718e6f8a-9827-4ef3-bbfb-c6bb50948bc9",
+          "ruleId": "Project.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+              "protected": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.UWP\\AKSoftware.Localization.MultiLanguages.UWP.csproj",
+            "snippet": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+            "protectedSnippet": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+            "properties": {
+              "CurrentTargetFramework": ".NETCore,Version=v5.0",
+              "RecommendedTargetFramework": "net10.0-windows10.0.22000.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "D:\\dev\\GitHub\\multilanguages\\tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages.UWP.Tests",
+        "projectKind": "Uwp",
+        "frameworks": [
+          "net5.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": false,
+        "numberOfFiles": 26,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 4390,
+        "linesOfCode": 279,
+        "totalApiScanned": 256,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "2e4cdc16-34b8-424d-b32d-6ddd4439be68",
+          "ruleId": "NuGet.0002",
+          "projectPath": "D:\\dev\\GitHub\\multilanguages\\tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+              "protected": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7"
+            },
+            "kind": "File",
+            "path": "D:\\dev\\GitHub\\multilanguages\\tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj",
+            "snippet": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+            "protectedSnippet": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+            "label": "Microsoft.NETCore.UniversalWindowsPlatform 6.2.10",
+            "properties": {
+              "PackageId": "Microsoft.NETCore.UniversalWindowsPlatform",
+              "PackageVersion": "6.2.10",
+              "PackageNewVersion": null,
+              "PackageReplacements": "Replace with new package Microsoft.WindowsAppSDK=2.0.1;Microsoft.Graphics.Win2D=1.1.0;Microsoft.Windows.Compatibility=10.0.7"
+            }
+          }
+        },
+        {
+          "incidentId": "7521e3a1-3040-41d7-95ce-f37a27f4ade4",
+          "ruleId": "Project.0001",
+          "projectPath": "D:\\dev\\GitHub\\multilanguages\\tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "D:\\dev\\GitHub\\multilanguages\\tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj"
+          }
+        },
+        {
+          "incidentId": "c757f1f3-13f2-45b5-82ca-ce7247652a4d",
+          "ruleId": "Project.0002",
+          "projectPath": "D:\\dev\\GitHub\\multilanguages\\tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+              "protected": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0"
+            },
+            "kind": "File",
+            "path": "D:\\dev\\GitHub\\multilanguages\\tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests\\AKSoftware.Localization.MultiLanguages.UWP.Tests.csproj",
+            "snippet": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+            "protectedSnippet": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+            "properties": {
+              "CurrentTargetFramework": ".NETCore,Version=v5.0",
+              "RecommendedTargetFramework": "net10.0-windows10.0.22000.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AKSoftware.Localization.MultiLanguages.WinUI\\AKSoftware.Localization.MultiLanguages.WinUI.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "AKSoftware.Localization.MultiLanguages.WinUI",
+        "projectKind": "WinUI",
+        "frameworks": [
+          "net8.0-windows10.0.19041.0",
+          "net10.0-windows10.0.19041.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 11,
+        "numberOfCodeFiles": 11,
+        "linesTotal": 730,
+        "linesOfCode": 730,
+        "totalApiScanned": 595,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "3a3cb90c-5719-42f9-9b93-9de4c57f84c9",
+          "ruleId": "NuGet.0001",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.WinUI\\AKSoftware.Localization.MultiLanguages.WinUI.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found",
+              "protected": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.WinUI\\AKSoftware.Localization.MultiLanguages.WinUI.csproj",
+            "snippet": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found",
+            "protectedSnippet": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found",
+            "label": "Microsoft.Xaml.Behaviors.WinUI.Managed 2.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Xaml.Behaviors.WinUI.Managed",
+              "PackageVersion": "2.0.9",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "13199043-39d4-4142-b094-91488caa0e2d",
+          "ruleId": "Project.0002",
+          "projectPath": "AKSoftware.Localization.MultiLanguages.WinUI\\AKSoftware.Localization.MultiLanguages.WinUI.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0",
+              "protected": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0"
+            },
+            "kind": "File",
+            "path": "AKSoftware.Localization.MultiLanguages.WinUI\\AKSoftware.Localization.MultiLanguages.WinUI.csproj",
+            "snippet": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0",
+            "protectedSnippet": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0",
+              "RecommendedTargetFramework": "net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 8,
+      "properties": {
+        "appName": "BlazorAKLocalization",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net8.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 34,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 2256,
+        "linesOfCode": 40,
+        "totalApiScanned": 804,
+        "minLinesOfCodeToChange": 3,
+        "maxLinesOfCodeToChange": 3
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "3009a57d-bfbc-4b42-a3e1-228a18365a79",
+          "ruleId": "NuGet.0002",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Components.WebAssembly, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.7",
+              "protected": "Microsoft.AspNetCore.Components.WebAssembly, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.7"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+            "snippet": "Microsoft.AspNetCore.Components.WebAssembly, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.7",
+            "protectedSnippet": "Microsoft.AspNetCore.Components.WebAssembly, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.7",
+            "label": "Microsoft.AspNetCore.Components.WebAssembly 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Components.WebAssembly",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "c3131b83-d7ef-47e8-b397-ec4176bd720d",
+          "ruleId": "NuGet.0002",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.7",
+              "protected": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.7"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+            "snippet": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.7",
+            "protectedSnippet": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.7",
+            "label": "Microsoft.AspNetCore.Components.WebAssembly.DevServer 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Components.WebAssembly.DevServer",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "6afe4ec4-e72e-4618-8dd5-08a356152899",
+          "ruleId": "NuGet.0002",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json 10.0.7",
+              "protected": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json 10.0.7"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+            "snippet": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json 10.0.7",
+            "protectedSnippet": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json 10.0.7",
+            "label": "System.Net.Http.Json 5.0.0",
+            "properties": {
+              "PackageId": "System.Net.Http.Json",
+              "PackageVersion": "5.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "81a26743-46f0-4ffe-84b0-92d2bcfa86c0",
+          "ruleId": "NuGet.0005",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nThis package has been deprecated as part of the .NET Package Deprecation effort. You can learn more about it from https://github.com/dotnet/announcements/issues/217\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json, 10.0.7",
+              "protected": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nThis package has been deprecated as part of the .NET Package Deprecation effort. You can learn more about it from https://github.com/dotnet/announcements/issues/217\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json, 10.0.7"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+            "snippet": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nThis package has been deprecated as part of the .NET Package Deprecation effort. You can learn more about it from https://github.com/dotnet/announcements/issues/217\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json, 10.0.7",
+            "protectedSnippet": "System.Net.Http.Json, 5.0.0\n\nRecommendation:\n\nThis package has been deprecated as part of the .NET Package Deprecation effort. You can learn more about it from https://github.com/dotnet/announcements/issues/217\nRemove System.Net.Http.Json, and replace with new package System.Net.Http.Json, 10.0.7",
+            "label": "System.Net.Http.Json 5.0.0",
+            "properties": {
+              "PackageId": "System.Net.Http.Json",
+              "PackageVersion": "5.0.0",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "3ba849dd-f84d-449c-8f9f-748e76cbb247",
+          "ruleId": "Project.0002",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+              "protected": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+            "snippet": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0;net10.0",
+              "RecommendedTargetFramework": "net8.0;net10.0;net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "7b445c2a-cc59-4c0a-9471-f1defef1fd69",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\Program.cs",
+            "snippet": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 23,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "34e7d6a2-bff5-4469-89ce-139b50e40eba",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\Program.cs",
+            "snippet": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 23,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "7b9aace2-1630-4a28-a032-65f35e8ad61c",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "BlazorAKLocalization\\BlazorAKLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "BlazorAKLocalization\\Program.cs",
+            "snippet": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 23,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "BlazorServerLocalizationSample\\BlazorServerLocalizationSample.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "BlazorServerLocalizationSample",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net8.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 50,
+        "numberOfCodeFiles": 7,
+        "linesTotal": 2626,
+        "linesOfCode": 178,
+        "totalApiScanned": 1781,
+        "minLinesOfCodeToChange": 1,
+        "maxLinesOfCodeToChange": 1
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b93c581a-bccc-458f-be54-994f5dca2223",
+          "ruleId": "Project.0002",
+          "projectPath": "BlazorServerLocalizationSample\\BlazorServerLocalizationSample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+              "protected": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "BlazorServerLocalizationSample\\BlazorServerLocalizationSample.csproj",
+            "snippet": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: net8.0;net10.0\nRecommended target framework: net8.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0;net10.0",
+              "RecommendedTargetFramework": "net8.0;net10.0;net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "3eb15cf1-9fd1-442b-a327-afc9b7c0421d",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: Exception diagnostics are suppressed when IExceptionHandler.TryHandleAsync returns true ",
+          "projectPath": "BlazorServerLocalizationSample\\BlazorServerLocalizationSample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "app.UseExceptionHandler(\u0022/Error\u0022);",
+              "protected": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)"
+            },
+            "kind": "File",
+            "path": "BlazorServerLocalizationSample\\Program.cs",
+            "snippet": "app.UseExceptionHandler(\u0022/Error\u0022);",
+            "protectedSnippet": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "label": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/aspnet-core/10/exception-handler-diagnostics-suppressed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 21,
+            "column": 4
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "BlazorWebApp.Sample\\BlazorWebApp.Sample.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "BlazorWebApp.Sample",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net9.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 17,
+        "numberOfCodeFiles": 2,
+        "linesTotal": 395,
+        "linesOfCode": 57,
+        "totalApiScanned": 657,
+        "minLinesOfCodeToChange": 1,
+        "maxLinesOfCodeToChange": 1
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "76946be9-37dd-4b36-b811-56d8e9ac4fad",
+          "ruleId": "Project.0002",
+          "projectPath": "BlazorWebApp.Sample\\BlazorWebApp.Sample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0;net10.0\nRecommended target framework: net9.0;net10.0;net10.0",
+              "protected": "Current target framework: net9.0;net10.0\nRecommended target framework: net9.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "BlazorWebApp.Sample\\BlazorWebApp.Sample.csproj",
+            "snippet": "Current target framework: net9.0;net10.0\nRecommended target framework: net9.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: net9.0;net10.0\nRecommended target framework: net9.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0;net10.0",
+              "RecommendedTargetFramework": "net9.0;net10.0;net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "1558287f-2ee9-4a8c-8523-bcdf7106a3e6",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: Exception diagnostics are suppressed when IExceptionHandler.TryHandleAsync returns true ",
+          "projectPath": "BlazorWebApp.Sample\\BlazorWebApp.Sample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "app.UseExceptionHandler(\u0022/Error\u0022, createScopeForErrors: true);",
+              "protected": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.Boolean)"
+            },
+            "kind": "File",
+            "path": "BlazorWebApp.Sample\\Program.cs",
+            "snippet": "app.UseExceptionHandler(\u0022/Error\u0022, createScopeForErrors: true);",
+            "protectedSnippet": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.Boolean)",
+            "label": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.Boolean)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/aspnet-core/10/exception-handler-diagnostics-suppressed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 17,
+            "column": 4
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "ConsoleAppSample\\ConsoleAppSample.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "ConsoleAppSample",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net7.0",
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 21,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 371,
+        "linesOfCode": 9,
+        "totalApiScanned": 5,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "dd4a4675-c73d-4ae1-a413-2984ad631c18",
+          "ruleId": "Project.0002",
+          "projectPath": "ConsoleAppSample\\ConsoleAppSample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net7.0;net10.0\nRecommended target framework: net7.0;net10.0;net10.0",
+              "protected": "Current target framework: net7.0;net10.0\nRecommended target framework: net7.0;net10.0;net10.0"
+            },
+            "kind": "File",
+            "path": "ConsoleAppSample\\ConsoleAppSample.csproj",
+            "snippet": "Current target framework: net7.0;net10.0\nRecommended target framework: net7.0;net10.0;net10.0",
+            "protectedSnippet": "Current target framework: net7.0;net10.0\nRecommended target framework: net7.0;net10.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net7.0;net10.0",
+              "RecommendedTargetFramework": "net7.0;net10.0;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "UwpAkLocalization\\UwpAkLocalization.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "UwpAkLocalization",
+        "projectKind": "Uwp",
+        "frameworks": [
+          "net5.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": false,
+        "numberOfFiles": 32,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 955,
+        "linesOfCode": 259,
+        "totalApiScanned": 283,
+        "minLinesOfCodeToChange": 2,
+        "maxLinesOfCodeToChange": 2
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "15d563a5-9388-4594-ac91-e3af9b784039",
+          "ruleId": "NuGet.0002",
+          "projectPath": "UwpAkLocalization\\UwpAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+              "protected": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7"
+            },
+            "kind": "File",
+            "path": "UwpAkLocalization\\UwpAkLocalization.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+            "label": "Microsoft.Extensions.DependencyInjection 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1efb2c5e-6356-4d0e-bcaa-3fc8a558b44b",
+          "ruleId": "NuGet.0002",
+          "projectPath": "UwpAkLocalization\\UwpAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+              "protected": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7"
+            },
+            "kind": "File",
+            "path": "UwpAkLocalization\\UwpAkLocalization.csproj",
+            "snippet": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+            "protectedSnippet": "Microsoft.NETCore.UniversalWindowsPlatform, 6.2.10\n\nRecommendation:\n\nRemove Microsoft.NETCore.UniversalWindowsPlatform, and replace with new package Microsoft.WindowsAppSDK 2.0.1,\nMicrosoft.Graphics.Win2D 1.1.0,\nMicrosoft.Windows.Compatibility 10.0.7",
+            "label": "Microsoft.NETCore.UniversalWindowsPlatform 6.2.10",
+            "properties": {
+              "PackageId": "Microsoft.NETCore.UniversalWindowsPlatform",
+              "PackageVersion": "6.2.10",
+              "PackageNewVersion": null,
+              "PackageReplacements": "Replace with new package Microsoft.WindowsAppSDK=2.0.1;Microsoft.Graphics.Win2D=1.1.0;Microsoft.Windows.Compatibility=10.0.7"
+            }
+          }
+        },
+        {
+          "incidentId": "ce017e63-66d0-48ee-b205-79aba0961fd9",
+          "ruleId": "Project.0001",
+          "projectPath": "UwpAkLocalization\\UwpAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "kind": "File",
+            "path": "UwpAkLocalization\\UwpAkLocalization.csproj"
+          }
+        },
+        {
+          "incidentId": "41d475be-ad2b-4e8e-9fe8-2955340572a1",
+          "ruleId": "Project.0002",
+          "projectPath": "UwpAkLocalization\\UwpAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+              "protected": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0"
+            },
+            "kind": "File",
+            "path": "UwpAkLocalization\\UwpAkLocalization.csproj",
+            "snippet": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+            "protectedSnippet": "Current target framework: .NETCore,Version=v5.0\nRecommended target framework: net10.0-windows10.0.22000.0",
+            "properties": {
+              "CurrentTargetFramework": ".NETCore,Version=v5.0",
+              "RecommendedTargetFramework": "net10.0-windows10.0.22000.0"
+            }
+          }
+        },
+        {
+          "incidentId": "fef9d541-0ec4-4808-a446-55a855dff702",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "UwpAkLocalization\\UwpAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "UwpAkLocalization\\obj\\x86\\Debug\\MainPage.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "63b68c3d-e60b-47d9-b8ce-12cf4b9513f8",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "UwpAkLocalization\\UwpAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "UwpAkLocalization\\obj\\x86\\Debug\\MainPage.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 9,
+      "properties": {
+        "appName": "WinUIAkLocalization",
+        "projectKind": "WinForms",
+        "frameworks": [
+          "net8.0-windows10.0.19041.0",
+          "net10.0-windows10.0.19041.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 46,
+        "numberOfCodeFiles": 6,
+        "linesTotal": 1087,
+        "linesOfCode": 275,
+        "totalApiScanned": 1398,
+        "minLinesOfCodeToChange": 6,
+        "maxLinesOfCodeToChange": 6
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "8a5f68a1-c461-4e64-bc43-cc9b86c4b40f",
+          "ruleId": "NuGet.0002",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+              "protected": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.7",
+            "label": "Microsoft.Extensions.DependencyInjection 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.7",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "07fc9eab-0f8b-41ff-83fd-37728fd63fdb",
+          "ruleId": "NuGet.0001",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found",
+              "protected": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+            "snippet": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found",
+            "protectedSnippet": "Microsoft.Xaml.Behaviors.WinUI.Managed, 2.0.9\n\nRecommendation:\n\nNo supported version found",
+            "label": "Microsoft.Xaml.Behaviors.WinUI.Managed 2.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Xaml.Behaviors.WinUI.Managed",
+              "PackageVersion": "2.0.9",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "08ef5b25-47ce-47d7-8379-3aaf5b07c183",
+          "ruleId": "Project.0002",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0",
+              "protected": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+            "snippet": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0",
+            "protectedSnippet": "Current target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0\nRecommended target framework: net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0",
+              "RecommendedTargetFramework": "net8.0-windows10.0.19041.0;net10.0-windows10.0.19041.0;net10.0-windows10.0.22000.0"
+            }
+          }
+        },
+        {
+          "incidentId": "9c4cb4e1-f6ad-4102-8d28-89fffa359b9f",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\obj\\Debug\\net8.0-windows10.0.19041.0\\MainPage.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 35,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "b6dc27cc-127b-4f91-be08-2c926356acae",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\obj\\Debug\\net8.0-windows10.0.19041.0\\MainPage.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainPage.xaml\u0022);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 35,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "45a84f71-eead-41b5-bf72-54eb14663707",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainWindow.xaml\u0022);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\obj\\Debug\\net8.0-windows10.0.19041.0\\MainWindow.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainWindow.xaml\u0022);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 37,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "72859a4c-52d6-4058-a4b0-32644c13656e",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainWindow.xaml\u0022);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\obj\\Debug\\net8.0-windows10.0.19041.0\\MainWindow.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///MainWindow.xaml\u0022);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 37,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "b71c6231-517a-4aac-8fdd-fbbc55eb4443",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///App.xaml\u0022);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\obj\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///App.xaml\u0022);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 50,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "694ba2ce-5f06-4b06-b88c-256ac73ca56a",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "WinUIAkLocalization\\WinUIAkLocalization.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///App.xaml\u0022);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "WinUIAkLocalization\\obj\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs",
+            "snippet": "global::System.Uri resourceLocator = new global::System.Uri(\u0022ms-appx:///App.xaml\u0022);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 50,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0003": {
+      "id": "NuGet.0003",
+      "isFeature": false,
+      "description": "NuGet package functionality is included with framework reference.\n\nPackage needs to be removed.",
+      "label": "NuGet package functionality is included with framework reference",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262609",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "NuGet package is deprecated.\n\nGo to its documentation and if there is a guidance for replacement of functionality provided by this package.",
+      "label": "NuGet package is deprecated",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0001": {
+      "id": "NuGet.0001",
+      "isFeature": false,
+      "description": "NuGet package is incompatible with selected target framework.\n\nPackage needs to be upgraded to a version supporting selected project target framework. If there no new package versions supporting new target framework, different package needs to be used and all code needs to be upgraded to new API.",
+      "label": "NuGet package is incompatible",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262529",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0001": {
+      "id": "Project.0001",
+      "isFeature": false,
+      "description": "Project file needs to be converted to SDK-style. Modern .NET framework projects require a change in the project file format and use SDK corresponding to project flavor and functionality.",
+      "label": "Project file needs to be converted to SDK-style",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "API has a behavioral change in selected .NET version: code and binaries may behave differently at runtime without needing recompilation, but the new behavior might be undesirable and require updates.",
+      "label": "Behavioral change in selected .NET version",
+      "severity": "Potential",
+      "effort": 1
+    }
+  }
+}

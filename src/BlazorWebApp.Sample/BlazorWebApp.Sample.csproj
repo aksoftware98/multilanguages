@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AKSoftware.Localization.MultiLanguages.Blazor" Version="6.0.0-alpha" />
-    <PackageReference Include="AKSoftware.Localization.MultiLanguages.SourceGenerator" Version="6.0.0-alpha" />
+    <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages.Blazor\AKSoftware.Localization.MultiLanguages.Blazor.csproj" />
+    <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages.SourceGenerator\AKSoftware.Localization.MultiLanguages.SourceGenerator.csproj" />
   </ItemGroup>
 
 </Project>
