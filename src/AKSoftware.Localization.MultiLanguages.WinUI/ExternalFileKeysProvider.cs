@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,63 +14,100 @@ namespace AKSoftware.Localization.MultiLanguages.WinUI
     public class ExternalFileKeysProvider : BaseKeysProvider
     {
         private readonly string _resourceFolderName;
+        private readonly StorageFolder _localizationFolder;
 
-        public ExternalFileKeysProvider(Assembly resourcesAssembly, string resourceFolderName = "Localization", LocalizationFolderType localizationFolderType = LocalizationFolderType.LocalFolder)
+        private ExternalFileKeysProvider(string resourceFolderName, StorageFolder localizationFolder)
+        {
+            _resourceFolderName = resourceFolderName ?? throw new ArgumentNullException(nameof(resourceFolderName));
+            _localizationFolder = localizationFolder ?? throw new ArgumentNullException(nameof(localizationFolder));
+            Log($"Initialized with folder '{_resourceFolderName}' at '{_localizationFolder.Path}'");
+        }
+
+        /// <summary>
+        /// Creates an instance of ExternalFileKeysProvider asynchronously.
+        /// This method must be called from a thread with WinRT context (typically the UI thread).
+        /// Supports both packaged and unpackaged WinUI apps.
+        /// </summary>
+        public static async Task<ExternalFileKeysProvider> CreateAsync(Assembly resourcesAssembly, string resourceFolderName = "Localization", LocalizationFolderType localizationFolderType = LocalizationFolderType.LocalFolder)
         {
             _ = resourcesAssembly ?? throw new ArgumentNullException(nameof(resourcesAssembly));
             if (string.IsNullOrWhiteSpace(resourceFolderName))
                 throw new ArgumentNullException(nameof(resourceFolderName));
 
-            _resourceFolderName = resourceFolderName;
-            LocalizationFolderType = localizationFolderType;
-        }
+            Log($"CreateAsync called. Assembly='{resourcesAssembly.GetName().Name}', ResourceFolder='{resourceFolderName}', FolderType={localizationFolderType}");
 
-        private LocalizationFolderType LocalizationFolderType { get; }
+            StorageFolder localizationFolder;
 
-        private StorageFolder _localizationFolder;
-        private StorageFolder LocalizationFolder
-        {
-            get
+            if (localizationFolderType == LocalizationFolderType.LocalFolder)
             {
-                if (_localizationFolder == null)
+                try
                 {
-                    switch (LocalizationFolderType)
+                    Log($"Trying packaged local folder '{resourceFolderName}' via ApplicationData.Current.LocalFolder.");
+                    localizationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync(resourceFolderName, CreationCollisionOption.OpenIfExists);
+                    Log($"Using packaged local folder '{localizationFolder.Path}'.");
+                }
+                catch (InvalidOperationException ex)
+                {
+                    var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    var appName = resourcesAssembly.GetName().Name;
+                    var localPath = Path.Combine(localAppData, appName, resourceFolderName);
+                    Log($"Packaged local folder unavailable ({ex.Message}). Falling back to unpackaged local path '{localPath}'. Exists={Directory.Exists(localPath)}");
+
+                    if (!Directory.Exists(localPath))
                     {
-                        case LocalizationFolderType.LocalFolder:
-                        {
-                            var task = Task.Run(async () =>
-                                await ApplicationData.Current.LocalFolder.GetFolderAsync(_resourceFolderName));
-                            if (!task.IsFaulted)
-                            {
-                                _localizationFolder = task.Result;
-                            }
-                            else
-                            {
-                                throw task.Exception;
-                            }
-
-                            break;
-                        }
-                        case LocalizationFolderType.InstallationFolder:
-                        {
-                            var task = Task.Run(async () =>
-                                await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(_resourceFolderName));
-                            if (!task.IsFaulted)
-                            {
-                                _localizationFolder = task.Result;
-                            }
-                            else
-                            {
-                                throw task.Exception;
-                            }
-
-                            break;
-                        }
+                        Directory.CreateDirectory(localPath);
+                        Log($"Created unpackaged local folder '{localPath}'.");
                     }
+
+                    localizationFolder = await StorageFolder.GetFolderFromPathAsync(localPath);
+                    Log($"Using unpackaged local folder '{localizationFolder.Path}'.");
+                }
+            }
+            else if (localizationFolderType == LocalizationFolderType.InstallationFolder)
+            {
+                try
+                {
+                    Log($"Trying packaged installation folder '{resourceFolderName}' via Package.Current.InstalledLocation.");
+                    localizationFolder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(resourceFolderName);
+                    Log($"Using packaged installation folder '{localizationFolder.Path}'.");
+                }
+                catch (InvalidOperationException ex)
+                {
+                    var installPath = Path.Combine(AppContext.BaseDirectory, resourceFolderName);
+                    Log($"Packaged installation folder unavailable ({ex.Message}). Falling back to unpackaged install path '{installPath}'. Exists={Directory.Exists(installPath)}");
+
+                    if (!Directory.Exists(installPath))
+                    {
+                        Directory.CreateDirectory(installPath);
+                        Log($"Created unpackaged installation folder '{installPath}'.");
+                    }
+
+                    localizationFolder = await StorageFolder.GetFolderFromPathAsync(installPath);
+                    Log($"Using unpackaged installation folder '{localizationFolder.Path}'.");
+                }
+            }
+            else if (localizationFolderType == LocalizationFolderType.ExternalFolder)
+            {
+                if (!Path.IsPathFullyQualified(resourceFolderName))
+                    throw new ArgumentException("When using ExternalFolder, resourceFolderName must be a fully qualified path.", nameof(resourceFolderName));
+
+                Log($"Using external folder path '{resourceFolderName}'. Exists={Directory.Exists(resourceFolderName)}");
+
+                if (!Directory.Exists(resourceFolderName))
+                {
+                    Directory.CreateDirectory(resourceFolderName);
+                    Log($"Created external folder '{resourceFolderName}'.");
                 }
 
-                return _localizationFolder;
+                localizationFolder = await StorageFolder.GetFolderFromPathAsync(resourceFolderName);
+                Log($"Using external folder '{localizationFolder.Path}'.");
             }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(localizationFolderType));
+            }
+
+            return new ExternalFileKeysProvider(resourceFolderName, localizationFolder);
         }
 
         public override Keys GetKeys(CultureInfo cultureInfo)
@@ -85,9 +123,14 @@ namespace AKSoftware.Localization.MultiLanguages.WinUI
             if (string.IsNullOrWhiteSpace(cultureName))
                 throw new ArgumentNullException(nameof(cultureName));
 
+            Log($"GetKeys requested for culture '{cultureName}' from '{_localizationFolder.Path}'.");
+
             var fileName = GetFileName(cultureName);
             if (string.IsNullOrWhiteSpace(fileName))
+            {
+                Log($"No localization file found for culture '{cultureName}' in '{_localizationFolder.Path}'.");
                 return null;
+            }
 
             return InternalGetKeys(fileName);
         }
@@ -118,43 +161,36 @@ namespace AKSoftware.Localization.MultiLanguages.WinUI
             var fileName = files.SingleOrDefault(file =>
                 file.Contains(cultureName) &&
                 (file.Contains(cultureName + ".yml") || file.Contains(cultureName + ".yaml")));
+            Log($"Resolved culture '{cultureName}' to file '{fileName ?? "<none>"}'.");
             return fileName;
         }
 
         private StorageFile GetFile(string fileName)
         {
-            var task = Task.Run(async () => await LocalizationFolder.GetFileAsync(fileName));
-            if (!task.IsFaulted)
-            {
-                return task.Result;
-            }
-
-            throw task.Exception;
+            Log($"Opening localization file '{fileName}' from '{_localizationFolder.Path}'.");
+            return _localizationFolder.GetFileAsync(fileName).AsTask().GetAwaiter().GetResult();
         }
 
         private string[] GetLanguageFileNames()
         {
-            var task = Task.Run(async () => await LocalizationFolder.GetFilesAsync());
-            if (!task.IsFaulted)
-            {
-                var files = task.Result;
-                return files.Select(file => file.Name).ToArray();
-            }
-
-            throw task.Exception;
+            var files = _localizationFolder.GetFilesAsync().AsTask().GetAwaiter().GetResult();
+            var fileNames = files.Select(file => file.Name).ToArray();
+            Log($"Discovered files in '{_localizationFolder.Path}': {string.Join(", ", fileNames)}");
+            return fileNames;
         }
 
         private Keys InternalGetKeys(string fileName)
         {
             var localizationFile = GetFile(fileName);
-            var task = Task.Run(async () => await FileIO.ReadTextAsync(localizationFile));
-            if (!task.IsFaulted)
-            {
-                var keys = task.Result;
-                return new Keys(keys);
-            }
+            var keys = FileIO.ReadTextAsync(localizationFile).AsTask().GetAwaiter().GetResult();
+            Log($"Loaded localization file '{localizationFile.Path}'.");
+            return new Keys(keys);
+        }
 
-            throw task.Exception;
+        private static void Log(string message)
+        {
+            Debug.WriteLine($"[ExternalFileKeysProvider] {message}");
+            Trace.WriteLine($"[ExternalFileKeysProvider] {message}");
         }
     }
 }

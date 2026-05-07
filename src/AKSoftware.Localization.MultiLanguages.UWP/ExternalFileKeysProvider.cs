@@ -66,6 +66,10 @@ namespace AKSoftware.Localization.MultiLanguages.UWP
 
                             break;
                         }
+                        case LocalizationFolderType.ExternalFolder:
+                            throw new NotSupportedException("ExternalFolder is not supported since UWP runs in a sand-boxed environment.");
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
                 }
 

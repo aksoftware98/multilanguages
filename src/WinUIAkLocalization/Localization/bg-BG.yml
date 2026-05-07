@@ -1,0 +1,19 @@
+HomePage:
+  Title: Начало
+  HelloWorld: Здравей, свят
+  Welcome: Добре дошли {username} на теста
+  Question: Как работи Блазор за вас?
+  BriefSuvery: Кратко проучване
+  Think: Кажи ни какво мислиш
+  Hello: Здравей {firstname} {lastname}
+Counter:
+  Title: Counter
+  ClickMe: Кликнете върху мен
+FetchData:
+  Title: Извличане на данни
+  WeatherForcast: Прогноза за времето
+  WeatherTitle: Този компонент демонстрира извличане на данни от сървъра
+  Loading: Зареждане
+  Date: Дата
+  Temp: Temp
+  Summary: Резюме
