@@ -34,45 +34,58 @@ namespace WinUIAkLocalization
         private async System.Threading.Tasks.Task RegisterServicesAsync()
         {
             var serviceCollection = new ServiceCollection();
+            var assembly = Assembly.GetExecutingAssembly();
+            const string localOrInstalledFolderName = "Localization";
+            const string externalFolderPath = @"C:\temp\WinUIAkLocalization\Localization";
+            var localizationSource = LocalizationSource.ExternalFolder;
 
-            bool useEmbeddedResources = false; // Set to true to use embedded resources instead of external files
+            // End users must copy the YAML files from this sample project's 'Localization' folder when the selected
+            // source reads from a writable runtime location rather than from packaged app content. For
+            // LocalizationSource.UwpStyleLocalFolder, copy them to LocalState\Localization. For
+            // LocalizationSource.ExternalFolder, copy them to the configured fully qualified path. For
+            // LocalizationSource.AppManagedDefault, copy them only when the app runs packaged because that mode maps
+            // packaged apps to LocalState\Localization; unpackaged apps use the installation folder instead.
+            IKeysProvider keysProvider;
 
-            bool useExternalFiles = true; // Set to true to use external files for localization
-
-            if (useEmbeddedResources)
+            switch (localizationSource)
             {
-                // Register the embedded resource keys provider
-                serviceCollection.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(), "Resources");
+                case LocalizationSource.EmbeddedResources:
+                    keysProvider = new EmbeddedResourceKeysProvider(assembly, "Resources");
+                    break;
+
+                case LocalizationSource.UwpStyleLocalFolder:
+                    keysProvider = await ExternalFileKeysProvider.CreateFromLocalFolderAsync(assembly, localOrInstalledFolderName);
+                    break;
+
+                case LocalizationSource.InstallationFolder:
+                    keysProvider = await ExternalFileKeysProvider.CreateFromInstallationFolderAsync(assembly, localOrInstalledFolderName);
+                    break;
+
+                case LocalizationSource.ExternalFolder:
+                    keysProvider = await ExternalFileKeysProvider.CreateFromExternalFolderAsync(externalFolderPath);
+                    break;
+
+                case LocalizationSource.AppManagedDefault:
+                    var isPackaged = IsPackaged();
+                    Debug.WriteLine($"[WinUIAkLocalization] IsPackaged={isPackaged}, BaseDirectory='{AppContext.BaseDirectory}'");
+                    Trace.WriteLine($"[WinUIAkLocalization] IsPackaged={isPackaged}, BaseDirectory='{AppContext.BaseDirectory}'");
+
+                    if (isPackaged)
+                    {
+                        keysProvider = await ExternalFileKeysProvider.CreateFromLocalFolderAsync(assembly, localOrInstalledFolderName);
+                    }
+                    else
+                    {
+                        keysProvider = await ExternalFileKeysProvider.CreateFromInstallationFolderAsync(assembly, localOrInstalledFolderName);
+                    }
+
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            else if (useExternalFiles)
-            {
-                var keysProvider = await ExternalFileKeysProvider.CreateAsync(
-                 Assembly.GetExecutingAssembly(),
-                 @"C:\temp\WinUIAkLocalization\Localization",
-                 LocalizationFolderType.ExternalFolder);
 
-                serviceCollection.AddLanguageContainer(keysProvider);
-            }
-            else
-            {
-                var isPackaged = IsPackaged();
-                var localizationFolderType = isPackaged
-                    ? LocalizationFolderType.LocalFolder
-                    : LocalizationFolderType.InstallationFolder;
-
-                Debug.WriteLine($"[WinUIAkLocalization] IsPackaged={isPackaged}, LocalizationFolderType={localizationFolderType}, BaseDirectory='{AppContext.BaseDirectory}'");
-                Trace.WriteLine($"[WinUIAkLocalization] IsPackaged={isPackaged}, LocalizationFolderType={localizationFolderType}, BaseDirectory='{AppContext.BaseDirectory}'");
-
-                // Initialize ExternalFileKeysProvider asynchronously on the UI thread
-                // This ensures WinRT APIs like ApplicationData.Current are accessible
-                var keysProvider = await ExternalFileKeysProvider.CreateAsync(
-                    Assembly.GetExecutingAssembly(),
-                    "Localization",
-                    localizationFolderType);
-
-                serviceCollection.AddLanguageContainer(keysProvider);
-            }
-
+            serviceCollection.AddLanguageContainer(keysProvider);
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }
 
@@ -91,6 +104,15 @@ namespace WinUIAkLocalization
                 Trace.WriteLine($"[WinUIAkLocalization] Package.Current failed: {ex.Message}");
                 return false;
             }
+        }
+
+        private enum LocalizationSource
+        {
+            EmbeddedResources,
+            UwpStyleLocalFolder,
+            InstallationFolder,
+            ExternalFolder,
+            AppManagedDefault
         }
     }
 }
