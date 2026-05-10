@@ -18,9 +18,9 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>6.1.0</AssemblyVersion>
-    <FileVersion>6.1.0</FileVersion>
-    <Version>6.1.0</Version>
+    <AssemblyVersion>6.1.2</AssemblyVersion>
+    <FileVersion>6.1.2</FileVersion>
+    <Version>6.1.2</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -44,21 +44,22 @@
 
   <PropertyGroup>
     <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackAnalyzerDependencies</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <Target Name="GetDependencyTargetPaths">
     <ItemGroup>
       <TargetPathWithTargetPlatformMoniker Include="$(PKGYamlDotNet)\lib\net20\YamlDotNet.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PKGMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" IncludeRuntimeDependency="false" />
-      <None Include="$(PKGYamlDotNet)\lib\net20\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-      <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-      <None Include="$(PKGMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
   </Target>
 
-  <Target Name="EmbedProjectDependency" AfterTargets="Build" Condition="'$(TargetFramework)' != ''">
+  <Target Name="PackAnalyzerDependencies" Condition="'$(TargetFramework)' == 'netstandard2.0'" DependsOnTargets="BuiltProjectOutputGroup;ResolveProjectReferences">
     <ItemGroup>
-      <None Include="$(TargetDir)AKSoftware.Localization.MultiLanguages.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" Condition="Exists('$(TargetDir)AKSoftware.Localization.MultiLanguages.dll')" />
+      <TfmSpecificPackageFile Include="$(OutputPath)$(AssemblyName).dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(PKGYamlDotNet)\lib\net20\YamlDotNet.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(PKGMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)AKSoftware.Localization.MultiLanguages.dll" PackagePath="analyzers/dotnet/cs" Condition="Exists('$(OutputPath)AKSoftware.Localization.MultiLanguages.dll')" />
     </ItemGroup>
   </Target>
 
