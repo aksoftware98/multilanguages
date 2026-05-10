@@ -5,8 +5,22 @@
     <UseWinUI>true</UseWinUI>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
+    <Company>AK Software</Company>
+    <Authors>Ahmad Mozaffar</Authors>
+    <Description>WinUI 3 integration components for AKSoftware.Localization.MultiLanguages — adds XAML extensions, behaviors, and converters that make multi-language UIs in WinUI 3 apps trivial to build.</Description>
+    <Copyright>AK Software 2026</Copyright>
+    <PackageTags>AKSoftware, Languages, Localization, Globalization, WinUI, WinUI3, Windows</PackageTags>
+    <PackageReleaseNotes>Initial WinUI 3 release with .NET 10 support</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
+    <PackageIcon>AkMultiLanguages.png</PackageIcon>
+    <AssemblyVersion>6.1.0</AssemblyVersion>
+    <FileVersion>6.1.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>WinUI 3 integration components for AKSoftware.Localization.MultiLanguages</Description>
+    <Version>6.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +30,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\AKSoftware.Localization.MultiLanguages\AkMultiLanguages.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

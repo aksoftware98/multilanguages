@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AKSoftware.Localization.MultiLangauges.UWP</id>
-    <version>1.1.0</version>
+    <version>6.1.0</version>
     <title>AKSoftware.Localization.MultiLangauges.UWP</title>
     <authors>Michael Gerfen</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -11,11 +11,11 @@
     <icon>images\AkMultiLanguages.png</icon>
     <projectUrl>https://github.com/aksoftware98/multilanguages</projectUrl>
     <description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</description>
-    <releaseNotes>Adding XAML extension to access the language keywords</releaseNotes>
-    <copyright>2021</copyright>
+    <releaseNotes>Align UWP package with the 6.1.0 release of AKSoftware.Localization.MultiLanguages (.NET 10 + WinUI 3 wave).</releaseNotes>
+    <copyright>AK Software 2026</copyright>
     <tags>UWP Localization MultiLanguages dotnetcore dotnet Windows10 WinUI Globalization AKSoftware</tags>
     <dependencies>
-      <dependency id="AKSoftware.Localization.MultiLanguages" version="5.0.0" />
+      <dependency id="AKSoftware.Localization.MultiLanguages" version="6.1.0" />
     </dependencies>
   </metadata>
 

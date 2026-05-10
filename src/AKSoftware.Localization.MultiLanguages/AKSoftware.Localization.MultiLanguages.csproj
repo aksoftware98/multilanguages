@@ -5,19 +5,19 @@
     <Company>AK Software</Company>
     <Authors>Ahmad Mozaffar</Authors>
     <Description>AKSoftware.Localization.MultiLanguages is a .NET library that allows .NET developers to build applications that targets multiple languages very easy just with few lines of code</Description>
-    <Copyright>AK Software 2023</Copyright>
+    <Copyright>AK Software 2026</Copyright>
     <PackageTags>AKSoftware, Languages, Localization, Globalization,</PackageTags>
-    <PackageReleaseNotes>Add capability to list languages dynamically, list and enumerate all keys, genreate static keys class and full keys accessor classes, in addition to bug fixes and improvements</PackageReleaseNotes>
+    <PackageReleaseNotes>Migrate to .NET 10 and add support for WinUI 3 on Windows</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>6.0.1</AssemblyVersion>
-    <FileVersion>6.0.1</FileVersion>
+    <AssemblyVersion>6.1.0</AssemblyVersion>
+    <FileVersion>6.1.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.0.1</Version>
+    <Version>6.1.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
