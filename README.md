@@ -3,7 +3,7 @@
 ## ASP.NET Localization
 ## .NET Localization
 
-### v6.0.0-alpha
+### v6.0.1-alpha
 [![Build Badge](https://aksoftware98.visualstudio.com/AkMultiLanguages/_apis/build/status/aksoftware98.multilanguages?branchName=master)](https://aksoftware98.visualstudio.com/AkMultiLanguages/_build/latest?definitionId=4&branchName=master)
 
   
@@ -48,7 +48,7 @@ Why MultiLanguages is better:
 <img width="400" src="https://github.com/aksoftware98/multilanguages/blob/master/Images/v6/interpolation-support.png?raw=true" />
 
 
-It can be used for all type of .NET Apps (Blazor, UWP, Xamarin, Windows, ASP.NET Core MVC, Razor Pages ....)
+It can be used for all type of .NET Apps (Blazor, WinUI3, UWP, Xamarin, Windows, ASP.NET Core MVC, Razor Pages ....)
 
 https://akmultilanguages.azurewebsites.net
 
@@ -93,6 +93,7 @@ AKSoftware.Localization.Multilanguage prvoides all the feature set needed for an
 - Code generators to generate full keys accessor service, static class with const strings, enums, and more..
 - v6.1 will bring the localization assistant to localize existing apps with minimal effort.
 - Full UWP support
+- Full WinUI3 support
 
 
 

@@ -71,6 +71,21 @@ namespace AKSoftware.Localization.MultiLanguages
             });
         }
 
+        /// <summary>
+        /// Register a singleton instance of LanguageContainer with a pre-initialized keys provider.
+        /// Use this overload when you need to initialize the provider asynchronously on the UI thread.
+        /// </summary>
+        public static IServiceCollection AddLanguageContainer(this IServiceCollection services, IKeysProvider keysProvider)
+        {
+            _ = keysProvider ?? throw new ArgumentNullException(nameof(keysProvider));
+            services.AddSingleton<IKeysProvider>(keysProvider);
+            return services.AddSingleton<ILanguageContainerService, LanguageContainerInAssembly>(s =>
+            {
+                var provider = s.GetService<IKeysProvider>();
+                return new LanguageContainerInAssembly(provider);
+            });
+        }
+
 		/// <summary>
 		/// Add a language container that loads the language files from a specific folder
 		/// </summary>

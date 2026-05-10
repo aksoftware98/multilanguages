@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <Company>AK Software</Company>
     <Authors>Ahmad Mozaffar</Authors>
     <Description>Source Generator to provide a simple and direct access for the LanguageContainer and the keys in a strongly-typed fashion.</Description>
-    <Copyright>AK Software 2024</Copyright>
+    <Copyright>AK Software 2026</Copyright>
     <PackageTags>AKSoftware, Languages, Localization, Globalization, Source Generator</PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>Migrate to .NET 10 and add support for WinUI 3 on Windows</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <EnforceExtendedAnalyzerRules>false</EnforceExtendedAnalyzerRules>
@@ -18,17 +18,23 @@
     <PackageProjectUrl>https://akmultilanguages.azurewebsites.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/aksoftware98/multilanguages</RepositoryUrl>
     <PackageIcon>AkMultiLanguages.png</PackageIcon>
-    <AssemblyVersion>6.0.1</AssemblyVersion>
-    <FileVersion>6.0.1</FileVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.0.1</Version>
+    <AssemblyVersion>6.1.0</AssemblyVersion>
+    <FileVersion>6.1.0</FileVersion>
+    <Version>6.1.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AKSoftware.Localization.MultiLanguages\AKSoftware.Localization.MultiLanguages.csproj" PrivateAssets="all" />
     <PackageReference Include="YamlDotNet" Version="9.1.0" PrivateAssets="all" GeneratePathProperty="true" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" PrivateAssets="all" GeneratePathProperty="true" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.7" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,9 +56,9 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="EmbedProjectDependency" AfterTargets="Build">
+  <Target Name="EmbedProjectDependency" AfterTargets="Build" Condition="'$(TargetFramework)' != ''">
     <ItemGroup>
-      <None Include="$(OutputPath)\AKSoftware.Localization.MultiLanguages.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+      <None Include="$(TargetDir)AKSoftware.Localization.MultiLanguages.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" Condition="Exists('$(TargetDir)AKSoftware.Localization.MultiLanguages.dll')" />
     </ItemGroup>
   </Target>
 

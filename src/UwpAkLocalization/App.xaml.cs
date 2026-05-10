@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Resources;
 using AKSoftware.Localization.MultiLanguages;
+using AKSoftware.Localization.MultiLanguages.Providers;
 using AKSoftware.Localization.MultiLanguages.UWP;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,6 +28,9 @@ namespace UwpAkLocalization
     /// </summary>
     sealed partial class App : Application, IServiceProviderHost
     {
+        private sealed class CompatServiceCollection : List<ServiceDescriptor>, IServiceCollection
+        {
+        }
 
         public IServiceProvider ServiceProvider { get; private set; }
         private IServiceCollection serviceCollection_;
@@ -110,7 +114,7 @@ namespace UwpAkLocalization
 
         private void RegisterServices()
         {
-            serviceCollection_ = new ServiceCollection();
+            serviceCollection_ = new CompatServiceCollection();
             serviceCollection_.AddSingleton<CustomXamlResourceLoader, ApplicationResourceLoader>();
 
 
