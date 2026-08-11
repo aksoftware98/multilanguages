@@ -18,7 +18,7 @@ namespace BlazorWasmMultiLanguages
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
             // Load the language container with files from the Resources Folder
-            builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly());
+            builder.Services.AddLanguageContainer<EmbeddedResourceKeysProvider>(Assembly.GetExecutingAssembly(), "Resources");
 
             // Load the language Container with the files from a custom folder
             //builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly(), folderName: "TestFolder");
